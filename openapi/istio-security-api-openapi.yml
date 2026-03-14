@@ -1,0 +1,812 @@
+openapi: 3.1.0
+info:
+  title: Istio Security API
+  description: >-
+    The Istio Security API (security.istio.io) provides configuration resources
+    for managing security policies within an Istio service mesh. It includes
+    AuthorizationPolicy for fine-grained access control on workloads,
+    PeerAuthentication for configuring mutual TLS (mTLS) between service
+    proxies, and RequestAuthentication for validating JWT tokens attached to
+    incoming requests. These resources are defined as Kubernetes Custom Resource
+    Definitions (CRDs) and are accessed via the Kubernetes API server.
+  version: v1
+  contact:
+    name: Istio
+    url: https://istio.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: Istio Security Configuration Reference
+  url: https://istio.io/latest/docs/reference/config/security/
+servers:
+  - url: https://{cluster}/apis/security.istio.io/v1
+    description: Kubernetes API server endpoint for Istio Security v1
+    variables:
+      cluster:
+        default: kubernetes.default.svc
+        description: Kubernetes API server hostname
+paths:
+  /namespaces/{namespace}/authorizationpolicies:
+    get:
+      operationId: listAuthorizationPolicies
+      summary: List AuthorizationPolicies
+      description: >-
+        List all AuthorizationPolicy resources in the specified namespace. An
+        AuthorizationPolicy enables access control on workloads in the mesh,
+        supporting ALLOW, DENY, AUDIT, and CUSTOM actions based on source,
+        operation, and condition matching.
+      tags:
+        - AuthorizationPolicy
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of AuthorizationPolicies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationPolicyList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createAuthorizationPolicy
+      summary: Create an AuthorizationPolicy
+      description: Create a new AuthorizationPolicy resource in the specified namespace.
+      tags:
+        - AuthorizationPolicy
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorizationPolicy'
+      responses:
+        '201':
+          description: AuthorizationPolicy created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationPolicy'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict - resource already exists
+  /namespaces/{namespace}/authorizationpolicies/{name}:
+    get:
+      operationId: getAuthorizationPolicy
+      summary: Get an AuthorizationPolicy
+      description: Read the specified AuthorizationPolicy resource.
+      tags:
+        - AuthorizationPolicy
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationPolicy'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceAuthorizationPolicy
+      summary: Replace an AuthorizationPolicy
+      description: Replace the specified AuthorizationPolicy resource.
+      tags:
+        - AuthorizationPolicy
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorizationPolicy'
+      responses:
+        '200':
+          description: AuthorizationPolicy replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationPolicy'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteAuthorizationPolicy
+      summary: Delete an AuthorizationPolicy
+      description: Delete the specified AuthorizationPolicy resource.
+      tags:
+        - AuthorizationPolicy
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: AuthorizationPolicy deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /namespaces/{namespace}/peerauthentications:
+    get:
+      operationId: listPeerAuthentications
+      summary: List PeerAuthentications
+      description: >-
+        List all PeerAuthentication resources in the specified namespace. A
+        PeerAuthentication defines how traffic will be tunneled (or not) to the
+        sidecar proxy, configuring mutual TLS mode for inbound connections.
+      tags:
+        - PeerAuthentication
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of PeerAuthentications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeerAuthenticationList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createPeerAuthentication
+      summary: Create a PeerAuthentication
+      description: Create a new PeerAuthentication resource in the specified namespace.
+      tags:
+        - PeerAuthentication
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PeerAuthentication'
+      responses:
+        '201':
+          description: PeerAuthentication created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeerAuthentication'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+  /namespaces/{namespace}/peerauthentications/{name}:
+    get:
+      operationId: getPeerAuthentication
+      summary: Get a PeerAuthentication
+      description: Read the specified PeerAuthentication resource.
+      tags:
+        - PeerAuthentication
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeerAuthentication'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replacePeerAuthentication
+      summary: Replace a PeerAuthentication
+      description: Replace the specified PeerAuthentication resource.
+      tags:
+        - PeerAuthentication
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PeerAuthentication'
+      responses:
+        '200':
+          description: PeerAuthentication replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeerAuthentication'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deletePeerAuthentication
+      summary: Delete a PeerAuthentication
+      description: Delete the specified PeerAuthentication resource.
+      tags:
+        - PeerAuthentication
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: PeerAuthentication deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /namespaces/{namespace}/requestauthentications:
+    get:
+      operationId: listRequestAuthentications
+      summary: List RequestAuthentications
+      description: >-
+        List all RequestAuthentication resources in the specified namespace. A
+        RequestAuthentication defines the request authentication methods
+        supported by a workload. It will reject requests with invalid
+        authentication information based on configured JWT rules.
+      tags:
+        - RequestAuthentication
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of RequestAuthentications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestAuthenticationList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createRequestAuthentication
+      summary: Create a RequestAuthentication
+      description: Create a new RequestAuthentication resource in the specified namespace.
+      tags:
+        - RequestAuthentication
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestAuthentication'
+      responses:
+        '201':
+          description: RequestAuthentication created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestAuthentication'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+  /namespaces/{namespace}/requestauthentications/{name}:
+    get:
+      operationId: getRequestAuthentication
+      summary: Get a RequestAuthentication
+      description: Read the specified RequestAuthentication resource.
+      tags:
+        - RequestAuthentication
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestAuthentication'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceRequestAuthentication
+      summary: Replace a RequestAuthentication
+      description: Replace the specified RequestAuthentication resource.
+      tags:
+        - RequestAuthentication
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestAuthentication'
+      responses:
+        '200':
+          description: RequestAuthentication replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestAuthentication'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteRequestAuthentication
+      summary: Delete a RequestAuthentication
+      description: Delete the specified RequestAuthentication resource.
+      tags:
+        - RequestAuthentication
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: RequestAuthentication deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+components:
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+  schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        resourceVersion:
+          type: string
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
+    AuthorizationPolicy:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+            - security.istio.io/v1
+        kind:
+          type: string
+          enum:
+            - AuthorizationPolicy
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            selector:
+              type: object
+              properties:
+                matchLabels:
+                  type: object
+                  additionalProperties:
+                    type: string
+              description: Workload selector to apply the policy to specific workloads.
+            action:
+              type: string
+              enum:
+                - ALLOW
+                - DENY
+                - AUDIT
+                - CUSTOM
+              description: The action to take when a request matches the policy rules.
+            provider:
+              type: object
+              properties:
+                name:
+                  type: string
+              description: >-
+                Specifies the name of the extension provider. Required when
+                action is CUSTOM.
+            rules:
+              type: array
+              items:
+                $ref: '#/components/schemas/AuthorizationRule'
+              description: >-
+                Rules to match for the policy. A match occurs when at least one
+                rule is matched. An empty rule list means all requests are
+                matched.
+            targetRefs:
+              type: array
+              items:
+                type: object
+                properties:
+                  kind:
+                    type: string
+                  group:
+                    type: string
+                  name:
+                    type: string
+              description: >-
+                References to the target resources to which the policy applies.
+    AuthorizationPolicyList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+            - AuthorizationPolicyList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthorizationPolicy'
+    AuthorizationRule:
+      type: object
+      properties:
+        from:
+          type: array
+          items:
+            type: object
+            properties:
+              source:
+                type: object
+                properties:
+                  principals:
+                    type: array
+                    items:
+                      type: string
+                    description: Peer identities derived from the peer certificate.
+                  notPrincipals:
+                    type: array
+                    items:
+                      type: string
+                  requestPrincipals:
+                    type: array
+                    items:
+                      type: string
+                    description: Request identities derived from the JWT token.
+                  notRequestPrincipals:
+                    type: array
+                    items:
+                      type: string
+                  namespaces:
+                    type: array
+                    items:
+                      type: string
+                    description: Namespaces derived from the peer certificate.
+                  notNamespaces:
+                    type: array
+                    items:
+                      type: string
+                  ipBlocks:
+                    type: array
+                    items:
+                      type: string
+                    description: IP blocks in CIDR notation.
+                  notIpBlocks:
+                    type: array
+                    items:
+                      type: string
+          description: Source identities (peers and request principals) to match.
+        to:
+          type: array
+          items:
+            type: object
+            properties:
+              operation:
+                type: object
+                properties:
+                  hosts:
+                    type: array
+                    items:
+                      type: string
+                    description: The request host header values.
+                  notHosts:
+                    type: array
+                    items:
+                      type: string
+                  ports:
+                    type: array
+                    items:
+                      type: string
+                    description: The request port values.
+                  notPorts:
+                    type: array
+                    items:
+                      type: string
+                  methods:
+                    type: array
+                    items:
+                      type: string
+                    description: The request HTTP methods (GET, POST, etc.).
+                  notMethods:
+                    type: array
+                    items:
+                      type: string
+                  paths:
+                    type: array
+                    items:
+                      type: string
+                    description: The request URL paths.
+                  notPaths:
+                    type: array
+                    items:
+                      type: string
+          description: Operations (hosts, ports, methods, paths) to match.
+        when:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+                description: >-
+                  The name of an Istio attribute (e.g.
+                  request.headers[X-Custom]).
+              values:
+                type: array
+                items:
+                  type: string
+              notValues:
+                type: array
+                items:
+                  type: string
+          description: Additional conditions to match.
+    PeerAuthentication:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+            - security.istio.io/v1
+        kind:
+          type: string
+          enum:
+            - PeerAuthentication
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            selector:
+              type: object
+              properties:
+                matchLabels:
+                  type: object
+                  additionalProperties:
+                    type: string
+              description: Workload selector to apply the policy to specific workloads.
+            mtls:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                    - UNSET
+                    - DISABLE
+                    - PERMISSIVE
+                    - STRICT
+                  description: >-
+                    Defines the mTLS mode used for peer authentication.
+                    PERMISSIVE allows both plaintext and mTLS, STRICT requires
+                    mTLS, DISABLE turns off mTLS.
+              description: Mutual TLS settings for workload-to-workload communication.
+            portLevelMtls:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  mode:
+                    type: string
+                    enum:
+                      - UNSET
+                      - DISABLE
+                      - PERMISSIVE
+                      - STRICT
+              description: Port-specific mutual TLS settings.
+    PeerAuthenticationList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+            - PeerAuthenticationList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PeerAuthentication'
+    RequestAuthentication:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+            - security.istio.io/v1
+        kind:
+          type: string
+          enum:
+            - RequestAuthentication
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            selector:
+              type: object
+              properties:
+                matchLabels:
+                  type: object
+                  additionalProperties:
+                    type: string
+              description: Workload selector to apply the policy to specific workloads.
+            jwtRules:
+              type: array
+              items:
+                type: object
+                properties:
+                  issuer:
+                    type: string
+                    description: >-
+                      Identifies the issuer that issued the JWT. The issuer
+                      claim (iss) in the JWT token must match this value.
+                  audiences:
+                    type: array
+                    items:
+                      type: string
+                    description: >-
+                      The list of JWT audiences. The JWT aud claim must match at
+                      least one of the specified audiences.
+                  jwksUri:
+                    type: string
+                    description: URL of the provider's public key set to validate the JWT signature.
+                  jwks:
+                    type: string
+                    description: JSON Web Key Set of public keys to validate the JWT signature (inline).
+                  fromHeaders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        prefix:
+                          type: string
+                    description: Headers to extract the JWT token from.
+                  fromParams:
+                    type: array
+                    items:
+                      type: string
+                    description: Query parameters to extract the JWT token from.
+                  outputPayloadToHeader:
+                    type: string
+                    description: Header name to output the validated JWT payload.
+                  forwardOriginalToken:
+                    type: boolean
+                    description: Whether to forward the original JWT token to the upstream.
+                  outputClaimToHeaders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        header:
+                          type: string
+                        claim:
+                          type: string
+                    description: Claims to extract from the JWT and output as headers.
+              description: >-
+                List of rules that define the authentication requirements for
+                incoming requests.
+            targetRefs:
+              type: array
+              items:
+                type: object
+                properties:
+                  kind:
+                    type: string
+                  group:
+                    type: string
+                  name:
+                    type: string
+              description: References to the target resources.
+    RequestAuthenticationList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+            - RequestAuthenticationList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RequestAuthentication'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Kubernetes API server bearer token authentication
+tags:
+  - name: AuthorizationPolicy
+    description: Fine-grained access control policies for workloads
+    externalDocs:
+      url: https://istio.io/latest/docs/reference/config/security/authorization-policy/
+  - name: PeerAuthentication
+    description: Mutual TLS configuration for peer-to-peer communication
+    externalDocs:
+      url: https://istio.io/latest/docs/reference/config/security/peer_authentication/
+  - name: RequestAuthentication
+    description: JWT-based request authentication policies
+    externalDocs:
+      url: https://istio.io/latest/docs/reference/config/security/request_authentication/

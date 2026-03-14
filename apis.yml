@@ -2,28 +2,92 @@ aid: istio
 url: >-
   https://raw.githubusercontent.com/api-evangelist/istio/refs/heads/main/apis.yml
 apis:
-  - aid: istio:istio
-    name: Istio
+  - aid: istio:networking-api
+    name: Istio Networking API
     tags:
       - Service Mesh
-    humanURL: ' https://istio.io/'
+      - Traffic Management
+      - Networking
+    humanURL: https://istio.io/latest/docs/reference/config/networking/
     properties:
-      - url: ' https://istio.io/'
+      - url: https://istio.io/latest/docs/reference/config/networking/
         type: Documentation
+      - url: openapi/istio-networking-api-openapi.yml
+        type: OpenAPI
     description: >-
-      Istio is an open-source service mesh that provides a consistent way to
-      connect, secure, observe, and control traffic between microservices. It
-      runs lightweight Envoy sidecar proxies next to your services and uses a
-      control plane to configure them dynamically, so you can manage networking
-      behavior without changing application code. Istio enables advanced traffic
-      management—routing, traffic splitting for canary and blue/green releases,
-      retries, timeouts, circuit breaking, and fault injection—while enforcing
-      zero-trust security with mutual TLS, identity-based authentication, and
-      fine-grained authorization. It also delivers rich observability through
-      metrics, logs, and distributed tracing, and supports policy enforcement
-      such as rate limiting. Istio works seamlessly with Kubernetes (and can
-      extend to VMs), provides ingress and egress gateways, and supports
-      multi-cluster and multi-network deployments.
+      The Istio Networking API (networking.istio.io) provides configuration
+      resources for traffic management within an Istio service mesh. It includes
+      VirtualService for HTTP/TCP routing rules, DestinationRule for load
+      balancing and connection pool settings, Gateway for managing inbound and
+      outbound traffic at the mesh edge, ServiceEntry for adding external
+      services to the mesh registry, Sidecar for controlling network
+      reachability of sidecar proxies, WorkloadEntry and WorkloadGroup for
+      non-Kubernetes workloads such as VMs, and ProxyConfig for per-workload
+      proxy configuration. These resources are defined as Kubernetes Custom
+      Resource Definitions (CRDs) and accessed via the Kubernetes API server.
+  - aid: istio:security-api
+    name: Istio Security API
+    tags:
+      - Service Mesh
+      - Security
+      - Authentication
+      - Authorization
+    humanURL: https://istio.io/latest/docs/reference/config/security/
+    properties:
+      - url: https://istio.io/latest/docs/reference/config/security/
+        type: Documentation
+      - url: openapi/istio-security-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      The Istio Security API (security.istio.io) provides configuration
+      resources for managing security policies within an Istio service mesh. It
+      includes AuthorizationPolicy for fine-grained access control on workloads
+      with ALLOW, DENY, AUDIT, and CUSTOM actions, PeerAuthentication for
+      configuring mutual TLS (mTLS) between service proxies, and
+      RequestAuthentication for validating JWT tokens attached to incoming
+      requests. These resources enforce zero-trust security across the mesh.
+  - aid: istio:telemetry-api
+    name: Istio Telemetry API
+    tags:
+      - Service Mesh
+      - Telemetry
+      - Observability
+      - Metrics
+      - Tracing
+    humanURL: https://istio.io/latest/docs/reference/config/telemetry/
+    properties:
+      - url: https://istio.io/latest/docs/reference/config/telemetry/
+        type: Documentation
+      - url: openapi/istio-telemetry-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      The Istio Telemetry API (telemetry.istio.io) provides configuration
+      resources for managing observability within an Istio service mesh. The
+      Telemetry resource enables flexible configuration of metrics, access logs,
+      and distributed tracing for workloads. It uses the concept of providers to
+      indicate the protocol or integration type, and supports fine-grained
+      control over what telemetry data is collected and where it is sent.
+  - aid: istio:extensions-api
+    name: Istio Extensions API
+    tags:
+      - Service Mesh
+      - Extensions
+      - WebAssembly
+      - Wasm
+    humanURL: https://istio.io/latest/docs/reference/config/
+    properties:
+      - url: https://istio.io/latest/docs/reference/config/
+        type: Documentation
+      - url: openapi/istio-extensions-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      The Istio Extensions API (extensions.istio.io) provides configuration
+      resources for extending the Istio service mesh with custom functionality.
+      The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as
+      plugins to the Envoy sidecar proxies, allowing custom processing of
+      network traffic at various phases of the request lifecycle including
+      authentication, authorization, metrics collection, and traffic
+      transformation.
 name: Istio
 tags:
   - Service Mesh
@@ -31,7 +95,7 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-06-05'
-modified: '2026-01-02'
+modified: '2026-03-14'
 position: Consumer
 description: >-
   Istio is an open-source service mesh platform that provides a comprehensive
@@ -73,3 +137,11 @@ common:
     description: 'null'
     url: https://istio.io/latest/docs/reference/glossary/
     type: Glossary
+  - name: Istio / GitHub
+    description: 'null'
+    url: https://github.com/istio/istio
+    type: GitHub
+  - name: Istio / API Repository
+    description: 'null'
+    url: https://github.com/istio/api
+    type: GitHub

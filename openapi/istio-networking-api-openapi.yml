@@ -1,0 +1,1464 @@
+openapi: 3.1.0
+info:
+  title: Istio Networking API
+  description: >-
+    The Istio Networking API (networking.istio.io) provides configuration
+    resources for traffic management within an Istio service mesh. It includes
+    VirtualService for HTTP/TCP routing rules, DestinationRule for load
+    balancing and connection pool settings, Gateway for managing inbound and
+    outbound traffic at the mesh edge, ServiceEntry for adding external services
+    to the mesh registry, Sidecar for controlling network reachability of
+    sidecar proxies, WorkloadEntry and WorkloadGroup for non-Kubernetes
+    workloads such as VMs, ProxyConfig for per-workload proxy configuration, and
+    EnvoyFilter for customizing the Envoy proxy configuration. These resources
+    are defined as Kubernetes Custom Resource Definitions (CRDs) and are
+    accessed via the Kubernetes API server.
+  version: v1
+  contact:
+    name: Istio
+    url: https://istio.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: Istio Networking Configuration Reference
+  url: https://istio.io/latest/docs/reference/config/networking/
+servers:
+  - url: https://{cluster}/apis/networking.istio.io/v1
+    description: Kubernetes API server endpoint for Istio Networking v1
+    variables:
+      cluster:
+        default: kubernetes.default.svc
+        description: Kubernetes API server hostname
+paths:
+  /namespaces/{namespace}/virtualservices:
+    get:
+      operationId: listVirtualServices
+      summary: List VirtualServices
+      description: >-
+        List all VirtualService resources in the specified namespace. A
+        VirtualService defines a set of traffic routing rules to apply when a
+        host is addressed, enabling features such as HTTP route matching,
+        retries, timeouts, fault injection, and traffic mirroring.
+      tags:
+        - VirtualService
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of VirtualServices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualServiceList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createVirtualService
+      summary: Create a VirtualService
+      description: Create a new VirtualService resource in the specified namespace.
+      tags:
+        - VirtualService
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VirtualService'
+      responses:
+        '201':
+          description: VirtualService created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualService'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict - resource already exists
+  /namespaces/{namespace}/virtualservices/{name}:
+    get:
+      operationId: getVirtualService
+      summary: Get a VirtualService
+      description: Read the specified VirtualService resource.
+      tags:
+        - VirtualService
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualService'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceVirtualService
+      summary: Replace a VirtualService
+      description: Replace the specified VirtualService resource.
+      tags:
+        - VirtualService
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VirtualService'
+      responses:
+        '200':
+          description: VirtualService replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualService'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteVirtualService
+      summary: Delete a VirtualService
+      description: Delete the specified VirtualService resource.
+      tags:
+        - VirtualService
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: VirtualService deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /namespaces/{namespace}/destinationrules:
+    get:
+      operationId: listDestinationRules
+      summary: List DestinationRules
+      description: >-
+        List all DestinationRule resources in the specified namespace. A
+        DestinationRule defines policies that apply to traffic intended for a
+        service after routing has occurred, including load balancing, connection
+        pool size, and outlier detection settings.
+      tags:
+        - DestinationRule
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of DestinationRules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DestinationRuleList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createDestinationRule
+      summary: Create a DestinationRule
+      description: Create a new DestinationRule resource in the specified namespace.
+      tags:
+        - DestinationRule
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DestinationRule'
+      responses:
+        '201':
+          description: DestinationRule created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DestinationRule'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+  /namespaces/{namespace}/destinationrules/{name}:
+    get:
+      operationId: getDestinationRule
+      summary: Get a DestinationRule
+      description: Read the specified DestinationRule resource.
+      tags:
+        - DestinationRule
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DestinationRule'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceDestinationRule
+      summary: Replace a DestinationRule
+      description: Replace the specified DestinationRule resource.
+      tags:
+        - DestinationRule
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DestinationRule'
+      responses:
+        '200':
+          description: DestinationRule replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DestinationRule'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteDestinationRule
+      summary: Delete a DestinationRule
+      description: Delete the specified DestinationRule resource.
+      tags:
+        - DestinationRule
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: DestinationRule deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /namespaces/{namespace}/gateways:
+    get:
+      operationId: listGateways
+      summary: List Gateways
+      description: >-
+        List all Gateway resources in the specified namespace. A Gateway
+        describes a load balancer operating at the edge of the mesh receiving
+        incoming or outgoing HTTP/TCP connections, specifying which ports should
+        be exposed, what protocol to use, and the SNI configuration for the load
+        balancer.
+      tags:
+        - Gateway
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of Gateways
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createGateway
+      summary: Create a Gateway
+      description: Create a new Gateway resource in the specified namespace.
+      tags:
+        - Gateway
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gateway'
+      responses:
+        '201':
+          description: Gateway created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+  /namespaces/{namespace}/gateways/{name}:
+    get:
+      operationId: getGateway
+      summary: Get a Gateway
+      description: Read the specified Gateway resource.
+      tags:
+        - Gateway
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceGateway
+      summary: Replace a Gateway
+      description: Replace the specified Gateway resource.
+      tags:
+        - Gateway
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gateway'
+      responses:
+        '200':
+          description: Gateway replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteGateway
+      summary: Delete a Gateway
+      description: Delete the specified Gateway resource.
+      tags:
+        - Gateway
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Gateway deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /namespaces/{namespace}/serviceentries:
+    get:
+      operationId: listServiceEntries
+      summary: List ServiceEntries
+      description: >-
+        List all ServiceEntry resources in the specified namespace. A
+        ServiceEntry enables adding additional entries into Istio's internal
+        service registry, so that auto-discovered services in the mesh can
+        access and route to these manually specified services.
+      tags:
+        - ServiceEntry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of ServiceEntries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceEntryList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createServiceEntry
+      summary: Create a ServiceEntry
+      description: Create a new ServiceEntry resource in the specified namespace.
+      tags:
+        - ServiceEntry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceEntry'
+      responses:
+        '201':
+          description: ServiceEntry created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceEntry'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+  /namespaces/{namespace}/serviceentries/{name}:
+    get:
+      operationId: getServiceEntry
+      summary: Get a ServiceEntry
+      description: Read the specified ServiceEntry resource.
+      tags:
+        - ServiceEntry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceEntry'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceServiceEntry
+      summary: Replace a ServiceEntry
+      description: Replace the specified ServiceEntry resource.
+      tags:
+        - ServiceEntry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceEntry'
+      responses:
+        '200':
+          description: ServiceEntry replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceEntry'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteServiceEntry
+      summary: Delete a ServiceEntry
+      description: Delete the specified ServiceEntry resource.
+      tags:
+        - ServiceEntry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: ServiceEntry deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /namespaces/{namespace}/sidecars:
+    get:
+      operationId: listSidecars
+      summary: List Sidecars
+      description: >-
+        List all Sidecar resources in the specified namespace. The Sidecar
+        resource describes the configuration of the sidecar proxy that mediates
+        inbound and outbound communication of the workload instance to which it
+        is attached.
+      tags:
+        - Sidecar
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of Sidecars
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SidecarList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createSidecar
+      summary: Create a Sidecar
+      description: Create a new Sidecar resource in the specified namespace.
+      tags:
+        - Sidecar
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sidecar'
+      responses:
+        '201':
+          description: Sidecar created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sidecar'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+  /namespaces/{namespace}/sidecars/{name}:
+    get:
+      operationId: getSidecar
+      summary: Get a Sidecar
+      description: Read the specified Sidecar resource.
+      tags:
+        - Sidecar
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sidecar'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceSidecar
+      summary: Replace a Sidecar
+      description: Replace the specified Sidecar resource.
+      tags:
+        - Sidecar
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sidecar'
+      responses:
+        '200':
+          description: Sidecar replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sidecar'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteSidecar
+      summary: Delete a Sidecar
+      description: Delete the specified Sidecar resource.
+      tags:
+        - Sidecar
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Sidecar deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /namespaces/{namespace}/workloadentries:
+    get:
+      operationId: listWorkloadEntries
+      summary: List WorkloadEntries
+      description: >-
+        List all WorkloadEntry resources in the specified namespace. A
+        WorkloadEntry enables specifying the properties of a single
+        non-Kubernetes workload such as a VM or bare metal server as it is
+        onboarded into the mesh.
+      tags:
+        - WorkloadEntry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of WorkloadEntries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadEntryList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createWorkloadEntry
+      summary: Create a WorkloadEntry
+      description: Create a new WorkloadEntry resource in the specified namespace.
+      tags:
+        - WorkloadEntry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkloadEntry'
+      responses:
+        '201':
+          description: WorkloadEntry created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadEntry'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+  /namespaces/{namespace}/workloadentries/{name}:
+    get:
+      operationId: getWorkloadEntry
+      summary: Get a WorkloadEntry
+      description: Read the specified WorkloadEntry resource.
+      tags:
+        - WorkloadEntry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadEntry'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceWorkloadEntry
+      summary: Replace a WorkloadEntry
+      description: Replace the specified WorkloadEntry resource.
+      tags:
+        - WorkloadEntry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkloadEntry'
+      responses:
+        '200':
+          description: WorkloadEntry replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadEntry'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteWorkloadEntry
+      summary: Delete a WorkloadEntry
+      description: Delete the specified WorkloadEntry resource.
+      tags:
+        - WorkloadEntry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: WorkloadEntry deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /namespaces/{namespace}/workloadgroups:
+    get:
+      operationId: listWorkloadGroups
+      summary: List WorkloadGroups
+      description: >-
+        List all WorkloadGroup resources in the specified namespace. A
+        WorkloadGroup describes a collection of workload instances and provides
+        a specification that the workload instances can use to bootstrap their
+        proxies, including the metadata and identity.
+      tags:
+        - WorkloadGroup
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of WorkloadGroups
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadGroupList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createWorkloadGroup
+      summary: Create a WorkloadGroup
+      description: Create a new WorkloadGroup resource in the specified namespace.
+      tags:
+        - WorkloadGroup
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkloadGroup'
+      responses:
+        '201':
+          description: WorkloadGroup created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadGroup'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+  /namespaces/{namespace}/workloadgroups/{name}:
+    get:
+      operationId: getWorkloadGroup
+      summary: Get a WorkloadGroup
+      description: Read the specified WorkloadGroup resource.
+      tags:
+        - WorkloadGroup
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadGroup'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceWorkloadGroup
+      summary: Replace a WorkloadGroup
+      description: Replace the specified WorkloadGroup resource.
+      tags:
+        - WorkloadGroup
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkloadGroup'
+      responses:
+        '200':
+          description: WorkloadGroup replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadGroup'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteWorkloadGroup
+      summary: Delete a WorkloadGroup
+      description: Delete the specified WorkloadGroup resource.
+      tags:
+        - WorkloadGroup
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: WorkloadGroup deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+components:
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+  schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of string keys and values for organizing resources
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Unstructured key-value map for storing arbitrary metadata
+        creationTimestamp:
+          type: string
+          format: date-time
+          description: Timestamp representing the server time when this object was created
+        resourceVersion:
+          type: string
+          description: An opaque value that represents the internal version of this object
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
+    VirtualService:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+            - networking.istio.io/v1
+        kind:
+          type: string
+          enum:
+            - VirtualService
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            hosts:
+              type: array
+              items:
+                type: string
+              description: >-
+                The destination hosts to which traffic is being sent. Can be a
+                DNS name with wildcard prefix or an IP address.
+            gateways:
+              type: array
+              items:
+                type: string
+              description: >-
+                The names of gateways that should apply these routes. A
+                VirtualService with no gateway list will apply to sidecars only.
+            http:
+              type: array
+              items:
+                $ref: '#/components/schemas/HTTPRoute'
+              description: An ordered list of route rules for HTTP traffic.
+            tls:
+              type: array
+              items:
+                type: object
+              description: An ordered list of route rules for TLS and HTTPS traffic.
+            tcp:
+              type: array
+              items:
+                type: object
+              description: An ordered list of route rules for TCP traffic.
+            exportTo:
+              type: array
+              items:
+                type: string
+              description: >-
+                A list of namespaces to which this virtual service is exported.
+    VirtualServiceList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+            - VirtualServiceList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VirtualService'
+    HTTPRoute:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name assigned to the route for debugging purposes.
+        match:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: object
+                description: URI match condition
+              headers:
+                type: object
+                description: Header match conditions
+              method:
+                type: object
+                description: HTTP method match condition
+          description: Match conditions to be satisfied for the rule to be activated.
+        route:
+          type: array
+          items:
+            type: object
+            properties:
+              destination:
+                type: object
+                properties:
+                  host:
+                    type: string
+                    description: The name of a service from the service registry.
+                  port:
+                    type: object
+                    properties:
+                      number:
+                        type: integer
+                  subset:
+                    type: string
+                    description: The name of a subset within the service.
+              weight:
+                type: integer
+                description: Weight for traffic distribution.
+          description: Route destinations with optional traffic weight.
+        timeout:
+          type: string
+          description: Timeout for HTTP requests in duration format (e.g. 5s).
+        retries:
+          type: object
+          properties:
+            attempts:
+              type: integer
+            perTryTimeout:
+              type: string
+            retryOn:
+              type: string
+          description: Retry policy for HTTP requests.
+        fault:
+          type: object
+          description: Fault injection policy.
+        mirror:
+          type: object
+          description: Mirror HTTP traffic to another destination for testing.
+        mirrorPercentage:
+          type: object
+          properties:
+            value:
+              type: number
+          description: Percentage of traffic to mirror.
+    DestinationRule:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+            - networking.istio.io/v1
+        kind:
+          type: string
+          enum:
+            - DestinationRule
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            host:
+              type: string
+              description: >-
+                The name of a service from the service registry. Rules defined
+                for services that do not exist in the service registry will be
+                ignored.
+            trafficPolicy:
+              type: object
+              properties:
+                connectionPool:
+                  type: object
+                  description: Settings controlling the volume of connections.
+                loadBalancer:
+                  type: object
+                  description: Settings controlling the load balancer algorithms.
+                outlierDetection:
+                  type: object
+                  description: Settings controlling eviction of unhealthy hosts.
+                tls:
+                  type: object
+                  description: TLS related settings for connections to the upstream service.
+              description: Traffic policies to apply for a specific destination.
+            subsets:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Name of the subset.
+                  labels:
+                    type: object
+                    additionalProperties:
+                      type: string
+                    description: >-
+                      Labels apply a filter over the endpoints of a service in
+                      the service registry.
+                  trafficPolicy:
+                    type: object
+                    description: Traffic policies for this subset.
+              description: Named sets of endpoints that represent individual versions of a service.
+            exportTo:
+              type: array
+              items:
+                type: string
+              description: >-
+                A list of namespaces to which this destination rule is exported.
+    DestinationRuleList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+            - DestinationRuleList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DestinationRule'
+    Gateway:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+            - networking.istio.io/v1
+        kind:
+          type: string
+          enum:
+            - Gateway
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            selector:
+              type: object
+              additionalProperties:
+                type: string
+              description: >-
+                One or more labels that indicate a specific set of pods/VMs on
+                which this gateway configuration should be applied.
+            servers:
+              type: array
+              items:
+                type: object
+                properties:
+                  port:
+                    type: object
+                    properties:
+                      number:
+                        type: integer
+                        description: A valid non-negative integer port number.
+                      name:
+                        type: string
+                        description: Label assigned to the port.
+                      protocol:
+                        type: string
+                        description: The protocol exposed on the port (HTTP, HTTPS, GRPC, TCP, TLS, MONGO).
+                  hosts:
+                    type: array
+                    items:
+                      type: string
+                    description: >-
+                      One or more hosts exposed by this gateway.
+                  tls:
+                    type: object
+                    description: TLS options for the gateway.
+              description: >-
+                A list of server specifications describing the properties of the
+                proxy on a given load balancer port.
+    GatewayList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+            - GatewayList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Gateway'
+    ServiceEntry:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+            - networking.istio.io/v1
+        kind:
+          type: string
+          enum:
+            - ServiceEntry
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            hosts:
+              type: array
+              items:
+                type: string
+              description: The hosts associated with the ServiceEntry.
+            addresses:
+              type: array
+              items:
+                type: string
+              description: Virtual IP addresses associated with the service.
+            ports:
+              type: array
+              items:
+                type: object
+                properties:
+                  number:
+                    type: integer
+                  protocol:
+                    type: string
+                  name:
+                    type: string
+              description: The ports associated with the external service.
+            location:
+              type: string
+              enum:
+                - MESH_EXTERNAL
+                - MESH_INTERNAL
+              description: Whether the service should be considered external or part of the mesh.
+            resolution:
+              type: string
+              enum:
+                - NONE
+                - STATIC
+                - DNS
+                - DNS_ROUND_ROBIN
+              description: Service discovery mode for the hosts.
+            endpoints:
+              type: array
+              items:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  ports:
+                    type: object
+                    additionalProperties:
+                      type: integer
+                  labels:
+                    type: object
+                    additionalProperties:
+                      type: string
+              description: One or more endpoints associated with the service.
+            exportTo:
+              type: array
+              items:
+                type: string
+    ServiceEntryList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+            - ServiceEntryList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceEntry'
+    Sidecar:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+            - networking.istio.io/v1
+        kind:
+          type: string
+          enum:
+            - Sidecar
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            workloadSelector:
+              type: object
+              properties:
+                labels:
+                  type: object
+                  additionalProperties:
+                    type: string
+              description: Criteria used to select the specific set of workloads.
+            ingress:
+              type: array
+              items:
+                type: object
+              description: Ingress specifies the configuration of the sidecar for processing inbound traffic.
+            egress:
+              type: array
+              items:
+                type: object
+                properties:
+                  hosts:
+                    type: array
+                    items:
+                      type: string
+                  port:
+                    type: object
+              description: Egress specifies the configuration of the sidecar for processing outbound traffic.
+            outboundTrafficPolicy:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                    - REGISTRY_ONLY
+                    - ALLOW_ANY
+              description: Configuration for handling outbound traffic to services not in the registry.
+    SidecarList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+            - SidecarList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sidecar'
+    WorkloadEntry:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+            - networking.istio.io/v1
+        kind:
+          type: string
+          enum:
+            - WorkloadEntry
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            address:
+              type: string
+              description: Address associated with the network endpoint (IP or hostname).
+            ports:
+              type: object
+              additionalProperties:
+                type: integer
+              description: Set of ports associated with the endpoint.
+            labels:
+              type: object
+              additionalProperties:
+                type: string
+              description: One or more labels associated with the endpoint.
+            network:
+              type: string
+              description: Network enables Istio to group endpoints resident in the same L3 domain.
+            locality:
+              type: string
+              description: The locality associated with the endpoint (region/zone/subzone).
+            weight:
+              type: integer
+              description: The load balancing weight associated with the endpoint.
+            serviceAccount:
+              type: string
+              description: The service account associated with the workload.
+    WorkloadEntryList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+            - WorkloadEntryList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkloadEntry'
+    WorkloadGroup:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+            - networking.istio.io/v1
+        kind:
+          type: string
+          enum:
+            - WorkloadGroup
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            metadata:
+              type: object
+              properties:
+                labels:
+                  type: object
+                  additionalProperties:
+                    type: string
+                annotations:
+                  type: object
+                  additionalProperties:
+                    type: string
+              description: Metadata that will be used for all corresponding WorkloadEntries.
+            template:
+              type: object
+              description: Template to be used for the generation of WorkloadEntry resources.
+            probe:
+              type: object
+              description: ReadinessProbe describes the configuration for health checking.
+    WorkloadGroupList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+            - WorkloadGroupList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkloadGroup'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Kubernetes API server bearer token authentication
+tags:
+  - name: VirtualService
+    description: HTTP/TCP routing rules for traffic management
+    externalDocs:
+      url: https://istio.io/latest/docs/reference/config/networking/virtual-service/
+  - name: DestinationRule
+    description: Policies applied to traffic after routing (load balancing, connection pool, outlier detection)
+    externalDocs:
+      url: https://istio.io/latest/docs/reference/config/networking/destination-rule/
+  - name: Gateway
+    description: Load balancer configuration at the edge of the mesh
+    externalDocs:
+      url: https://istio.io/latest/docs/reference/config/networking/gateway/
+  - name: ServiceEntry
+    description: External service entries added to the mesh service registry
+    externalDocs:
+      url: https://istio.io/latest/docs/reference/config/networking/service-entry/
+  - name: Sidecar
+    description: Sidecar proxy configuration for inbound and outbound traffic
+    externalDocs:
+      url: https://istio.io/latest/docs/reference/config/networking/sidecar/
+  - name: WorkloadEntry
+    description: Non-Kubernetes workload (VM/bare metal) endpoint properties
+    externalDocs:
+      url: https://istio.io/latest/docs/reference/config/networking/workload-entry/
+  - name: WorkloadGroup
+    description: Collection of workload instances sharing common properties
+    externalDocs:
+      url: https://istio.io/latest/docs/reference/config/networking/workload-group/

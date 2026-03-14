@@ -1,0 +1,361 @@
+openapi: 3.1.0
+info:
+  title: Istio Extensions API
+  description: >-
+    The Istio Extensions API (extensions.istio.io) provides configuration
+    resources for extending the Istio service mesh with custom functionality.
+    The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as
+    plugins to the Envoy sidecar proxies, allowing custom processing of network
+    traffic at various phases of the request lifecycle. These resources are
+    defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed
+    via the Kubernetes API server.
+  version: v1alpha1
+  contact:
+    name: Istio
+    url: https://istio.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: Istio Extensions Configuration Reference
+  url: https://istio.io/latest/docs/reference/config/
+servers:
+  - url: https://{cluster}/apis/extensions.istio.io/v1alpha1
+    description: Kubernetes API server endpoint for Istio Extensions v1alpha1
+    variables:
+      cluster:
+        default: kubernetes.default.svc
+        description: Kubernetes API server hostname
+paths:
+  /namespaces/{namespace}/wasmplugins:
+    get:
+      operationId: listWasmPlugins
+      summary: List WasmPlugins
+      description: >-
+        List all WasmPlugin resources in the specified namespace. A WasmPlugin
+        provides a mechanism to extend the functionality provided by the Istio
+        proxy through WebAssembly filters, enabling custom authentication,
+        authorization, metrics, logging, and traffic transformation at the proxy
+        level.
+      tags:
+        - WasmPlugin
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of WasmPlugins
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WasmPluginList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createWasmPlugin
+      summary: Create a WasmPlugin
+      description: Create a new WasmPlugin resource in the specified namespace.
+      tags:
+        - WasmPlugin
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WasmPlugin'
+      responses:
+        '201':
+          description: WasmPlugin created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WasmPlugin'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict - resource already exists
+  /namespaces/{namespace}/wasmplugins/{name}:
+    get:
+      operationId: getWasmPlugin
+      summary: Get a WasmPlugin
+      description: Read the specified WasmPlugin resource.
+      tags:
+        - WasmPlugin
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WasmPlugin'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceWasmPlugin
+      summary: Replace a WasmPlugin
+      description: Replace the specified WasmPlugin resource.
+      tags:
+        - WasmPlugin
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WasmPlugin'
+      responses:
+        '200':
+          description: WasmPlugin replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WasmPlugin'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteWasmPlugin
+      summary: Delete a WasmPlugin
+      description: Delete the specified WasmPlugin resource.
+      tags:
+        - WasmPlugin
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: WasmPlugin deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+components:
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+  schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        resourceVersion:
+          type: string
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
+    WasmPlugin:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+            - extensions.istio.io/v1alpha1
+        kind:
+          type: string
+          enum:
+            - WasmPlugin
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            selector:
+              type: object
+              properties:
+                matchLabels:
+                  type: object
+                  additionalProperties:
+                    type: string
+              description: Workload selector to determine which proxies receive the plugin.
+            url:
+              type: string
+              description: >-
+                URL of a Wasm module or OCI container. Supported schemes include
+                oci://, file://, and http(s)://.
+            sha256:
+              type: string
+              description: SHA256 checksum for verification of the Wasm module.
+            imagePullPolicy:
+              type: string
+              enum:
+                - UNSPECIFIED_POLICY
+                - IfNotPresent
+                - Always
+              description: The pull behavior to be applied to the Wasm image.
+            imagePullSecret:
+              type: string
+              description: >-
+                Name of the Kubernetes secret for pulling OCI images from
+                private registries.
+            pluginConfig:
+              type: object
+              description: >-
+                The configuration passed to the Wasm plugin as a JSON object.
+                Specific contents depend on the plugin implementation.
+            pluginName:
+              type: string
+              description: >-
+                The plugin name to be used in the Envoy configuration (used for
+                logging and debugging).
+            phase:
+              type: string
+              enum:
+                - UNSPECIFIED_PHASE
+                - AUTHN
+                - AUTHZ
+                - STATS
+              description: >-
+                Determines where in the filter chain this WasmPlugin is to be
+                injected.
+            priority:
+              type: integer
+              description: >-
+                Determines ordering of WasmPlugins in the same phase. Higher
+                priority is processed first.
+            failStrategy:
+              type: string
+              enum:
+                - FAIL_CLOSE
+                - FAIL_OPEN
+              description: >-
+                Specifies the failure behavior for the proxy when the remote
+                Wasm module is unavailable or has errors.
+            vmConfig:
+              type: object
+              properties:
+                env:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      valueFrom:
+                        type: string
+                        enum:
+                          - INLINE
+                          - HOST
+                      value:
+                        type: string
+              description: Configuration for the Wasm Virtual Machine.
+            match:
+              type: array
+              items:
+                type: object
+                properties:
+                  mode:
+                    type: string
+                    enum:
+                      - UNDEFINED
+                      - CLIENT
+                      - SERVER
+                      - CLIENT_AND_SERVER
+                  ports:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        number:
+                          type: integer
+              description: >-
+                Specifies the criteria to determine which traffic is passed to
+                the WasmPlugin.
+            targetRefs:
+              type: array
+              items:
+                type: object
+                properties:
+                  kind:
+                    type: string
+                  group:
+                    type: string
+                  name:
+                    type: string
+              description: References to the target resources.
+    WasmPluginList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+            - WasmPluginList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WasmPlugin'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Kubernetes API server bearer token authentication
+tags:
+  - name: WasmPlugin
+    description: WebAssembly plugin configuration for Envoy proxy extensions
+    externalDocs:
+      url: https://istio.io/latest/docs/reference/config/

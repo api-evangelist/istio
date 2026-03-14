@@ -1,0 +1,404 @@
+openapi: 3.1.0
+info:
+  title: Istio Telemetry API
+  description: >-
+    The Istio Telemetry API (telemetry.istio.io) provides configuration
+    resources for managing observability within an Istio service mesh. The
+    Telemetry resource enables flexible configuration of metrics, access logs,
+    and distributed tracing for workloads. It uses the concept of providers to
+    indicate the protocol or integration type, and supports fine-grained control
+    over what telemetry data is collected and where it is sent. These resources
+    are defined as Kubernetes Custom Resource Definitions (CRDs) and are
+    accessed via the Kubernetes API server.
+  version: v1
+  contact:
+    name: Istio
+    url: https://istio.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: Istio Telemetry Configuration Reference
+  url: https://istio.io/latest/docs/reference/config/telemetry/
+servers:
+  - url: https://{cluster}/apis/telemetry.istio.io/v1
+    description: Kubernetes API server endpoint for Istio Telemetry v1
+    variables:
+      cluster:
+        default: kubernetes.default.svc
+        description: Kubernetes API server hostname
+paths:
+  /namespaces/{namespace}/telemetries:
+    get:
+      operationId: listTelemetries
+      summary: List Telemetry resources
+      description: >-
+        List all Telemetry resources in the specified namespace. A Telemetry
+        resource configures the behavior of the Istio telemetry system,
+        including metrics collection, access logging, and distributed tracing.
+      tags:
+        - Telemetry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of Telemetry resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TelemetryList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createTelemetry
+      summary: Create a Telemetry resource
+      description: Create a new Telemetry resource in the specified namespace.
+      tags:
+        - Telemetry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Telemetry'
+      responses:
+        '201':
+          description: Telemetry resource created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Telemetry'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict - resource already exists
+  /namespaces/{namespace}/telemetries/{name}:
+    get:
+      operationId: getTelemetry
+      summary: Get a Telemetry resource
+      description: Read the specified Telemetry resource.
+      tags:
+        - Telemetry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Telemetry'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceTelemetry
+      summary: Replace a Telemetry resource
+      description: Replace the specified Telemetry resource.
+      tags:
+        - Telemetry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Telemetry'
+      responses:
+        '200':
+          description: Telemetry resource replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Telemetry'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteTelemetry
+      summary: Delete a Telemetry resource
+      description: Delete the specified Telemetry resource.
+      tags:
+        - Telemetry
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Telemetry resource deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+components:
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+  schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        resourceVersion:
+          type: string
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
+    Telemetry:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+            - telemetry.istio.io/v1
+        kind:
+          type: string
+          enum:
+            - Telemetry
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            selector:
+              type: object
+              properties:
+                matchLabels:
+                  type: object
+                  additionalProperties:
+                    type: string
+              description: Workload selector to apply the telemetry configuration.
+            tracing:
+              type: array
+              items:
+                type: object
+                properties:
+                  providers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Name of the tracing provider configured in MeshConfig.
+                    description: Tracing providers to use.
+                  randomSamplingPercentage:
+                    type: number
+                    description: >-
+                      Controls the rate at which traffic will be selected for
+                      tracing (0.0 to 100.0).
+                  disableSpanReporting:
+                    type: boolean
+                    description: Disables span reporting.
+                  customTags:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        literal:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                        environment:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            defaultValue:
+                              type: string
+                        header:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            defaultValue:
+                              type: string
+                    description: Custom tags to add to spans.
+              description: Tracing configuration.
+            metrics:
+              type: array
+              items:
+                type: object
+                properties:
+                  providers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Name of the metrics provider configured in MeshConfig.
+                    description: Metrics providers to use.
+                  overrides:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        match:
+                          type: object
+                          properties:
+                            metric:
+                              type: string
+                              enum:
+                                - ALL_METRICS
+                                - REQUEST_COUNT
+                                - REQUEST_DURATION
+                                - REQUEST_SIZE
+                                - RESPONSE_SIZE
+                                - TCP_OPENED_CONNECTIONS
+                                - TCP_CLOSED_CONNECTIONS
+                                - TCP_SENT_BYTES
+                                - TCP_RECEIVED_BYTES
+                                - GRPC_REQUEST_MESSAGES
+                                - GRPC_RESPONSE_MESSAGES
+                              description: Metric to match.
+                            mode:
+                              type: string
+                              enum:
+                                - CLIENT_AND_SERVER
+                                - CLIENT
+                                - SERVER
+                              description: Controls which mode of metrics generation is selected.
+                        disabled:
+                          type: boolean
+                          description: Disable the matched metric.
+                        tagOverrides:
+                          type: object
+                          additionalProperties:
+                            type: object
+                            properties:
+                              operation:
+                                type: string
+                                enum:
+                                  - UPSERT
+                                  - REMOVE
+                              value:
+                                type: string
+                          description: Tag overrides for the matched metric.
+                    description: Metric override directives.
+              description: Metrics configuration.
+            accessLogging:
+              type: array
+              items:
+                type: object
+                properties:
+                  providers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Name of the access logging provider configured in MeshConfig.
+                    description: Access logging providers to use.
+                  disabled:
+                    type: boolean
+                    description: Disable all access logging for matched workloads.
+                  filter:
+                    type: object
+                    properties:
+                      expression:
+                        type: string
+                        description: >-
+                          CEL expression to filter access log entries (e.g.
+                          response.code >= 400).
+                    description: Filter for access log entries.
+              description: Access logging configuration.
+            targetRefs:
+              type: array
+              items:
+                type: object
+                properties:
+                  kind:
+                    type: string
+                  group:
+                    type: string
+                  name:
+                    type: string
+              description: References to the target resources.
+    TelemetryList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+            - TelemetryList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Telemetry'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Kubernetes API server bearer token authentication
+tags:
+  - name: Telemetry
+    description: Telemetry configuration for metrics, tracing, and access logging
+    externalDocs:
+      url: https://istio.io/latest/docs/reference/config/telemetry/
