@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/istio/blob/main/json-schema/sidecar.json",
+  "title": "Istio Sidecar",
+  "description": "A Sidecar configuration describes the sidecar proxy that mediates inbound and outbound communication to the workload instance it is attached to. By default, Istio configures every sidecar proxy to accept traffic on all ports and reach every service in the mesh. The Sidecar resource can restrict the set of services a sidecar can reach.",
+  "type": "object",
+  "properties": {
+    "workloadSelector": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "One or more labels that indicate a specific set of pods/VMs on which the configuration should be applied."
+        }
+      },
+      "description": "Criteria used to select the specific set of pods/VMs on which this Sidecar configuration should be applied."
+    },
+    "ingress": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "port": {
+            "type": "object",
+            "properties": {
+              "number": {
+                "type": "integer",
+                "description": "A valid non-negative integer port number."
+              },
+              "protocol": {
+                "type": "string",
+                "description": "The protocol exposed on the port."
+              },
+              "name": {
+                "type": "string",
+                "description": "Label assigned to the port."
+              }
+            },
+            "required": ["number", "protocol"]
+          },
+          "bind": {
+            "type": "string",
+            "description": "The IP address to which the listener should be bound."
+          },
+          "captureMode": {
+            "type": "string",
+            "enum": ["DEFAULT", "IPTABLES", "NONE"],
+            "description": "How traffic to the listener is expected to be captured."
+          },
+          "defaultEndpoint": {
+            "type": "string",
+            "description": "The IP endpoint or Unix domain socket to which traffic should be forwarded."
+          },
+          "tls": {
+            "type": "object",
+            "description": "TLS settings for the listener."
+          }
+        },
+        "required": ["port"]
+      },
+      "description": "Ingress specifies the configuration of the sidecar for processing inbound traffic to the attached workload instance."
+    },
+    "egress": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "port": {
+            "type": "object",
+            "properties": {
+              "number": {
+                "type": "integer"
+              },
+              "protocol": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          },
+          "bind": {
+            "type": "string",
+            "description": "The IP address or Unix domain socket to which the listener should be bound."
+          },
+          "captureMode": {
+            "type": "string",
+            "enum": ["DEFAULT", "IPTABLES", "NONE"],
+            "description": "How traffic to the listener is expected to be captured."
+          },
+          "hosts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "One or more service hosts in namespace/dnsName format."
+          }
+        },
+        "required": ["hosts"]
+      },
+      "description": "Egress specifies the configuration of the sidecar for processing outbound traffic from the attached workload instance."
+    },
+    "outboundTrafficPolicy": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["REGISTRY_ONLY", "ALLOW_ANY"],
+          "description": "Determines the handling of outbound traffic to services not defined in the service registry."
+        },
+        "egressProxy": {
+          "type": "object",
+          "description": "Specifies the details of the egress proxy to which unknown traffic should be forwarded."
+        }
+      },
+      "description": "Configuration for the outbound traffic policy."
+    },
+    "inboundConnectionPool": {
+      "type": "object",
+      "description": "Settings controlling the volume of inbound connections.",
+      "properties": {
+        "tcp": {
+          "type": "object",
+          "properties": {
+            "maxConnections": {
+              "type": "integer",
+              "description": "Maximum number of connections."
+            },
+            "connectTimeout": {
+              "type": "string",
+              "description": "TCP connection timeout."
+            }
+          }
+        },
+        "http": {
+          "type": "object",
+          "properties": {
+            "h2UpgradePolicy": {
+              "type": "string",
+              "enum": ["DEFAULT", "DO_NOT_UPGRADE", "UPGRADE"]
+            },
+            "http1MaxPendingRequests": {
+              "type": "integer"
+            },
+            "http2MaxRequests": {
+              "type": "integer"
+            },
+            "maxRequestsPerConnection": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  }
+}

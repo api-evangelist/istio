@@ -14,6 +14,18 @@ apis:
         type: Documentation
       - url: openapi/istio-networking-api-openapi.yml
         type: OpenAPI
+      - url: json-schema/virtual-service.json
+        type: JSONSchema
+      - url: json-schema/destination-rule.json
+        type: JSONSchema
+      - url: json-schema/gateway.json
+        type: JSONSchema
+      - url: json-schema/service-entry.json
+        type: JSONSchema
+      - url: json-schema/sidecar.json
+        type: JSONSchema
+      - url: json-ld/istio-context.jsonld
+        type: JSONLD
     description: >-
       The Istio Networking API (networking.istio.io) provides configuration
       resources for traffic management within an Istio service mesh. It includes
@@ -38,6 +50,14 @@ apis:
         type: Documentation
       - url: openapi/istio-security-api-openapi.yml
         type: OpenAPI
+      - url: json-schema/authorization-policy.json
+        type: JSONSchema
+      - url: json-schema/peer-authentication.json
+        type: JSONSchema
+      - url: json-schema/request-authentication.json
+        type: JSONSchema
+      - url: json-ld/istio-context.jsonld
+        type: JSONLD
     description: >-
       The Istio Security API (security.istio.io) provides configuration
       resources for managing security policies within an Istio service mesh. It
@@ -60,6 +80,10 @@ apis:
         type: Documentation
       - url: openapi/istio-telemetry-api-openapi.yml
         type: OpenAPI
+      - url: json-schema/telemetry.json
+        type: JSONSchema
+      - url: json-ld/istio-context.jsonld
+        type: JSONLD
     description: >-
       The Istio Telemetry API (telemetry.istio.io) provides configuration
       resources for managing observability within an Istio service mesh. The
@@ -80,6 +104,10 @@ apis:
         type: Documentation
       - url: openapi/istio-extensions-api-openapi.yml
         type: OpenAPI
+      - url: json-schema/wasm-plugin.json
+        type: JSONSchema
+      - url: json-ld/istio-context.jsonld
+        type: JSONLD
     description: >-
       The Istio Extensions API (extensions.istio.io) provides configuration
       resources for extending the Istio service mesh with custom functionality.

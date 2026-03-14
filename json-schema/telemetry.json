@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/istio/blob/main/json-schema/telemetry.json",
+  "title": "Istio Telemetry",
+  "description": "A Telemetry resource configures the behavior of the Istio telemetry system, including metrics collection, access logging, and distributed tracing for workloads in the mesh.",
+  "type": "object",
+  "properties": {
+    "selector": {
+      "type": "object",
+      "properties": {
+        "matchLabels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "One or more labels that indicate a specific set of pods/VMs on which the configuration should be applied."
+        }
+      },
+      "description": "Workload selector to apply telemetry configuration to specific workloads."
+    },
+    "targetRefs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Target references to apply configuration to specific resources."
+    },
+    "tracing": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "providers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the tracing provider."
+                }
+              },
+              "required": ["name"]
+            },
+            "description": "Tracing providers to use."
+          },
+          "randomSamplingPercentage": {
+            "type": "number",
+            "description": "Controls the rate at which traffic will be selected for tracing. Ranges from 0.0 to 100.0."
+          },
+          "disableSpanReporting": {
+            "type": "boolean",
+            "description": "Controls span reporting. If true, no spans will be reported for impacted workloads."
+          },
+          "customTags": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            },
+            "description": "Custom tags to add to each span."
+          },
+          "match": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": ["CLIENT_AND_SERVER", "CLIENT", "SERVER"],
+                "description": "Specifies which mode of traffic to apply tracing configuration to."
+              }
+            }
+          }
+        }
+      },
+      "description": "Tracing configures the tracing behavior for all selected workloads."
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "providers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the metrics provider."
+                }
+              },
+              "required": ["name"]
+            },
+            "description": "Metrics providers to use."
+          },
+          "overrides": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "match": {
+                  "type": "object",
+                  "properties": {
+                    "metric": {
+                      "type": "string",
+                      "enum": ["ALL_METRICS", "REQUEST_COUNT", "REQUEST_DURATION", "REQUEST_SIZE", "RESPONSE_SIZE", "TCP_OPENED_CONNECTIONS", "TCP_CLOSED_CONNECTIONS", "TCP_SENT_BYTES", "TCP_RECEIVED_BYTES", "GRPC_REQUEST_MESSAGES", "GRPC_RESPONSE_MESSAGES"],
+                      "description": "The metric to match."
+                    },
+                    "mode": {
+                      "type": "string",
+                      "enum": ["CLIENT_AND_SERVER", "CLIENT", "SERVER"],
+                      "description": "Controls which mode of traffic to match."
+                    }
+                  }
+                },
+                "disabled": {
+                  "type": "boolean",
+                  "description": "If true, the matched metric will be disabled."
+                },
+                "tagOverrides": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "operation": {
+                        "type": "string",
+                        "enum": ["UPSERT", "REMOVE"],
+                        "description": "Operation to apply on the tag."
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "Value of the tag when operation is UPSERT."
+                      }
+                    }
+                  },
+                  "description": "Tag overrides for the matched metric."
+                }
+              }
+            },
+            "description": "Metric overrides for fine-grained control."
+          },
+          "reportingInterval": {
+            "type": "string",
+            "description": "Interval for metrics reporting."
+          }
+        }
+      },
+      "description": "Metrics configures the metrics behavior for all selected workloads."
+    },
+    "accessLogging": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "providers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the access logging provider."
+                }
+              },
+              "required": ["name"]
+            },
+            "description": "Access logging providers to use."
+          },
+          "disabled": {
+            "type": "boolean",
+            "description": "Controls logging. If true, no access logs will be generated for impacted workloads."
+          },
+          "filter": {
+            "type": "object",
+            "properties": {
+              "expression": {
+                "type": "string",
+                "description": "CEL expression for filtering access log entries."
+              }
+            },
+            "description": "Filter for access log entries."
+          },
+          "match": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": ["CLIENT_AND_SERVER", "CLIENT", "SERVER"],
+                "description": "Controls which mode of traffic to match."
+              }
+            }
+          }
+        }
+      },
+      "description": "Access logging configures the access logging behavior for all selected workloads."
+    }
+  }
+}

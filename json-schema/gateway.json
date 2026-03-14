@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/istio/blob/main/json-schema/gateway.json",
+  "title": "Istio Gateway",
+  "description": "A Gateway describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections. The specification describes a set of ports that should be exposed, the type of protocol to use, SNI configuration for the load balancer, etc.",
+  "type": "object",
+  "properties": {
+    "selector": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "One or more labels that indicate a specific set of pods/VMs on which this gateway configuration should be applied. By default workloads are searched across all namespaces."
+    },
+    "servers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Server"
+      },
+      "description": "A list of server specifications."
+    }
+  },
+  "required": ["selector", "servers"],
+  "$defs": {
+    "Server": {
+      "type": "object",
+      "properties": {
+        "port": {
+          "type": "object",
+          "description": "The port on which the proxy should listen for incoming connections.",
+          "properties": {
+            "number": {
+              "type": "integer",
+              "description": "A valid non-negative integer port number."
+            },
+            "protocol": {
+              "type": "string",
+              "description": "The protocol exposed on the port. Must be one of HTTP, HTTPS, GRPC, HTTP2, MONGO, TCP, TLS."
+            },
+            "name": {
+              "type": "string",
+              "description": "Label assigned to the port."
+            },
+            "targetPort": {
+              "type": "integer",
+              "description": "The port number on the endpoint where traffic will be received."
+            }
+          },
+          "required": ["number", "protocol", "name"]
+        },
+        "bind": {
+          "type": "string",
+          "description": "The IP address or Unix domain socket to which the listener should be bound."
+        },
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "One or more hosts exposed by this gateway. Supports namespace/dnsName format for restricting to specific namespaces."
+        },
+        "tls": {
+          "type": "object",
+          "description": "Set of TLS related options that govern the server's behavior.",
+          "properties": {
+            "httpsRedirect": {
+              "type": "boolean",
+              "description": "If true, the load balancer will send a 301 redirect for all HTTP connections."
+            },
+            "mode": {
+              "type": "string",
+              "enum": ["PASSTHROUGH", "SIMPLE", "MUTUAL", "AUTO_PASSTHROUGH", "ISTIO_MUTUAL", "OPTIONAL_MUTUAL"],
+              "description": "Controls whether a TLS connection is terminated at the gateway or passed through."
+            },
+            "serverCertificate": {
+              "type": "string",
+              "description": "Path to the file holding the server-side TLS certificate."
+            },
+            "privateKey": {
+              "type": "string",
+              "description": "Path to the file holding the server's private key."
+            },
+            "caCertificates": {
+              "type": "string",
+              "description": "Path to a file containing certificate authority certificates for verifying client certificates."
+            },
+            "credentialName": {
+              "type": "string",
+              "description": "The name of the secret that holds the TLS certs."
+            },
+            "subjectAltNames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A list of alternate names to verify the subject identity in the certificate."
+            },
+            "minProtocolVersion": {
+              "type": "string",
+              "enum": ["TLS_AUTO", "TLSV1_0", "TLSV1_1", "TLSV1_2", "TLSV1_3"],
+              "description": "Minimum TLS protocol version."
+            },
+            "maxProtocolVersion": {
+              "type": "string",
+              "enum": ["TLS_AUTO", "TLSV1_0", "TLSV1_1", "TLSV1_2", "TLSV1_3"],
+              "description": "Maximum TLS protocol version."
+            },
+            "cipherSuites": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of cipher suites to use for TLS connections."
+            }
+          }
+        },
+        "name": {
+          "type": "string",
+          "description": "An optional name of the server, used for identifying the server in VirtualService host matching."
+        }
+      },
+      "required": ["port", "hosts"]
+    }
+  }
+}

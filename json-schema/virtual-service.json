@@ -1,0 +1,455 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/istio/blob/main/json-schema/virtual-service.json",
+  "title": "Istio VirtualService",
+  "description": "A VirtualService defines a set of traffic routing rules to apply when a host is addressed. Each routing rule defines matching criteria for traffic of a specific protocol and directs it to a named destination service or subset.",
+  "type": "object",
+  "properties": {
+    "hosts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The destination hosts to which traffic is being sent. Can be a DNS name with wildcard prefix or an IP address."
+    },
+    "gateways": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The names of gateways that should apply these routes. A VirtualService bound to the mesh gateway applies to sidecars."
+    },
+    "http": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/HTTPRoute"
+      },
+      "description": "An ordered list of route rules for HTTP traffic."
+    },
+    "tls": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/TLSRoute"
+      },
+      "description": "An ordered list of route rules for non-terminated TLS and HTTPS traffic."
+    },
+    "tcp": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/TCPRoute"
+      },
+      "description": "An ordered list of route rules for opaque TCP traffic."
+    },
+    "exportTo": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of namespaces to which this VirtualService is exported. Exporting to '.' exports to the same namespace, '*' exports to all namespaces."
+    }
+  },
+  "$defs": {
+    "HTTPRoute": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name assigned to the route for debugging purposes."
+        },
+        "match": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/HTTPMatchRequest"
+          },
+          "description": "Match conditions to be satisfied for the rule to be activated."
+        },
+        "route": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/HTTPRouteDestination"
+          },
+          "description": "A HTTP rule can either return a direct response, redirect, or forward traffic to one or more destinations."
+        },
+        "redirect": {
+          "type": "object",
+          "description": "A HTTP rule can redirect traffic instead of forwarding.",
+          "properties": {
+            "uri": {
+              "type": "string",
+              "description": "URI to redirect to."
+            },
+            "authority": {
+              "type": "string",
+              "description": "Authority/host to redirect to."
+            },
+            "redirectCode": {
+              "type": "integer",
+              "description": "HTTP status code to use in the redirect response. Default is 301."
+            }
+          }
+        },
+        "rewrite": {
+          "type": "object",
+          "description": "Rewrite HTTP URIs and Authority headers.",
+          "properties": {
+            "uri": {
+              "type": "string",
+              "description": "Rewrite the path portion of the URI."
+            },
+            "authority": {
+              "type": "string",
+              "description": "Rewrite the Authority/Host header."
+            }
+          }
+        },
+        "timeout": {
+          "type": "string",
+          "description": "Timeout for HTTP requests in duration format (e.g., 30s)."
+        },
+        "retries": {
+          "type": "object",
+          "description": "Retry policy for HTTP requests.",
+          "properties": {
+            "attempts": {
+              "type": "integer",
+              "description": "Number of retries to be allowed for a given request."
+            },
+            "perTryTimeout": {
+              "type": "string",
+              "description": "Timeout per retry attempt."
+            },
+            "retryOn": {
+              "type": "string",
+              "description": "Specifies the conditions under which retry takes place."
+            }
+          }
+        },
+        "fault": {
+          "type": "object",
+          "description": "Fault injection policy to apply on HTTP traffic.",
+          "properties": {
+            "delay": {
+              "type": "object",
+              "description": "Delay requests before forwarding.",
+              "properties": {
+                "fixedDelay": {
+                  "type": "string",
+                  "description": "Fixed delay duration."
+                },
+                "percentage": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number",
+                      "description": "Percentage of requests to apply the delay to."
+                    }
+                  }
+                }
+              }
+            },
+            "abort": {
+              "type": "object",
+              "description": "Abort requests with a specified error code.",
+              "properties": {
+                "httpStatus": {
+                  "type": "integer",
+                  "description": "HTTP status code to return."
+                },
+                "percentage": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number",
+                      "description": "Percentage of requests to abort."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "mirror": {
+          "$ref": "#/$defs/Destination",
+          "description": "Mirror HTTP traffic to a another destination in addition to forwarding."
+        },
+        "mirrorPercentage": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "description": "Percentage of traffic to mirror."
+            }
+          }
+        },
+        "corsPolicy": {
+          "type": "object",
+          "description": "Cross-Origin Resource Sharing policy.",
+          "properties": {
+            "allowOrigins": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "description": "String patterns that match allowed origins."
+            },
+            "allowMethods": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of HTTP methods allowed to access the resource."
+            },
+            "allowHeaders": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of HTTP headers that can be used when requesting the resource."
+            },
+            "maxAge": {
+              "type": "string",
+              "description": "How long the results of a preflight request can be cached."
+            }
+          }
+        },
+        "headers": {
+          "type": "object",
+          "description": "Header manipulation rules.",
+          "properties": {
+            "request": {
+              "type": "object",
+              "description": "Header manipulation rules to apply before forwarding to the destination.",
+              "properties": {
+                "set": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                },
+                "add": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                },
+                "remove": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "Header manipulation rules to apply on the response.",
+              "properties": {
+                "set": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                },
+                "add": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                },
+                "remove": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "HTTPMatchRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name assigned to a match for debugging."
+        },
+        "uri": {
+          "type": "object",
+          "description": "URI to match (exact, prefix, or regex)."
+        },
+        "scheme": {
+          "type": "object",
+          "description": "URI scheme to match."
+        },
+        "method": {
+          "type": "object",
+          "description": "HTTP method to match."
+        },
+        "authority": {
+          "type": "object",
+          "description": "HTTP authority to match."
+        },
+        "headers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "HTTP headers to match."
+        },
+        "port": {
+          "type": "integer",
+          "description": "Port on the host to match."
+        },
+        "sourceLabels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "One or more labels that constrain the applicability of a rule to source workloads."
+        },
+        "gateways": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Names of gateways where the rule should be applied."
+        },
+        "sourceNamespace": {
+          "type": "string",
+          "description": "Source namespace constraining the applicability of a rule."
+        }
+      }
+    },
+    "HTTPRouteDestination": {
+      "type": "object",
+      "properties": {
+        "destination": {
+          "$ref": "#/$defs/Destination",
+          "description": "Destination uniquely identifies the instances of a service."
+        },
+        "weight": {
+          "type": "integer",
+          "description": "Weight specifies the relative proportion of traffic to be forwarded to the destination."
+        },
+        "headers": {
+          "type": "object",
+          "description": "Header manipulation rules."
+        }
+      },
+      "required": ["destination"]
+    },
+    "Destination": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string",
+          "description": "The name of a service from the service registry."
+        },
+        "subset": {
+          "type": "string",
+          "description": "The name of a subset within the service."
+        },
+        "port": {
+          "type": "object",
+          "properties": {
+            "number": {
+              "type": "integer",
+              "description": "A valid non-negative integer port number."
+            }
+          }
+        }
+      },
+      "required": ["host"]
+    },
+    "TLSRoute": {
+      "type": "object",
+      "properties": {
+        "match": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sniHosts": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "SNI hosts to match."
+              },
+              "port": {
+                "type": "integer",
+                "description": "Port on the host to match."
+              },
+              "gateways": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "sourceLabels": {
+                "type": "object",
+                "additionalProperties": { "type": "string" }
+              },
+              "sourceNamespace": {
+                "type": "string"
+              }
+            },
+            "required": ["sniHosts"]
+          },
+          "description": "Match conditions for TLS traffic."
+        },
+        "route": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "destination": {
+                "$ref": "#/$defs/Destination"
+              },
+              "weight": {
+                "type": "integer"
+              }
+            },
+            "required": ["destination"]
+          },
+          "description": "Route destinations for matched TLS traffic."
+        }
+      },
+      "required": ["match"]
+    },
+    "TCPRoute": {
+      "type": "object",
+      "properties": {
+        "match": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "destinationSubnets": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "port": {
+                "type": "integer"
+              },
+              "gateways": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "sourceLabels": {
+                "type": "object",
+                "additionalProperties": { "type": "string" }
+              },
+              "sourceNamespace": {
+                "type": "string"
+              }
+            }
+          },
+          "description": "Match conditions for TCP traffic."
+        },
+        "route": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "destination": {
+                "$ref": "#/$defs/Destination"
+              },
+              "weight": {
+                "type": "integer"
+              }
+            },
+            "required": ["destination"]
+          },
+          "description": "Route destinations for matched TCP traffic."
+        }
+      }
+    }
+  }
+}

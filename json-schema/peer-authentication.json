@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/istio/blob/main/json-schema/peer-authentication.json",
+  "title": "Istio PeerAuthentication",
+  "description": "A PeerAuthentication defines how traffic will be tunneled (or not) to the sidecar proxy. It configures mutual TLS (mTLS) mode for workload-to-workload communication within the mesh.",
+  "type": "object",
+  "properties": {
+    "selector": {
+      "type": "object",
+      "properties": {
+        "matchLabels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "One or more labels that indicate a specific set of pods/VMs on which the policy should be applied."
+        }
+      },
+      "description": "Workload selector to apply the policy to specific workloads. If not set, the policy applies to all workloads in the namespace."
+    },
+    "mtls": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["UNSET", "DISABLE", "PERMISSIVE", "STRICT"],
+          "description": "Defines the mTLS mode used for peer authentication. UNSET inherits from parent, DISABLE disables mTLS tunnel, PERMISSIVE accepts both plaintext and mTLS, STRICT requires mTLS."
+        }
+      },
+      "description": "Mutual TLS settings for workload communication."
+    },
+    "portLevelMtls": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": ["UNSET", "DISABLE", "PERMISSIVE", "STRICT"],
+            "description": "Defines the mTLS mode for this specific port."
+          }
+        }
+      },
+      "description": "Port-specific mutual TLS settings. Keys are port numbers."
+    }
+  }
+}

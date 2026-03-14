@@ -1,0 +1,112 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "istio": "https://istio.io/latest/docs/reference/config/",
+    "networking": "https://istio.io/latest/docs/reference/config/networking/",
+    "security": "https://istio.io/latest/docs/reference/config/security/",
+    "telemetry": "https://istio.io/latest/docs/reference/config/telemetry/",
+    "extensions": "https://istio.io/latest/docs/reference/config/",
+    "VirtualService": {
+      "@id": "networking:virtual-service",
+      "@context": {
+        "hosts": "https://schema.org/url",
+        "gateways": "https://schema.org/identifier",
+        "http": "https://schema.org/hasPart",
+        "tls": "https://schema.org/hasPart",
+        "tcp": "https://schema.org/hasPart",
+        "exportTo": "https://schema.org/audience"
+      }
+    },
+    "DestinationRule": {
+      "@id": "networking:destination-rule",
+      "@context": {
+        "host": "https://schema.org/url",
+        "trafficPolicy": "https://schema.org/hasPart",
+        "subsets": "https://schema.org/hasPart",
+        "exportTo": "https://schema.org/audience",
+        "workloadSelector": "https://schema.org/targetCollection"
+      }
+    },
+    "Gateway": {
+      "@id": "networking:gateway",
+      "@context": {
+        "selector": "https://schema.org/targetCollection",
+        "servers": "https://schema.org/hasPart"
+      }
+    },
+    "ServiceEntry": {
+      "@id": "networking:service-entry",
+      "@context": {
+        "hosts": "https://schema.org/url",
+        "addresses": "https://schema.org/identifier",
+        "ports": "https://schema.org/hasPart",
+        "location": "https://schema.org/category",
+        "resolution": "https://schema.org/category",
+        "endpoints": "https://schema.org/hasPart",
+        "exportTo": "https://schema.org/audience",
+        "subjectAltNames": "https://schema.org/identifier"
+      }
+    },
+    "Sidecar": {
+      "@id": "networking:sidecar",
+      "@context": {
+        "workloadSelector": "https://schema.org/targetCollection",
+        "ingress": "https://schema.org/hasPart",
+        "egress": "https://schema.org/hasPart",
+        "outboundTrafficPolicy": "https://schema.org/actionOption"
+      }
+    },
+    "AuthorizationPolicy": {
+      "@id": "security:authorization-policy",
+      "@context": {
+        "selector": "https://schema.org/targetCollection",
+        "targetRefs": "https://schema.org/targetCollection",
+        "action": "https://schema.org/actionOption",
+        "provider": "https://schema.org/provider",
+        "rules": "https://schema.org/hasPart"
+      }
+    },
+    "PeerAuthentication": {
+      "@id": "security:peer_authentication",
+      "@context": {
+        "selector": "https://schema.org/targetCollection",
+        "mtls": "https://schema.org/securityClearance",
+        "portLevelMtls": "https://schema.org/securityClearance"
+      }
+    },
+    "RequestAuthentication": {
+      "@id": "security:request_authentication",
+      "@context": {
+        "selector": "https://schema.org/targetCollection",
+        "targetRefs": "https://schema.org/targetCollection",
+        "jwtRules": "https://schema.org/hasPart"
+      }
+    },
+    "Telemetry": {
+      "@id": "telemetry:telemetry",
+      "@context": {
+        "selector": "https://schema.org/targetCollection",
+        "targetRefs": "https://schema.org/targetCollection",
+        "tracing": "https://schema.org/hasPart",
+        "metrics": "https://schema.org/hasPart",
+        "accessLogging": "https://schema.org/hasPart"
+      }
+    },
+    "WasmPlugin": {
+      "@id": "extensions:wasm-plugin",
+      "@context": {
+        "selector": "https://schema.org/targetCollection",
+        "targetRefs": "https://schema.org/targetCollection",
+        "url": "https://schema.org/url",
+        "sha256": "https://schema.org/identifier",
+        "imagePullPolicy": "https://schema.org/actionOption",
+        "pluginConfig": "https://schema.org/softwareRequirements",
+        "pluginName": "https://schema.org/name",
+        "phase": "https://schema.org/category",
+        "priority": "https://schema.org/position",
+        "failStrategy": "https://schema.org/actionOption",
+        "type": "https://schema.org/category"
+      }
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/istio/blob/main/json-schema/service-entry.json",
+  "title": "Istio ServiceEntry",
+  "description": "A ServiceEntry enables adding additional entries into Istio's internal service registry so that auto-discovered services in the mesh can access or route to these manually specified services.",
+  "type": "object",
+  "properties": {
+    "hosts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The hosts associated with the ServiceEntry. Could be a DNS name with wildcard prefix."
+    },
+    "addresses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The virtual IP addresses associated with the service."
+    },
+    "ports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "integer",
+            "description": "A valid non-negative integer port number."
+          },
+          "protocol": {
+            "type": "string",
+            "description": "The protocol exposed on the port (HTTP, HTTPS, GRPC, HTTP2, MONGO, TCP, TLS)."
+          },
+          "name": {
+            "type": "string",
+            "description": "Label assigned to the port."
+          },
+          "targetPort": {
+            "type": "integer",
+            "description": "The port number on the endpoint where traffic will be received."
+          }
+        },
+        "required": ["number", "protocol", "name"]
+      },
+      "description": "The ports associated with the external service."
+    },
+    "location": {
+      "type": "string",
+      "enum": ["MESH_EXTERNAL", "MESH_INTERNAL"],
+      "description": "Specify whether the service should be considered external to the mesh or part of the mesh."
+    },
+    "resolution": {
+      "type": "string",
+      "enum": ["NONE", "STATIC", "DNS", "DNS_ROUND_ROBIN"],
+      "description": "Service discovery mode for the hosts."
+    },
+    "endpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Address associated with the network endpoint (IPv4 or IPv6, or a Unix domain socket path)."
+          },
+          "ports": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "description": "Set of ports associated with the endpoint."
+          },
+          "labels": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "One or more labels associated with the endpoint."
+          },
+          "network": {
+            "type": "string",
+            "description": "Network enables Istio to group endpoints resident in the same L3 domain/network."
+          },
+          "locality": {
+            "type": "string",
+            "description": "The locality associated with the endpoint in region/zone/sub-zone format."
+          },
+          "weight": {
+            "type": "integer",
+            "description": "The load balancing weight associated with the endpoint."
+          },
+          "serviceAccount": {
+            "type": "string",
+            "description": "The service account associated with the workload."
+          }
+        }
+      },
+      "description": "One or more endpoints associated with the service."
+    },
+    "workloadSelector": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "One or more labels that indicate a specific set of pods/VMs."
+        }
+      },
+      "description": "Applicable only for MESH_INTERNAL services. Selects workloads to treat as part of this service."
+    },
+    "exportTo": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of namespaces to which this ServiceEntry is exported."
+    },
+    "subjectAltNames": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of subject alternative names for TLS verification."
+    }
+  },
+  "required": ["hosts"]
+}

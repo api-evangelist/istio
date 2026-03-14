@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/istio/blob/main/json-schema/request-authentication.json",
+  "title": "Istio RequestAuthentication",
+  "description": "A RequestAuthentication defines what request authentication methods are supported by a workload. It validates JSON Web Tokens (JWTs) attached to requests and extracts identity information for use in authorization policies.",
+  "type": "object",
+  "properties": {
+    "selector": {
+      "type": "object",
+      "properties": {
+        "matchLabels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "One or more labels that indicate a specific set of pods/VMs on which the policy should be applied."
+        }
+      },
+      "description": "Workload selector to apply the policy to specific workloads."
+    },
+    "targetRefs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string",
+            "description": "Group of the target resource."
+          },
+          "kind": {
+            "type": "string",
+            "description": "Kind of the target resource."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the target resource."
+          }
+        }
+      },
+      "description": "Target references to apply the policy to specific resources."
+    },
+    "jwtRules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "issuer": {
+            "type": "string",
+            "description": "Identifies the issuer that issued the JWT. Must match the iss claim in the JWT."
+          },
+          "audiences": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The list of JWT audiences that are allowed to access. If not specified, the audiences in the JWT will not be checked."
+          },
+          "jwksUri": {
+            "type": "string",
+            "description": "URL of the provider's public key set to validate the signature of the JWT."
+          },
+          "jwks": {
+            "type": "string",
+            "description": "JSON Web Key Set of public keys to validate the signature of the JWT. Mutually exclusive with jwksUri."
+          },
+          "fromHeaders": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The HTTP header name."
+                },
+                "prefix": {
+                  "type": "string",
+                  "description": "The prefix that should be stripped before decoding the token."
+                }
+              },
+              "required": ["name"]
+            },
+            "description": "List of header locations from which JWT is expected."
+          },
+          "fromParams": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of query parameters from which JWT is expected."
+          },
+          "fromCookies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of cookie names from which JWT is expected."
+          },
+          "outputPayloadToHeader": {
+            "type": "string",
+            "description": "This field specifies the header name to output a successfully verified JWT payload to the backend."
+          },
+          "forwardOriginalToken": {
+            "type": "boolean",
+            "description": "If set to true, the original JWT will be preserved in the Authorization header for upstream service."
+          },
+          "outputClaimToHeaders": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "header": {
+                  "type": "string",
+                  "description": "The name of the header to be created."
+                },
+                "claim": {
+                  "type": "string",
+                  "description": "The name of the claim to be copied from."
+                }
+              }
+            },
+            "description": "List of claim-to-header mappings to extract JWT claims and output them to request headers."
+          },
+          "timeout": {
+            "type": "string",
+            "description": "Timeout for JWKS fetch operations."
+          }
+        },
+        "required": ["issuer"]
+      },
+      "description": "List of JWT rules defining the valid identity tokens for this workload."
+    }
+  }
+}
