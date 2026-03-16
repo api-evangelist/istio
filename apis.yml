@@ -123,7 +123,7 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-06-05'
-modified: '2026-03-14'
+modified: '2026-03-16'
 position: Consumer
 description: >-
   Istio is an open-source service mesh platform that provides a comprehensive
@@ -138,7 +138,7 @@ description: >-
   having to worry about the underlying infrastructure.
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
   - name: Istio
