@@ -24,6 +24,8 @@ apis:
         type: JSONSchema
       - url: json-schema/sidecar.json
         type: JSONSchema
+      - url: json-schema/workload-entry.json
+        type: JSONSchema
       - url: json-ld/istio-context.jsonld
         type: JSONLD
     description: >-
@@ -123,7 +125,7 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-06-05'
-modified: '2026-03-16'
+modified: '2026-03-18'
 position: Consumer
 description: >-
   Istio is an open-source service mesh platform that provides a comprehensive
@@ -141,6 +143,14 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+  - type: JSON-LD
+    url: json-ld/istio-context.jsonld
+  - type: JSONSchema
+    url: json-schema/virtual-service.json
+  - type: JSONSchema
+    url: json-schema/destination-rule.json
+  - type: JSONSchema
+    url: json-schema/gateway.json
   - name: Istio
     description: 'null'
     url: https://istio.io/
@@ -173,3 +183,13 @@ common:
     description: 'null'
     url: https://github.com/istio/api
     type: GitHub
+  - type: Getting Started
+    url: https://istio.io/latest/docs/setup/getting-started/
+  - type: GitHub Organization
+    url: https://github.com/istio
+  - type: Change Log
+    url: https://github.com/istio/istio/releases
+  - type: Community
+    url: https://istio.io/latest/get-involved/
+  - type: Support
+    url: https://discuss.istio.io/

@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/istio/blob/main/json-schema/workload-entry.json",
+  "title": "Istio WorkloadEntry",
+  "description": "A WorkloadEntry enables the addition of non-Kubernetes workloads such as virtual machines and bare metal servers into an Istio service mesh. It provides a way to describe the properties of a single non-Kubernetes workload so that Envoy sidecars on VMs and external endpoints can be treated uniformly with Kubernetes pods.",
+  "type": "object",
+  "required": ["apiVersion", "kind", "metadata", "spec"],
+  "properties": {
+    "apiVersion": {
+      "type": "string",
+      "description": "Istio networking API version.",
+      "enum": ["networking.istio.io/v1", "networking.istio.io/v1beta1", "networking.istio.io/v1alpha3"]
+    },
+    "kind": {
+      "type": "string",
+      "description": "Resource kind.",
+      "enum": ["WorkloadEntry"]
+    },
+    "metadata": {
+      "$ref": "#/$defs/ObjectMeta"
+    },
+    "spec": {
+      "$ref": "#/$defs/WorkloadEntrySpec"
+    }
+  },
+  "$defs": {
+    "ObjectMeta": {
+      "type": "object",
+      "title": "ObjectMeta",
+      "description": "Standard Kubernetes object metadata.",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the WorkloadEntry resource."
+        },
+        "namespace": {
+          "type": "string",
+          "description": "Kubernetes namespace for the WorkloadEntry."
+        },
+        "labels": {
+          "type": "object",
+          "description": "Labels to attach to this resource.",
+          "additionalProperties": { "type": "string" }
+        },
+        "annotations": {
+          "type": "object",
+          "description": "Annotations to attach to this resource.",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "WorkloadEntrySpec": {
+      "type": "object",
+      "title": "WorkloadEntrySpec",
+      "description": "Specification describing the properties of the non-Kubernetes workload.",
+      "required": ["address"],
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Address of the workload, typically an IP address of a VM or bare metal host. Can also be a DNS name when the resolution field of the associated ServiceEntry is set to DNS."
+        },
+        "ports": {
+          "type": "object",
+          "description": "Port mapping from service port names to endpoint ports. If omitted, the endpoint port is assumed to be the same as the service port.",
+          "additionalProperties": {
+            "type": "integer",
+            "description": "Endpoint port number.",
+            "minimum": 1,
+            "maximum": 65535
+          }
+        },
+        "labels": {
+          "type": "object",
+          "description": "Labels associated with the workload, used to match this endpoint to WorkloadGroup or ServiceEntry selectors.",
+          "additionalProperties": { "type": "string" }
+        },
+        "network": {
+          "type": "string",
+          "description": "Network name this endpoint belongs to. Used for multi-network Istio deployments to ensure traffic routes via an appropriate gateway."
+        },
+        "locality": {
+          "type": "string",
+          "description": "Locality of the endpoint in region/zone/subzone format (e.g., us-east-1/us-east-1a). Used for locality-aware load balancing."
+        },
+        "weight": {
+          "type": "integer",
+          "description": "Load balancing weight for this endpoint. Higher weight means more traffic. Defaults to 1.",
+          "minimum": 1
+        },
+        "serviceAccount": {
+          "type": "string",
+          "description": "Kubernetes service account associated with this workload, used for mTLS identity assignment in multi-cluster scenarios."
+        }
+      }
+    }
+  }
+}
