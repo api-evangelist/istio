@@ -118,6 +118,47 @@ apis:
       network traffic at various phases of the request lifecycle including
       authentication, authorization, metrics collection, and traffic
       transformation.
+  - aid: istio:mesh-config-api
+    name: Istio Mesh Config API
+    tags:
+      - Service Mesh
+      - Configuration
+      - Proxy
+      - Networking
+    humanURL: https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/
+    properties:
+      - url: https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/
+        type: Documentation
+      - url: https://github.com/istio/api/tree/master/mesh/v1alpha1
+        type: GitHubRepository
+    description: >-
+      The Istio Mesh Config API (istio.mesh.v1alpha1) provides global
+      configuration for the Istio service mesh control plane and data plane
+      proxy behavior. It includes MeshConfig for mesh-wide settings such as
+      access logging, tracing providers, and default proxy configuration, as
+      well as ProxyConfig for per-workload proxy tuning and network topology
+      settings. These settings are typically applied via the Istio ConfigMap
+      or as annotations on workloads.
+  - aid: istio:operator-api
+    name: Istio Operator API
+    tags:
+      - Service Mesh
+      - Operator
+      - Installation
+      - Kubernetes
+    humanURL: https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/
+    properties:
+      - url: https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/
+        type: Documentation
+      - url: https://github.com/istio/istio/tree/master/operator
+        type: GitHubRepository
+    description: >-
+      The Istio Operator API (istio.operator.v1alpha1) defines the
+      IstioOperator custom resource used to install, configure, and upgrade
+      Istio on Kubernetes clusters. It provides a declarative interface for
+      selecting Istio profiles, enabling or disabling components such as
+      ingress and egress gateways, and customizing the control plane
+      configuration without editing raw Helm values.
 name: Istio
 tags:
   - Service Mesh
@@ -193,3 +234,9 @@ common:
     url: https://istio.io/latest/get-involved/
   - type: Support
     url: https://discuss.istio.io/
+  - type: Stack Overflow
+    url: https://stackoverflow.com/questions/tagged/istio
+  - type: Security
+    url: https://istio.io/latest/docs/releases/security-vulnerabilities/
+  - type: Issue Tracker
+    url: https://github.com/istio/istio/issues
