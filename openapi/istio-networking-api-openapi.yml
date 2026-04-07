@@ -1434,10 +1434,6 @@ components:
       scheme: bearer
       description: Kubernetes API server bearer token authentication
 tags:
-  - name: VirtualService
-    description: HTTP/TCP routing rules for traffic management
-    externalDocs:
-      url: https://istio.io/latest/docs/reference/config/networking/virtual-service/
   - name: DestinationRule
     description: Policies applied to traffic after routing (load balancing, connection pool, outlier detection)
     externalDocs:
@@ -1454,6 +1450,10 @@ tags:
     description: Sidecar proxy configuration for inbound and outbound traffic
     externalDocs:
       url: https://istio.io/latest/docs/reference/config/networking/sidecar/
+  - name: VirtualService
+    description: HTTP/TCP routing rules for traffic management
+    externalDocs:
+      url: https://istio.io/latest/docs/reference/config/networking/virtual-service/
   - name: WorkloadEntry
     description: Non-Kubernetes workload (VM/bare metal) endpoint properties
     externalDocs:

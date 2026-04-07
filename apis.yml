@@ -5,9 +5,9 @@ apis:
   - aid: istio:networking-api
     name: Istio Networking API
     tags:
+      - Networking
       - Service Mesh
       - Traffic Management
-      - Networking
     humanURL: https://istio.io/latest/docs/reference/config/networking/
     properties:
       - url: https://istio.io/latest/docs/reference/config/networking/
@@ -34,10 +34,10 @@ apis:
   - aid: istio:security-api
     name: Istio Security API
     tags:
-      - Service Mesh
-      - Security
       - Authentication
       - Authorization
+      - Security
+      - Service Mesh
     humanURL: https://istio.io/latest/docs/reference/config/security/
     properties:
       - url: https://istio.io/latest/docs/reference/config/security/
@@ -63,10 +63,10 @@ apis:
   - aid: istio:telemetry-api
     name: Istio Telemetry API
     tags:
+      - Metrics
+      - Observability
       - Service Mesh
       - Telemetry
-      - Observability
-      - Metrics
       - Tracing
     humanURL: https://istio.io/latest/docs/reference/config/telemetry/
     properties:
@@ -88,10 +88,10 @@ apis:
   - aid: istio:extensions-api
     name: Istio Extensions API
     tags:
-      - Service Mesh
       - Extensions
-      - WebAssembly
+      - Service Mesh
       - Wasm
+      - WebAssembly
     humanURL: https://istio.io/latest/docs/reference/config/
     properties:
       - url: https://istio.io/latest/docs/reference/config/
@@ -113,10 +113,10 @@ apis:
   - aid: istio:mesh-config-api
     name: Istio Mesh Config API
     tags:
-      - Service Mesh
       - Configuration
-      - Proxy
       - Networking
+      - Proxy
+      - Service Mesh
     humanURL: https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/
     properties:
       - url: https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/
@@ -134,15 +134,13 @@ apis:
   - aid: istio:operator-api
     name: Istio Operator API
     tags:
-      - Service Mesh
-      - Operator
       - Installation
       - Kubernetes
-    humanURL: 
-      https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/
+      - Operator
+      - Service Mesh
+    humanURL: https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/
     properties:
-      - url: 
-          https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/
+      - url: https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/
         type: Documentation
       - url: https://github.com/istio/istio/tree/master/operator
         type: GitHubRepository
