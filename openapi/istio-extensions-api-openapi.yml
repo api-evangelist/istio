@@ -30,7 +30,7 @@ paths:
   /namespaces/{namespace}/wasmplugins:
     get:
       operationId: listWasmPlugins
-      summary: List WasmPlugins
+      summary: Istio List WasmPlugins
       description: >-
         List all WasmPlugin resources in the specified namespace. A WasmPlugin
         provides a mechanism to extend the functionality provided by the Istio
@@ -55,7 +55,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createWasmPlugin
-      summary: Create a WasmPlugin
+      summary: Istio Create a WasmPlugin
       description: Create a new WasmPlugin resource in the specified namespace.
       tags:
         - WasmPlugin
@@ -81,7 +81,7 @@ paths:
   /namespaces/{namespace}/wasmplugins/{name}:
     get:
       operationId: getWasmPlugin
-      summary: Get a WasmPlugin
+      summary: Istio Get a WasmPlugin
       description: Read the specified WasmPlugin resource.
       tags:
         - WasmPlugin
@@ -101,7 +101,7 @@ paths:
           description: Not found
     put:
       operationId: replaceWasmPlugin
-      summary: Replace a WasmPlugin
+      summary: Istio Replace a WasmPlugin
       description: Replace the specified WasmPlugin resource.
       tags:
         - WasmPlugin
@@ -127,7 +127,7 @@ paths:
           description: Not found
     delete:
       operationId: deleteWasmPlugin
-      summary: Delete a WasmPlugin
+      summary: Istio Delete a WasmPlugin
       description: Delete the specified WasmPlugin resource.
       tags:
         - WasmPlugin

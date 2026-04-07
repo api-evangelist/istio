@@ -34,7 +34,7 @@ paths:
   /namespaces/{namespace}/virtualservices:
     get:
       operationId: listVirtualServices
-      summary: List VirtualServices
+      summary: Istio List VirtualServices
       description: >-
         List all VirtualService resources in the specified namespace. A
         VirtualService defines a set of traffic routing rules to apply when a
@@ -58,7 +58,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createVirtualService
-      summary: Create a VirtualService
+      summary: Istio Create a VirtualService
       description: Create a new VirtualService resource in the specified namespace.
       tags:
         - VirtualService
@@ -84,7 +84,7 @@ paths:
   /namespaces/{namespace}/virtualservices/{name}:
     get:
       operationId: getVirtualService
-      summary: Get a VirtualService
+      summary: Istio Get a VirtualService
       description: Read the specified VirtualService resource.
       tags:
         - VirtualService
@@ -104,7 +104,7 @@ paths:
           description: Not found
     put:
       operationId: replaceVirtualService
-      summary: Replace a VirtualService
+      summary: Istio Replace a VirtualService
       description: Replace the specified VirtualService resource.
       tags:
         - VirtualService
@@ -130,7 +130,7 @@ paths:
           description: Not found
     delete:
       operationId: deleteVirtualService
-      summary: Delete a VirtualService
+      summary: Istio Delete a VirtualService
       description: Delete the specified VirtualService resource.
       tags:
         - VirtualService
@@ -147,7 +147,7 @@ paths:
   /namespaces/{namespace}/destinationrules:
     get:
       operationId: listDestinationRules
-      summary: List DestinationRules
+      summary: Istio List DestinationRules
       description: >-
         List all DestinationRule resources in the specified namespace. A
         DestinationRule defines policies that apply to traffic intended for a
@@ -171,7 +171,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createDestinationRule
-      summary: Create a DestinationRule
+      summary: Istio Create a DestinationRule
       description: Create a new DestinationRule resource in the specified namespace.
       tags:
         - DestinationRule
@@ -197,7 +197,7 @@ paths:
   /namespaces/{namespace}/destinationrules/{name}:
     get:
       operationId: getDestinationRule
-      summary: Get a DestinationRule
+      summary: Istio Get a DestinationRule
       description: Read the specified DestinationRule resource.
       tags:
         - DestinationRule
@@ -217,7 +217,7 @@ paths:
           description: Not found
     put:
       operationId: replaceDestinationRule
-      summary: Replace a DestinationRule
+      summary: Istio Replace a DestinationRule
       description: Replace the specified DestinationRule resource.
       tags:
         - DestinationRule
@@ -243,7 +243,7 @@ paths:
           description: Not found
     delete:
       operationId: deleteDestinationRule
-      summary: Delete a DestinationRule
+      summary: Istio Delete a DestinationRule
       description: Delete the specified DestinationRule resource.
       tags:
         - DestinationRule
@@ -260,7 +260,7 @@ paths:
   /namespaces/{namespace}/gateways:
     get:
       operationId: listGateways
-      summary: List Gateways
+      summary: Istio List Gateways
       description: >-
         List all Gateway resources in the specified namespace. A Gateway
         describes a load balancer operating at the edge of the mesh receiving
@@ -285,7 +285,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createGateway
-      summary: Create a Gateway
+      summary: Istio Create a Gateway
       description: Create a new Gateway resource in the specified namespace.
       tags:
         - Gateway
@@ -311,7 +311,7 @@ paths:
   /namespaces/{namespace}/gateways/{name}:
     get:
       operationId: getGateway
-      summary: Get a Gateway
+      summary: Istio Get a Gateway
       description: Read the specified Gateway resource.
       tags:
         - Gateway
@@ -331,7 +331,7 @@ paths:
           description: Not found
     put:
       operationId: replaceGateway
-      summary: Replace a Gateway
+      summary: Istio Replace a Gateway
       description: Replace the specified Gateway resource.
       tags:
         - Gateway
@@ -357,7 +357,7 @@ paths:
           description: Not found
     delete:
       operationId: deleteGateway
-      summary: Delete a Gateway
+      summary: Istio Delete a Gateway
       description: Delete the specified Gateway resource.
       tags:
         - Gateway
@@ -374,7 +374,7 @@ paths:
   /namespaces/{namespace}/serviceentries:
     get:
       operationId: listServiceEntries
-      summary: List ServiceEntries
+      summary: Istio List ServiceEntries
       description: >-
         List all ServiceEntry resources in the specified namespace. A
         ServiceEntry enables adding additional entries into Istio's internal
@@ -398,7 +398,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createServiceEntry
-      summary: Create a ServiceEntry
+      summary: Istio Create a ServiceEntry
       description: Create a new ServiceEntry resource in the specified namespace.
       tags:
         - ServiceEntry
@@ -424,7 +424,7 @@ paths:
   /namespaces/{namespace}/serviceentries/{name}:
     get:
       operationId: getServiceEntry
-      summary: Get a ServiceEntry
+      summary: Istio Get a ServiceEntry
       description: Read the specified ServiceEntry resource.
       tags:
         - ServiceEntry
@@ -444,7 +444,7 @@ paths:
           description: Not found
     put:
       operationId: replaceServiceEntry
-      summary: Replace a ServiceEntry
+      summary: Istio Replace a ServiceEntry
       description: Replace the specified ServiceEntry resource.
       tags:
         - ServiceEntry
@@ -470,7 +470,7 @@ paths:
           description: Not found
     delete:
       operationId: deleteServiceEntry
-      summary: Delete a ServiceEntry
+      summary: Istio Delete a ServiceEntry
       description: Delete the specified ServiceEntry resource.
       tags:
         - ServiceEntry
@@ -487,7 +487,7 @@ paths:
   /namespaces/{namespace}/sidecars:
     get:
       operationId: listSidecars
-      summary: List Sidecars
+      summary: Istio List Sidecars
       description: >-
         List all Sidecar resources in the specified namespace. The Sidecar
         resource describes the configuration of the sidecar proxy that mediates
@@ -511,7 +511,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createSidecar
-      summary: Create a Sidecar
+      summary: Istio Create a Sidecar
       description: Create a new Sidecar resource in the specified namespace.
       tags:
         - Sidecar
@@ -537,7 +537,7 @@ paths:
   /namespaces/{namespace}/sidecars/{name}:
     get:
       operationId: getSidecar
-      summary: Get a Sidecar
+      summary: Istio Get a Sidecar
       description: Read the specified Sidecar resource.
       tags:
         - Sidecar
@@ -557,7 +557,7 @@ paths:
           description: Not found
     put:
       operationId: replaceSidecar
-      summary: Replace a Sidecar
+      summary: Istio Replace a Sidecar
       description: Replace the specified Sidecar resource.
       tags:
         - Sidecar
@@ -583,7 +583,7 @@ paths:
           description: Not found
     delete:
       operationId: deleteSidecar
-      summary: Delete a Sidecar
+      summary: Istio Delete a Sidecar
       description: Delete the specified Sidecar resource.
       tags:
         - Sidecar
@@ -600,7 +600,7 @@ paths:
   /namespaces/{namespace}/workloadentries:
     get:
       operationId: listWorkloadEntries
-      summary: List WorkloadEntries
+      summary: Istio List WorkloadEntries
       description: >-
         List all WorkloadEntry resources in the specified namespace. A
         WorkloadEntry enables specifying the properties of a single
@@ -624,7 +624,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createWorkloadEntry
-      summary: Create a WorkloadEntry
+      summary: Istio Create a WorkloadEntry
       description: Create a new WorkloadEntry resource in the specified namespace.
       tags:
         - WorkloadEntry
@@ -650,7 +650,7 @@ paths:
   /namespaces/{namespace}/workloadentries/{name}:
     get:
       operationId: getWorkloadEntry
-      summary: Get a WorkloadEntry
+      summary: Istio Get a WorkloadEntry
       description: Read the specified WorkloadEntry resource.
       tags:
         - WorkloadEntry
@@ -670,7 +670,7 @@ paths:
           description: Not found
     put:
       operationId: replaceWorkloadEntry
-      summary: Replace a WorkloadEntry
+      summary: Istio Replace a WorkloadEntry
       description: Replace the specified WorkloadEntry resource.
       tags:
         - WorkloadEntry
@@ -696,7 +696,7 @@ paths:
           description: Not found
     delete:
       operationId: deleteWorkloadEntry
-      summary: Delete a WorkloadEntry
+      summary: Istio Delete a WorkloadEntry
       description: Delete the specified WorkloadEntry resource.
       tags:
         - WorkloadEntry
@@ -713,7 +713,7 @@ paths:
   /namespaces/{namespace}/workloadgroups:
     get:
       operationId: listWorkloadGroups
-      summary: List WorkloadGroups
+      summary: Istio List WorkloadGroups
       description: >-
         List all WorkloadGroup resources in the specified namespace. A
         WorkloadGroup describes a collection of workload instances and provides
@@ -737,7 +737,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createWorkloadGroup
-      summary: Create a WorkloadGroup
+      summary: Istio Create a WorkloadGroup
       description: Create a new WorkloadGroup resource in the specified namespace.
       tags:
         - WorkloadGroup
@@ -763,7 +763,7 @@ paths:
   /namespaces/{namespace}/workloadgroups/{name}:
     get:
       operationId: getWorkloadGroup
-      summary: Get a WorkloadGroup
+      summary: Istio Get a WorkloadGroup
       description: Read the specified WorkloadGroup resource.
       tags:
         - WorkloadGroup
@@ -783,7 +783,7 @@ paths:
           description: Not found
     put:
       operationId: replaceWorkloadGroup
-      summary: Replace a WorkloadGroup
+      summary: Istio Replace a WorkloadGroup
       description: Replace the specified WorkloadGroup resource.
       tags:
         - WorkloadGroup
@@ -809,7 +809,7 @@ paths:
           description: Not found
     delete:
       operationId: deleteWorkloadGroup
-      summary: Delete a WorkloadGroup
+      summary: Istio Delete a WorkloadGroup
       description: Delete the specified WorkloadGroup resource.
       tags:
         - WorkloadGroup

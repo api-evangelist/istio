@@ -29,16 +29,8 @@ apis:
       - url: json-ld/istio-context.jsonld
         type: JSONLD
     description: >-
-      The Istio Networking API (networking.istio.io) provides configuration
-      resources for traffic management within an Istio service mesh. It includes
-      VirtualService for HTTP/TCP routing rules, DestinationRule for load
-      balancing and connection pool settings, Gateway for managing inbound and
-      outbound traffic at the mesh edge, ServiceEntry for adding external
-      services to the mesh registry, Sidecar for controlling network
-      reachability of sidecar proxies, WorkloadEntry and WorkloadGroup for
-      non-Kubernetes workloads such as VMs, and ProxyConfig for per-workload
-      proxy configuration. These resources are defined as Kubernetes Custom
-      Resource Definitions (CRDs) and accessed via the Kubernetes API server.
+      The Istio Networking API (networking.istio.io) provides configuration resources
+      for traffic management within an Istio service mesh.
   - aid: istio:security-api
     name: Istio Security API
     tags:
@@ -146,9 +138,11 @@ apis:
       - Operator
       - Installation
       - Kubernetes
-    humanURL: https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/
+    humanURL: 
+      https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/
     properties:
-      - url: https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/
+      - url: 
+          https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/
         type: Documentation
       - url: https://github.com/istio/istio/tree/master/operator
         type: GitHubRepository
@@ -169,16 +163,12 @@ created: '2025-06-05'
 modified: '2026-03-18'
 position: Consumer
 description: >-
-  Istio is an open-source service mesh platform that provides a comprehensive
-  solution for managing, securing, and monitoring microservices in a distributed
-  system. It acts as a middle layer between services, handling communication,
-  routing, and load balancing, as well as providing visibility into the traffic
-  flowing between services. Istio also offers advanced security features such as
-  access control, authentication, and encryption to ensure that communication
-  between services is secure. By centralizing these functionalities, Istio
-  simplifies the complexity of managing a microservices architecture and allows
-  developers to focus on building and deploying their applications without
-  having to worry about the underlying infrastructure.
+  Istio is an open-source service mesh platform that provides a comprehensive solution
+  for managing, securing, and monitoring microservices in a distributed system. It
+  acts as a middle layer between services, handling communication, routing, and load
+  balancing, as well as providing visibility into the traffic flowing between services.
+  Istio also offers advanced security features such as access control, authentication,
+  and encryption to ensure that communication between services is secure.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

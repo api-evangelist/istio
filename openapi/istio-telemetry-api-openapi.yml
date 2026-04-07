@@ -31,7 +31,7 @@ paths:
   /namespaces/{namespace}/telemetries:
     get:
       operationId: listTelemetries
-      summary: List Telemetry resources
+      summary: Istio List Telemetry resources
       description: >-
         List all Telemetry resources in the specified namespace. A Telemetry
         resource configures the behavior of the Istio telemetry system,
@@ -54,7 +54,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createTelemetry
-      summary: Create a Telemetry resource
+      summary: Istio Create a Telemetry resource
       description: Create a new Telemetry resource in the specified namespace.
       tags:
         - Telemetry
@@ -80,7 +80,7 @@ paths:
   /namespaces/{namespace}/telemetries/{name}:
     get:
       operationId: getTelemetry
-      summary: Get a Telemetry resource
+      summary: Istio Get a Telemetry resource
       description: Read the specified Telemetry resource.
       tags:
         - Telemetry
@@ -100,7 +100,7 @@ paths:
           description: Not found
     put:
       operationId: replaceTelemetry
-      summary: Replace a Telemetry resource
+      summary: Istio Replace a Telemetry resource
       description: Replace the specified Telemetry resource.
       tags:
         - Telemetry
@@ -126,7 +126,7 @@ paths:
           description: Not found
     delete:
       operationId: deleteTelemetry
-      summary: Delete a Telemetry resource
+      summary: Istio Delete a Telemetry resource
       description: Delete the specified Telemetry resource.
       tags:
         - Telemetry

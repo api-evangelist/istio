@@ -30,7 +30,7 @@ paths:
   /namespaces/{namespace}/authorizationpolicies:
     get:
       operationId: listAuthorizationPolicies
-      summary: List AuthorizationPolicies
+      summary: Istio List AuthorizationPolicies
       description: >-
         List all AuthorizationPolicy resources in the specified namespace. An
         AuthorizationPolicy enables access control on workloads in the mesh,
@@ -54,7 +54,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createAuthorizationPolicy
-      summary: Create an AuthorizationPolicy
+      summary: Istio Create an AuthorizationPolicy
       description: Create a new AuthorizationPolicy resource in the specified namespace.
       tags:
         - AuthorizationPolicy
@@ -80,7 +80,7 @@ paths:
   /namespaces/{namespace}/authorizationpolicies/{name}:
     get:
       operationId: getAuthorizationPolicy
-      summary: Get an AuthorizationPolicy
+      summary: Istio Get an AuthorizationPolicy
       description: Read the specified AuthorizationPolicy resource.
       tags:
         - AuthorizationPolicy
@@ -100,7 +100,7 @@ paths:
           description: Not found
     put:
       operationId: replaceAuthorizationPolicy
-      summary: Replace an AuthorizationPolicy
+      summary: Istio Replace an AuthorizationPolicy
       description: Replace the specified AuthorizationPolicy resource.
       tags:
         - AuthorizationPolicy
@@ -126,7 +126,7 @@ paths:
           description: Not found
     delete:
       operationId: deleteAuthorizationPolicy
-      summary: Delete an AuthorizationPolicy
+      summary: Istio Delete an AuthorizationPolicy
       description: Delete the specified AuthorizationPolicy resource.
       tags:
         - AuthorizationPolicy
@@ -143,7 +143,7 @@ paths:
   /namespaces/{namespace}/peerauthentications:
     get:
       operationId: listPeerAuthentications
-      summary: List PeerAuthentications
+      summary: Istio List PeerAuthentications
       description: >-
         List all PeerAuthentication resources in the specified namespace. A
         PeerAuthentication defines how traffic will be tunneled (or not) to the
@@ -166,7 +166,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createPeerAuthentication
-      summary: Create a PeerAuthentication
+      summary: Istio Create a PeerAuthentication
       description: Create a new PeerAuthentication resource in the specified namespace.
       tags:
         - PeerAuthentication
@@ -192,7 +192,7 @@ paths:
   /namespaces/{namespace}/peerauthentications/{name}:
     get:
       operationId: getPeerAuthentication
-      summary: Get a PeerAuthentication
+      summary: Istio Get a PeerAuthentication
       description: Read the specified PeerAuthentication resource.
       tags:
         - PeerAuthentication
@@ -212,7 +212,7 @@ paths:
           description: Not found
     put:
       operationId: replacePeerAuthentication
-      summary: Replace a PeerAuthentication
+      summary: Istio Replace a PeerAuthentication
       description: Replace the specified PeerAuthentication resource.
       tags:
         - PeerAuthentication
@@ -238,7 +238,7 @@ paths:
           description: Not found
     delete:
       operationId: deletePeerAuthentication
-      summary: Delete a PeerAuthentication
+      summary: Istio Delete a PeerAuthentication
       description: Delete the specified PeerAuthentication resource.
       tags:
         - PeerAuthentication
@@ -255,7 +255,7 @@ paths:
   /namespaces/{namespace}/requestauthentications:
     get:
       operationId: listRequestAuthentications
-      summary: List RequestAuthentications
+      summary: Istio List RequestAuthentications
       description: >-
         List all RequestAuthentication resources in the specified namespace. A
         RequestAuthentication defines the request authentication methods
@@ -279,7 +279,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createRequestAuthentication
-      summary: Create a RequestAuthentication
+      summary: Istio Create a RequestAuthentication
       description: Create a new RequestAuthentication resource in the specified namespace.
       tags:
         - RequestAuthentication
@@ -305,7 +305,7 @@ paths:
   /namespaces/{namespace}/requestauthentications/{name}:
     get:
       operationId: getRequestAuthentication
-      summary: Get a RequestAuthentication
+      summary: Istio Get a RequestAuthentication
       description: Read the specified RequestAuthentication resource.
       tags:
         - RequestAuthentication
@@ -325,7 +325,7 @@ paths:
           description: Not found
     put:
       operationId: replaceRequestAuthentication
-      summary: Replace a RequestAuthentication
+      summary: Istio Replace a RequestAuthentication
       description: Replace the specified RequestAuthentication resource.
       tags:
         - RequestAuthentication
@@ -351,7 +351,7 @@ paths:
           description: Not found
     delete:
       operationId: deleteRequestAuthentication
-      summary: Delete a RequestAuthentication
+      summary: Istio Delete a RequestAuthentication
       description: Delete the specified RequestAuthentication resource.
       tags:
         - RequestAuthentication
