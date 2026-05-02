@@ -11,12 +11,12 @@ Istio is an open-source service mesh platform that provides a comprehensive solu
 
 ## Tags:
 
- - Service Mesh
+ - Service Mesh, Kubernetes, Microservices, CNCF, Open Source
 
 ## Timestamps
 
 - **Created:** 2025-06-05 
-- **Modified:** 2026-03-18 
+- **Modified:** 2026-04-28 
 
 ## APIs
 

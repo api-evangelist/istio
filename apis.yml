@@ -153,12 +153,16 @@ apis:
       configuration without editing raw Helm values.
 name: Istio
 tags:
+  - CNCF
+  - Kubernetes
+  - Microservices
+  - Open Source
   - Service Mesh
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-06-05'
-modified: '2026-03-18'
+modified: '2026-04-28'
 position: Consumer
 description: >-
   Istio is an open-source service mesh platform that provides a comprehensive solution
