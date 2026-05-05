@@ -1,0 +1,13 @@
+{
+  "repo": "istio",
+  "feeds": [
+    {
+      "source": "https://istio.io/latest/blog/",
+      "feed_url": "https://istio.io/latest/blog/feed.xml",
+      "saved": 10,
+      "title": "Istio Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:29:41Z"
+}
