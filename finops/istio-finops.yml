@@ -1,178 +1,93 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Istio
+providerId: istio
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Service Mesh
+  - Open Source
+  - Kubernetes
+description: 'FOCUS-aligned FinOps for Istio: open-source software with no license fee. Cost is dominated
+  by the Kubernetes / cloud infrastructure required to run the control plane, sidecars (Envoy proxies),
+  and supporting observability backends, plus optional commercial-distribution subscriptions.'
+sources:
+  - https://istio.io/
+  - https://istio.io/latest/about/faq/
+  - https://www.cncf.io/projects/istio/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: Istio
-providerId: istio
-publisherName: Istio
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - CNCF
-  - Kubernetes
-  - Microservices
-  - Open Source
-  - Service Mesh
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Istio API surface. Provides a FOCUS-aligned mapping for
-  cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+publisherName: Cloud Native Computing Foundation
+serviceCategory: Service Mesh / Networking
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Open Source (no fee) + Optional Subscription
+  billingFrequency: N/A
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
+    - Usage
 focusColumns:
   ServiceName: Istio
-  ServiceCategory: Developer Tools / API
-  ProviderName: Istio
-  PublisherName: Istio
-  InvoiceIssuerName: Istio
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceCategory: Service Mesh
+  ProviderName: Istio (CNCF)
+  PublisherName: Cloud Native Computing Foundation
+  InvoiceIssuerName: N/A (open source)
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: control_plane_compute
+    unit: instance-hour
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
+      - cloud_provider
       - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
+      - cluster
+  - name: sidecar_proxy_compute
+    unit: instance-hour
+    aggregation: sum
+    dimensions:
+      - workload
+      - namespace
+      - cluster
+  - name: mesh_traffic
     unit: GB
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
+      - source
+      - destination
+      - protocol
+  - name: telemetry_storage
+    unit: GB-month
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Istio Networking API
-    baseURL: ''
-    tags:
-      - Networking
-      - Service Mesh
-      - Traffic Management
-    serviceName: Istio Networking API
-    serviceCategory: API
-  - name: Istio Security API
-    baseURL: ''
-    tags:
-      - Authentication
-      - Authorization
-      - Security
-      - Service Mesh
-    serviceName: Istio Security API
-    serviceCategory: API
-  - name: Istio Telemetry API
-    baseURL: ''
-    tags:
-      - Metrics
-      - Observability
-      - Service Mesh
-      - Telemetry
-      - Tracing
-    serviceName: Istio Telemetry API
-    serviceCategory: API
-  - name: Istio Extensions API
-    baseURL: ''
-    tags:
-      - Extensions
-      - Service Mesh
-      - Wasm
-      - WebAssembly
-    serviceName: Istio Extensions API
-    serviceCategory: API
-  - name: Istio Mesh Config API
-    baseURL: ''
-    tags:
-      - Configuration
-      - Networking
-      - Proxy
-      - Service Mesh
-    serviceName: Istio Mesh Config API
-    serviceCategory: API
-  - name: Istio Operator API
-    baseURL: ''
-    tags:
-      - Installation
-      - Kubernetes
-      - Operator
-      - Service Mesh
-    serviceName: Istio Operator API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - backend
+  - name: commercial_subscription
+    unit: month
+    aggregation: sum
+    dimensions:
+      - vendor
+principles:
+  - name: Visibility
+    description: Use Prometheus / Kiali / Grafana dashboards already shipped with Istio to attribute
+      sidecar CPU and memory back to workloads; export Envoy access-log volume to align with FOCUS
+      meters.
+  - name: Allocation
+    description: Tag namespaces and workloads with team / product labels so sidecar CPU, memory, and
+      egress can be charged back via Kubecost or OpenCost.
+  - name: Optimization
+    description: Right-size sidecar resources, enable Ambient mode (sidecar-less) where appropriate,
+      tune telemetry sampling and access-log filters, and consolidate to a single mesh per organization
+      where governance allows.
+  - name: Accountability
+    description: Platform team owns control-plane cost; application teams own sidecar overhead in their
+      namespaces; quarterly mesh-cost review.
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+  - FN: API Evangelist
+    email: info@apievangelist.com
