@@ -1,0 +1,184 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Istio Extensions API
+  description: The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service
+    mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the
+    Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These
+    resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.
+  tags:
+  - Istio
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: istio
+    baseUri: https://kubernetes.default.svc/apis/extensions.istio.io/v1alpha1
+    description: Istio Extensions API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{ISTIO_TOKEN}}'
+    resources:
+    - name: namespaces-namespace-wasmplugins
+      path: /namespaces/{namespace}/wasmplugins
+      operations:
+      - name: listwasmplugins
+        method: GET
+        description: Istio List WasmPlugins
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createwasmplugin
+        method: POST
+        description: Istio Create a WasmPlugin
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: namespaces-namespace-wasmplugins-name
+      path: /namespaces/{namespace}/wasmplugins/{name}
+      operations:
+      - name: getwasmplugin
+        method: GET
+        description: Istio Get a WasmPlugin
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: replacewasmplugin
+        method: PUT
+        description: Istio Replace a WasmPlugin
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletewasmplugin
+        method: DELETE
+        description: Istio Delete a WasmPlugin
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: istio-rest
+    description: REST adapter for Istio Extensions API.
+    resources:
+    - path: /namespaces/{namespace}/wasmplugins
+      name: listwasmplugins
+      operations:
+      - method: GET
+        name: listwasmplugins
+        description: Istio List WasmPlugins
+        call: istio.listwasmplugins
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /namespaces/{namespace}/wasmplugins
+      name: createwasmplugin
+      operations:
+      - method: POST
+        name: createwasmplugin
+        description: Istio Create a WasmPlugin
+        call: istio.createwasmplugin
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /namespaces/{namespace}/wasmplugins/{name}
+      name: getwasmplugin
+      operations:
+      - method: GET
+        name: getwasmplugin
+        description: Istio Get a WasmPlugin
+        call: istio.getwasmplugin
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /namespaces/{namespace}/wasmplugins/{name}
+      name: replacewasmplugin
+      operations:
+      - method: PUT
+        name: replacewasmplugin
+        description: Istio Replace a WasmPlugin
+        call: istio.replacewasmplugin
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /namespaces/{namespace}/wasmplugins/{name}
+      name: deletewasmplugin
+      operations:
+      - method: DELETE
+        name: deletewasmplugin
+        description: Istio Delete a WasmPlugin
+        call: istio.deletewasmplugin
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: istio-mcp
+    transport: http
+    description: MCP adapter for Istio Extensions API for AI agent use.
+    tools:
+    - name: listwasmplugins
+      description: Istio List WasmPlugins
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: istio.listwasmplugins
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createwasmplugin
+      description: Istio Create a WasmPlugin
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: istio.createwasmplugin
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getwasmplugin
+      description: Istio Get a WasmPlugin
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: istio.getwasmplugin
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: replacewasmplugin
+      description: Istio Replace a WasmPlugin
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: istio.replacewasmplugin
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletewasmplugin
+      description: Istio Delete a WasmPlugin
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: istio.deletewasmplugin
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    ISTIO_TOKEN: ISTIO_TOKEN
