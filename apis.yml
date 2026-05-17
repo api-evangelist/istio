@@ -176,7 +176,7 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/istio-context.jsonld
   - type: JSONSchema
     url: json-schema/virtual-service.json
@@ -216,17 +216,17 @@ common:
     description: 'null'
     url: https://github.com/istio/api
     type: GitHub
-  - type: Getting Started
+  - type: GettingStarted
     url: https://istio.io/latest/docs/setup/getting-started/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/istio
-  - type: Change Log
+  - type: ChangeLog
     url: https://github.com/istio/istio/releases
   - type: Community
     url: https://istio.io/latest/get-involved/
   - type: Support
     url: https://discuss.istio.io/
-  - type: Stack Overflow
+  - type: StackOverflow
     url: https://stackoverflow.com/questions/tagged/istio
   - type: Security
     url: https://istio.io/latest/docs/releases/security-vulnerabilities/
