@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Istio Security API — PeerAuthentication
+  description: 'Istio Security API — PeerAuthentication. 5 operations. Lead operation: Istio List PeerAuthentications. Self-contained
+    Naftiko capability covering one Istio business surface.'
+  tags:
+  - Istio
+  - PeerAuthentication
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ISTIO_API_KEY: ISTIO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: security-peerauthentication
+    baseUri: https://{cluster}/apis/security.istio.io/v1
+    description: Istio Security API — PeerAuthentication business capability. Self-contained, no shared references.
+    resources:
+    - name: namespaces-namespace-peerauthentications
+      path: /namespaces/{namespace}/peerauthentications
+      operations:
+      - name: listpeerauthentications
+        method: GET
+        description: Istio List PeerAuthentications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createpeerauthentication
+        method: POST
+        description: Istio Create a PeerAuthentication
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: namespaces-namespace-peerauthentications-name
+      path: /namespaces/{namespace}/peerauthentications/{name}
+      operations:
+      - name: getpeerauthentication
+        method: GET
+        description: Istio Get a PeerAuthentication
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: replacepeerauthentication
+        method: PUT
+        description: Istio Replace a PeerAuthentication
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletepeerauthentication
+        method: DELETE
+        description: Istio Delete a PeerAuthentication
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ISTIO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: security-peerauthentication-rest
+    port: 8080
+    description: REST adapter for Istio Security API — PeerAuthentication. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/namespaces/{namespace}/peerauthentications
+      name: namespaces-namespace-peerauthentications
+      description: REST surface for namespaces-namespace-peerauthentications.
+      operations:
+      - method: GET
+        name: listpeerauthentications
+        description: Istio List PeerAuthentications
+        call: security-peerauthentication.listpeerauthentications
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpeerauthentication
+        description: Istio Create a PeerAuthentication
+        call: security-peerauthentication.createpeerauthentication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/namespaces/{namespace}/peerauthentications/{name}
+      name: namespaces-namespace-peerauthentications-name
+      description: REST surface for namespaces-namespace-peerauthentications-name.
+      operations:
+      - method: GET
+        name: getpeerauthentication
+        description: Istio Get a PeerAuthentication
+        call: security-peerauthentication.getpeerauthentication
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: replacepeerauthentication
+        description: Istio Replace a PeerAuthentication
+        call: security-peerauthentication.replacepeerauthentication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepeerauthentication
+        description: Istio Delete a PeerAuthentication
+        call: security-peerauthentication.deletepeerauthentication
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: security-peerauthentication-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Istio Security API — PeerAuthentication. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: istio-list-peerauthentications
+      description: Istio List PeerAuthentications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: security-peerauthentication.listpeerauthentications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-create-peerauthentication
+      description: Istio Create a PeerAuthentication
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: security-peerauthentication.createpeerauthentication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-get-peerauthentication
+      description: Istio Get a PeerAuthentication
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: security-peerauthentication.getpeerauthentication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-replace-peerauthentication
+      description: Istio Replace a PeerAuthentication
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: security-peerauthentication.replacepeerauthentication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-delete-peerauthentication
+      description: Istio Delete a PeerAuthentication
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: security-peerauthentication.deletepeerauthentication
+      outputParameters:
+      - type: object
+        mapping: $.

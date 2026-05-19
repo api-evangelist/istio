@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Istio Networking API — ServiceEntry
+  description: 'Istio Networking API — ServiceEntry. 5 operations. Lead operation: Istio List ServiceEntries. Self-contained
+    Naftiko capability covering one Istio business surface.'
+  tags:
+  - Istio
+  - ServiceEntry
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ISTIO_API_KEY: ISTIO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: networking-serviceentry
+    baseUri: https://{cluster}/apis/networking.istio.io/v1
+    description: Istio Networking API — ServiceEntry business capability. Self-contained, no shared references.
+    resources:
+    - name: namespaces-namespace-serviceentries
+      path: /namespaces/{namespace}/serviceentries
+      operations:
+      - name: listserviceentries
+        method: GET
+        description: Istio List ServiceEntries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createserviceentry
+        method: POST
+        description: Istio Create a ServiceEntry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: namespaces-namespace-serviceentries-name
+      path: /namespaces/{namespace}/serviceentries/{name}
+      operations:
+      - name: getserviceentry
+        method: GET
+        description: Istio Get a ServiceEntry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: replaceserviceentry
+        method: PUT
+        description: Istio Replace a ServiceEntry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteserviceentry
+        method: DELETE
+        description: Istio Delete a ServiceEntry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ISTIO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: networking-serviceentry-rest
+    port: 8080
+    description: REST adapter for Istio Networking API — ServiceEntry. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/namespaces/{namespace}/serviceentries
+      name: namespaces-namespace-serviceentries
+      description: REST surface for namespaces-namespace-serviceentries.
+      operations:
+      - method: GET
+        name: listserviceentries
+        description: Istio List ServiceEntries
+        call: networking-serviceentry.listserviceentries
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createserviceentry
+        description: Istio Create a ServiceEntry
+        call: networking-serviceentry.createserviceentry
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/namespaces/{namespace}/serviceentries/{name}
+      name: namespaces-namespace-serviceentries-name
+      description: REST surface for namespaces-namespace-serviceentries-name.
+      operations:
+      - method: GET
+        name: getserviceentry
+        description: Istio Get a ServiceEntry
+        call: networking-serviceentry.getserviceentry
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: replaceserviceentry
+        description: Istio Replace a ServiceEntry
+        call: networking-serviceentry.replaceserviceentry
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteserviceentry
+        description: Istio Delete a ServiceEntry
+        call: networking-serviceentry.deleteserviceentry
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: networking-serviceentry-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Istio Networking API — ServiceEntry. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: istio-list-serviceentries
+      description: Istio List ServiceEntries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: networking-serviceentry.listserviceentries
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-create-serviceentry
+      description: Istio Create a ServiceEntry
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: networking-serviceentry.createserviceentry
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-get-serviceentry
+      description: Istio Get a ServiceEntry
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: networking-serviceentry.getserviceentry
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-replace-serviceentry
+      description: Istio Replace a ServiceEntry
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: networking-serviceentry.replaceserviceentry
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-delete-serviceentry
+      description: Istio Delete a ServiceEntry
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: networking-serviceentry.deleteserviceentry
+      outputParameters:
+      - type: object
+        mapping: $.

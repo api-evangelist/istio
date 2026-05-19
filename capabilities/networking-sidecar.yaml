@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Istio Networking API — Sidecar
+  description: 'Istio Networking API — Sidecar. 5 operations. Lead operation: Istio List Sidecars. Self-contained Naftiko
+    capability covering one Istio business surface.'
+  tags:
+  - Istio
+  - Sidecar
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ISTIO_API_KEY: ISTIO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: networking-sidecar
+    baseUri: https://{cluster}/apis/networking.istio.io/v1
+    description: Istio Networking API — Sidecar business capability. Self-contained, no shared references.
+    resources:
+    - name: namespaces-namespace-sidecars
+      path: /namespaces/{namespace}/sidecars
+      operations:
+      - name: listsidecars
+        method: GET
+        description: Istio List Sidecars
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createsidecar
+        method: POST
+        description: Istio Create a Sidecar
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: namespaces-namespace-sidecars-name
+      path: /namespaces/{namespace}/sidecars/{name}
+      operations:
+      - name: getsidecar
+        method: GET
+        description: Istio Get a Sidecar
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: replacesidecar
+        method: PUT
+        description: Istio Replace a Sidecar
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletesidecar
+        method: DELETE
+        description: Istio Delete a Sidecar
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ISTIO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: networking-sidecar-rest
+    port: 8080
+    description: REST adapter for Istio Networking API — Sidecar. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/namespaces/{namespace}/sidecars
+      name: namespaces-namespace-sidecars
+      description: REST surface for namespaces-namespace-sidecars.
+      operations:
+      - method: GET
+        name: listsidecars
+        description: Istio List Sidecars
+        call: networking-sidecar.listsidecars
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createsidecar
+        description: Istio Create a Sidecar
+        call: networking-sidecar.createsidecar
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/namespaces/{namespace}/sidecars/{name}
+      name: namespaces-namespace-sidecars-name
+      description: REST surface for namespaces-namespace-sidecars-name.
+      operations:
+      - method: GET
+        name: getsidecar
+        description: Istio Get a Sidecar
+        call: networking-sidecar.getsidecar
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: replacesidecar
+        description: Istio Replace a Sidecar
+        call: networking-sidecar.replacesidecar
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletesidecar
+        description: Istio Delete a Sidecar
+        call: networking-sidecar.deletesidecar
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: networking-sidecar-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Istio Networking API — Sidecar. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: istio-list-sidecars
+      description: Istio List Sidecars
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: networking-sidecar.listsidecars
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-create-sidecar
+      description: Istio Create a Sidecar
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: networking-sidecar.createsidecar
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-get-sidecar
+      description: Istio Get a Sidecar
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: networking-sidecar.getsidecar
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-replace-sidecar
+      description: Istio Replace a Sidecar
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: networking-sidecar.replacesidecar
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-delete-sidecar
+      description: Istio Delete a Sidecar
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: networking-sidecar.deletesidecar
+      outputParameters:
+      - type: object
+        mapping: $.

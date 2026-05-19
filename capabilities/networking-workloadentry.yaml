@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Istio Networking API — WorkloadEntry
+  description: 'Istio Networking API — WorkloadEntry. 5 operations. Lead operation: Istio List WorkloadEntries. Self-contained
+    Naftiko capability covering one Istio business surface.'
+  tags:
+  - Istio
+  - WorkloadEntry
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ISTIO_API_KEY: ISTIO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: networking-workloadentry
+    baseUri: https://{cluster}/apis/networking.istio.io/v1
+    description: Istio Networking API — WorkloadEntry business capability. Self-contained, no shared references.
+    resources:
+    - name: namespaces-namespace-workloadentries
+      path: /namespaces/{namespace}/workloadentries
+      operations:
+      - name: listworkloadentries
+        method: GET
+        description: Istio List WorkloadEntries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createworkloadentry
+        method: POST
+        description: Istio Create a WorkloadEntry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: namespaces-namespace-workloadentries-name
+      path: /namespaces/{namespace}/workloadentries/{name}
+      operations:
+      - name: getworkloadentry
+        method: GET
+        description: Istio Get a WorkloadEntry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: replaceworkloadentry
+        method: PUT
+        description: Istio Replace a WorkloadEntry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteworkloadentry
+        method: DELETE
+        description: Istio Delete a WorkloadEntry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ISTIO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: networking-workloadentry-rest
+    port: 8080
+    description: REST adapter for Istio Networking API — WorkloadEntry. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/namespaces/{namespace}/workloadentries
+      name: namespaces-namespace-workloadentries
+      description: REST surface for namespaces-namespace-workloadentries.
+      operations:
+      - method: GET
+        name: listworkloadentries
+        description: Istio List WorkloadEntries
+        call: networking-workloadentry.listworkloadentries
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createworkloadentry
+        description: Istio Create a WorkloadEntry
+        call: networking-workloadentry.createworkloadentry
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/namespaces/{namespace}/workloadentries/{name}
+      name: namespaces-namespace-workloadentries-name
+      description: REST surface for namespaces-namespace-workloadentries-name.
+      operations:
+      - method: GET
+        name: getworkloadentry
+        description: Istio Get a WorkloadEntry
+        call: networking-workloadentry.getworkloadentry
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: replaceworkloadentry
+        description: Istio Replace a WorkloadEntry
+        call: networking-workloadentry.replaceworkloadentry
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteworkloadentry
+        description: Istio Delete a WorkloadEntry
+        call: networking-workloadentry.deleteworkloadentry
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: networking-workloadentry-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Istio Networking API — WorkloadEntry. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: istio-list-workloadentries
+      description: Istio List WorkloadEntries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: networking-workloadentry.listworkloadentries
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-create-workloadentry
+      description: Istio Create a WorkloadEntry
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: networking-workloadentry.createworkloadentry
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-get-workloadentry
+      description: Istio Get a WorkloadEntry
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: networking-workloadentry.getworkloadentry
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-replace-workloadentry
+      description: Istio Replace a WorkloadEntry
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: networking-workloadentry.replaceworkloadentry
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-delete-workloadentry
+      description: Istio Delete a WorkloadEntry
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: networking-workloadentry.deleteworkloadentry
+      outputParameters:
+      - type: object
+        mapping: $.

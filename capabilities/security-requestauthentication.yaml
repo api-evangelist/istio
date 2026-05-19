@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Istio Security API — RequestAuthentication
+  description: 'Istio Security API — RequestAuthentication. 5 operations. Lead operation: Istio List RequestAuthentications.
+    Self-contained Naftiko capability covering one Istio business surface.'
+  tags:
+  - Istio
+  - RequestAuthentication
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ISTIO_API_KEY: ISTIO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: security-requestauthentication
+    baseUri: https://{cluster}/apis/security.istio.io/v1
+    description: Istio Security API — RequestAuthentication business capability. Self-contained, no shared references.
+    resources:
+    - name: namespaces-namespace-requestauthentications
+      path: /namespaces/{namespace}/requestauthentications
+      operations:
+      - name: listrequestauthentications
+        method: GET
+        description: Istio List RequestAuthentications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createrequestauthentication
+        method: POST
+        description: Istio Create a RequestAuthentication
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: namespaces-namespace-requestauthentications-name
+      path: /namespaces/{namespace}/requestauthentications/{name}
+      operations:
+      - name: getrequestauthentication
+        method: GET
+        description: Istio Get a RequestAuthentication
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: replacerequestauthentication
+        method: PUT
+        description: Istio Replace a RequestAuthentication
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleterequestauthentication
+        method: DELETE
+        description: Istio Delete a RequestAuthentication
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ISTIO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: security-requestauthentication-rest
+    port: 8080
+    description: REST adapter for Istio Security API — RequestAuthentication. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/namespaces/{namespace}/requestauthentications
+      name: namespaces-namespace-requestauthentications
+      description: REST surface for namespaces-namespace-requestauthentications.
+      operations:
+      - method: GET
+        name: listrequestauthentications
+        description: Istio List RequestAuthentications
+        call: security-requestauthentication.listrequestauthentications
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrequestauthentication
+        description: Istio Create a RequestAuthentication
+        call: security-requestauthentication.createrequestauthentication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/namespaces/{namespace}/requestauthentications/{name}
+      name: namespaces-namespace-requestauthentications-name
+      description: REST surface for namespaces-namespace-requestauthentications-name.
+      operations:
+      - method: GET
+        name: getrequestauthentication
+        description: Istio Get a RequestAuthentication
+        call: security-requestauthentication.getrequestauthentication
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: replacerequestauthentication
+        description: Istio Replace a RequestAuthentication
+        call: security-requestauthentication.replacerequestauthentication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterequestauthentication
+        description: Istio Delete a RequestAuthentication
+        call: security-requestauthentication.deleterequestauthentication
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: security-requestauthentication-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Istio Security API — RequestAuthentication. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: istio-list-requestauthentications
+      description: Istio List RequestAuthentications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: security-requestauthentication.listrequestauthentications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-create-requestauthentication
+      description: Istio Create a RequestAuthentication
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: security-requestauthentication.createrequestauthentication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-get-requestauthentication
+      description: Istio Get a RequestAuthentication
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: security-requestauthentication.getrequestauthentication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-replace-requestauthentication
+      description: Istio Replace a RequestAuthentication
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: security-requestauthentication.replacerequestauthentication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-delete-requestauthentication
+      description: Istio Delete a RequestAuthentication
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: security-requestauthentication.deleterequestauthentication
+      outputParameters:
+      - type: object
+        mapping: $.

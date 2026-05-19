@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Istio Networking API — VirtualService
+  description: 'Istio Networking API — VirtualService. 5 operations. Lead operation: Istio List VirtualServices. Self-contained
+    Naftiko capability covering one Istio business surface.'
+  tags:
+  - Istio
+  - VirtualService
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ISTIO_API_KEY: ISTIO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: networking-virtualservice
+    baseUri: https://{cluster}/apis/networking.istio.io/v1
+    description: Istio Networking API — VirtualService business capability. Self-contained, no shared references.
+    resources:
+    - name: namespaces-namespace-virtualservices
+      path: /namespaces/{namespace}/virtualservices
+      operations:
+      - name: listvirtualservices
+        method: GET
+        description: Istio List VirtualServices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createvirtualservice
+        method: POST
+        description: Istio Create a VirtualService
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: namespaces-namespace-virtualservices-name
+      path: /namespaces/{namespace}/virtualservices/{name}
+      operations:
+      - name: getvirtualservice
+        method: GET
+        description: Istio Get a VirtualService
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: replacevirtualservice
+        method: PUT
+        description: Istio Replace a VirtualService
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletevirtualservice
+        method: DELETE
+        description: Istio Delete a VirtualService
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ISTIO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: networking-virtualservice-rest
+    port: 8080
+    description: REST adapter for Istio Networking API — VirtualService. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/namespaces/{namespace}/virtualservices
+      name: namespaces-namespace-virtualservices
+      description: REST surface for namespaces-namespace-virtualservices.
+      operations:
+      - method: GET
+        name: listvirtualservices
+        description: Istio List VirtualServices
+        call: networking-virtualservice.listvirtualservices
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createvirtualservice
+        description: Istio Create a VirtualService
+        call: networking-virtualservice.createvirtualservice
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/namespaces/{namespace}/virtualservices/{name}
+      name: namespaces-namespace-virtualservices-name
+      description: REST surface for namespaces-namespace-virtualservices-name.
+      operations:
+      - method: GET
+        name: getvirtualservice
+        description: Istio Get a VirtualService
+        call: networking-virtualservice.getvirtualservice
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: replacevirtualservice
+        description: Istio Replace a VirtualService
+        call: networking-virtualservice.replacevirtualservice
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletevirtualservice
+        description: Istio Delete a VirtualService
+        call: networking-virtualservice.deletevirtualservice
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: networking-virtualservice-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Istio Networking API — VirtualService. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: istio-list-virtualservices
+      description: Istio List VirtualServices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: networking-virtualservice.listvirtualservices
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-create-virtualservice
+      description: Istio Create a VirtualService
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: networking-virtualservice.createvirtualservice
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-get-virtualservice
+      description: Istio Get a VirtualService
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: networking-virtualservice.getvirtualservice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-replace-virtualservice
+      description: Istio Replace a VirtualService
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: networking-virtualservice.replacevirtualservice
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: istio-delete-virtualservice
+      description: Istio Delete a VirtualService
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: networking-virtualservice.deletevirtualservice
+      outputParameters:
+      - type: object
+        mapping: $.
