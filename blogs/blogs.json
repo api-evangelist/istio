@@ -2,12 +2,20 @@
   "repo": "istio",
   "feeds": [
     {
+      "source": "https://istio.io/latest/blog/feed.xml",
+      "feed_url": "https://istio.io/latest/blog/feed.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://istio.io/latest/blog/",
       "feed_url": "https://istio.io/latest/blog/feed.xml",
-      "title": "Istio Blog",
-      "saved": 46
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
-  "post_count": 56,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 57,
+  "fetched": "2026-06-01T23:35:02Z"
 }
