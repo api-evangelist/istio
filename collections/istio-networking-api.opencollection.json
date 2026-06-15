@@ -1,0 +1,1039 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Istio Networking API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "VirtualService",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Istio List VirtualServices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/virtualservices",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "A selector to restrict the list of returned objects by their labels"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of resources to return"
+              },
+              {
+                "name": "continue",
+                "value": "",
+                "type": "query",
+                "description": "Continue token for paginated list requests"
+              }
+            ]
+          },
+          "docs": "List all VirtualService resources in the specified namespace. A VirtualService defines a set of traffic routing rules to apply when a host is addressed, enabling features such as HTTP route matching, retries, timeouts, fault injection, and traffic mirroring."
+        },
+        {
+          "info": {
+            "name": "Istio Create a VirtualService",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/virtualservices",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new VirtualService resource in the specified namespace."
+        },
+        {
+          "info": {
+            "name": "Istio Get a VirtualService",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/virtualservices/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Read the specified VirtualService resource."
+        },
+        {
+          "info": {
+            "name": "Istio Replace a VirtualService",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/virtualservices/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the specified VirtualService resource."
+        },
+        {
+          "info": {
+            "name": "Istio Delete a VirtualService",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/virtualservices/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Delete the specified VirtualService resource."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "DestinationRule",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Istio List DestinationRules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/destinationrules",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "A selector to restrict the list of returned objects by their labels"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of resources to return"
+              },
+              {
+                "name": "continue",
+                "value": "",
+                "type": "query",
+                "description": "Continue token for paginated list requests"
+              }
+            ]
+          },
+          "docs": "List all DestinationRule resources in the specified namespace. A DestinationRule defines policies that apply to traffic intended for a service after routing has occurred, including load balancing, connection pool size, and outlier detection settings."
+        },
+        {
+          "info": {
+            "name": "Istio Create a DestinationRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/destinationrules",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new DestinationRule resource in the specified namespace."
+        },
+        {
+          "info": {
+            "name": "Istio Get a DestinationRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/destinationrules/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Read the specified DestinationRule resource."
+        },
+        {
+          "info": {
+            "name": "Istio Replace a DestinationRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/destinationrules/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the specified DestinationRule resource."
+        },
+        {
+          "info": {
+            "name": "Istio Delete a DestinationRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/destinationrules/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Delete the specified DestinationRule resource."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Gateway",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Istio List Gateways",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/gateways",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "A selector to restrict the list of returned objects by their labels"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of resources to return"
+              },
+              {
+                "name": "continue",
+                "value": "",
+                "type": "query",
+                "description": "Continue token for paginated list requests"
+              }
+            ]
+          },
+          "docs": "List all Gateway resources in the specified namespace. A Gateway describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections, specifying which ports should be exposed, what protocol to use, and the SNI configuration for the load balancer."
+        },
+        {
+          "info": {
+            "name": "Istio Create a Gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/gateways",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Gateway resource in the specified namespace."
+        },
+        {
+          "info": {
+            "name": "Istio Get a Gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/gateways/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Read the specified Gateway resource."
+        },
+        {
+          "info": {
+            "name": "Istio Replace a Gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/gateways/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the specified Gateway resource."
+        },
+        {
+          "info": {
+            "name": "Istio Delete a Gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/gateways/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Delete the specified Gateway resource."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ServiceEntry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Istio List ServiceEntries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/serviceentries",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "A selector to restrict the list of returned objects by their labels"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of resources to return"
+              },
+              {
+                "name": "continue",
+                "value": "",
+                "type": "query",
+                "description": "Continue token for paginated list requests"
+              }
+            ]
+          },
+          "docs": "List all ServiceEntry resources in the specified namespace. A ServiceEntry enables adding additional entries into Istio's internal service registry, so that auto-discovered services in the mesh can access and route to these manually specified services."
+        },
+        {
+          "info": {
+            "name": "Istio Create a ServiceEntry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/serviceentries",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new ServiceEntry resource in the specified namespace."
+        },
+        {
+          "info": {
+            "name": "Istio Get a ServiceEntry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/serviceentries/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Read the specified ServiceEntry resource."
+        },
+        {
+          "info": {
+            "name": "Istio Replace a ServiceEntry",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/serviceentries/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the specified ServiceEntry resource."
+        },
+        {
+          "info": {
+            "name": "Istio Delete a ServiceEntry",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/serviceentries/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Delete the specified ServiceEntry resource."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sidecar",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Istio List Sidecars",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/sidecars",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "A selector to restrict the list of returned objects by their labels"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of resources to return"
+              },
+              {
+                "name": "continue",
+                "value": "",
+                "type": "query",
+                "description": "Continue token for paginated list requests"
+              }
+            ]
+          },
+          "docs": "List all Sidecar resources in the specified namespace. The Sidecar resource describes the configuration of the sidecar proxy that mediates inbound and outbound communication of the workload instance to which it is attached."
+        },
+        {
+          "info": {
+            "name": "Istio Create a Sidecar",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/sidecars",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Sidecar resource in the specified namespace."
+        },
+        {
+          "info": {
+            "name": "Istio Get a Sidecar",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/sidecars/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Read the specified Sidecar resource."
+        },
+        {
+          "info": {
+            "name": "Istio Replace a Sidecar",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/sidecars/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the specified Sidecar resource."
+        },
+        {
+          "info": {
+            "name": "Istio Delete a Sidecar",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/sidecars/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Delete the specified Sidecar resource."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "WorkloadEntry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Istio List WorkloadEntries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/workloadentries",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "A selector to restrict the list of returned objects by their labels"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of resources to return"
+              },
+              {
+                "name": "continue",
+                "value": "",
+                "type": "query",
+                "description": "Continue token for paginated list requests"
+              }
+            ]
+          },
+          "docs": "List all WorkloadEntry resources in the specified namespace. A WorkloadEntry enables specifying the properties of a single non-Kubernetes workload such as a VM or bare metal server as it is onboarded into the mesh."
+        },
+        {
+          "info": {
+            "name": "Istio Create a WorkloadEntry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/workloadentries",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new WorkloadEntry resource in the specified namespace."
+        },
+        {
+          "info": {
+            "name": "Istio Get a WorkloadEntry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/workloadentries/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Read the specified WorkloadEntry resource."
+        },
+        {
+          "info": {
+            "name": "Istio Replace a WorkloadEntry",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/workloadentries/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the specified WorkloadEntry resource."
+        },
+        {
+          "info": {
+            "name": "Istio Delete a WorkloadEntry",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/workloadentries/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Delete the specified WorkloadEntry resource."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "WorkloadGroup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Istio List WorkloadGroups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/workloadgroups",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "A selector to restrict the list of returned objects by their labels"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of resources to return"
+              },
+              {
+                "name": "continue",
+                "value": "",
+                "type": "query",
+                "description": "Continue token for paginated list requests"
+              }
+            ]
+          },
+          "docs": "List all WorkloadGroup resources in the specified namespace. A WorkloadGroup describes a collection of workload instances and provides a specification that the workload instances can use to bootstrap their proxies, including the metadata and identity."
+        },
+        {
+          "info": {
+            "name": "Istio Create a WorkloadGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/workloadgroups",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new WorkloadGroup resource in the specified namespace."
+        },
+        {
+          "info": {
+            "name": "Istio Get a WorkloadGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/workloadgroups/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Read the specified WorkloadGroup resource."
+        },
+        {
+          "info": {
+            "name": "Istio Replace a WorkloadGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/workloadgroups/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the specified WorkloadGroup resource."
+        },
+        {
+          "info": {
+            "name": "Istio Delete a WorkloadGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{cluster}/apis/networking.istio.io/v1/namespaces/:namespace/workloadgroups/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Delete the specified WorkloadGroup resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,451 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Istio Security API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AuthorizationPolicy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Istio List AuthorizationPolicies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/authorizationpolicies",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "A selector to restrict the list of returned objects by their labels"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of resources to return"
+              },
+              {
+                "name": "continue",
+                "value": "",
+                "type": "query",
+                "description": "Continue token for paginated list requests"
+              }
+            ]
+          },
+          "docs": "List all AuthorizationPolicy resources in the specified namespace. An AuthorizationPolicy enables access control on workloads in the mesh, supporting ALLOW, DENY, AUDIT, and CUSTOM actions based on source, operation, and condition matching."
+        },
+        {
+          "info": {
+            "name": "Istio Create an AuthorizationPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/authorizationpolicies",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new AuthorizationPolicy resource in the specified namespace."
+        },
+        {
+          "info": {
+            "name": "Istio Get an AuthorizationPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/authorizationpolicies/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Read the specified AuthorizationPolicy resource."
+        },
+        {
+          "info": {
+            "name": "Istio Replace an AuthorizationPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/authorizationpolicies/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the specified AuthorizationPolicy resource."
+        },
+        {
+          "info": {
+            "name": "Istio Delete an AuthorizationPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/authorizationpolicies/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Delete the specified AuthorizationPolicy resource."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PeerAuthentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Istio List PeerAuthentications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/peerauthentications",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "A selector to restrict the list of returned objects by their labels"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of resources to return"
+              },
+              {
+                "name": "continue",
+                "value": "",
+                "type": "query",
+                "description": "Continue token for paginated list requests"
+              }
+            ]
+          },
+          "docs": "List all PeerAuthentication resources in the specified namespace. A PeerAuthentication defines how traffic will be tunneled (or not) to the sidecar proxy, configuring mutual TLS mode for inbound connections."
+        },
+        {
+          "info": {
+            "name": "Istio Create a PeerAuthentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/peerauthentications",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new PeerAuthentication resource in the specified namespace."
+        },
+        {
+          "info": {
+            "name": "Istio Get a PeerAuthentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/peerauthentications/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Read the specified PeerAuthentication resource."
+        },
+        {
+          "info": {
+            "name": "Istio Replace a PeerAuthentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/peerauthentications/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the specified PeerAuthentication resource."
+        },
+        {
+          "info": {
+            "name": "Istio Delete a PeerAuthentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/peerauthentications/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Delete the specified PeerAuthentication resource."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "RequestAuthentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Istio List RequestAuthentications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/requestauthentications",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "A selector to restrict the list of returned objects by their labels"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of resources to return"
+              },
+              {
+                "name": "continue",
+                "value": "",
+                "type": "query",
+                "description": "Continue token for paginated list requests"
+              }
+            ]
+          },
+          "docs": "List all RequestAuthentication resources in the specified namespace. A RequestAuthentication defines the request authentication methods supported by a workload. It will reject requests with invalid authentication information based on configured JWT rules."
+        },
+        {
+          "info": {
+            "name": "Istio Create a RequestAuthentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/requestauthentications",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new RequestAuthentication resource in the specified namespace."
+        },
+        {
+          "info": {
+            "name": "Istio Get a RequestAuthentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/requestauthentications/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Read the specified RequestAuthentication resource."
+        },
+        {
+          "info": {
+            "name": "Istio Replace a RequestAuthentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/requestauthentications/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the specified RequestAuthentication resource."
+        },
+        {
+          "info": {
+            "name": "Istio Delete a RequestAuthentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{cluster}/apis/security.istio.io/v1/namespaces/:namespace/requestauthentications/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Delete the specified RequestAuthentication resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,157 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Istio Telemetry API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Telemetry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Istio List Telemetry resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/telemetry.istio.io/v1/namespaces/:namespace/telemetries",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "A selector to restrict the list of returned objects by their labels"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of resources to return"
+              },
+              {
+                "name": "continue",
+                "value": "",
+                "type": "query",
+                "description": "Continue token for paginated list requests"
+              }
+            ]
+          },
+          "docs": "List all Telemetry resources in the specified namespace. A Telemetry resource configures the behavior of the Istio telemetry system, including metrics collection, access logging, and distributed tracing."
+        },
+        {
+          "info": {
+            "name": "Istio Create a Telemetry resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{cluster}/apis/telemetry.istio.io/v1/namespaces/:namespace/telemetries",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Telemetry resource in the specified namespace."
+        },
+        {
+          "info": {
+            "name": "Istio Get a Telemetry resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster}/apis/telemetry.istio.io/v1/namespaces/:namespace/telemetries/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Read the specified Telemetry resource."
+        },
+        {
+          "info": {
+            "name": "Istio Replace a Telemetry resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{cluster}/apis/telemetry.istio.io/v1/namespaces/:namespace/telemetries/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the specified Telemetry resource."
+        },
+        {
+          "info": {
+            "name": "Istio Delete a Telemetry resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{cluster}/apis/telemetry.istio.io/v1/namespaces/:namespace/telemetries/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The resource name"
+              }
+            ]
+          },
+          "docs": "Delete the specified Telemetry resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

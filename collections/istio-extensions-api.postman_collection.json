@@ -1,0 +1,1159 @@
+{
+  "item": [
+    {
+      "id": "38ffb77f-e147-4155-b0e0-f464cf2a1549",
+      "name": "WasmPlugin",
+      "description": {
+        "content": "WebAssembly plugin configuration for Envoy proxy extensions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d8010c57-3218-4af1-8356-8eb1c77499e7",
+          "name": "Istio List WasmPlugins",
+          "request": {
+            "name": "Istio List WasmPlugins",
+            "description": {
+              "content": "List all WasmPlugin resources in the specified namespace. A WasmPlugin provides a mechanism to extend the functionality provided by the Istio proxy through WebAssembly filters, enabling custom authentication, authorization, metrics, logging, and traffic transformation at the proxy level.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "wasmplugins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "labelSelector",
+                  "value": "<string>",
+                  "description": "A selector to restrict the list of returned objects by their labels"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of resources to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "continue",
+                  "value": "<string>",
+                  "description": "Continue token for paginated list requests"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c857d11-ec3d-44cf-ada2-d8ad2be5ba21",
+              "name": "Successful response containing list of WasmPlugins",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "wasmplugins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "continue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"WasmPluginList\",\n  \"metadata\": {\n    \"resourceVersion\": \"string\",\n    \"continue\": \"string\"\n  },\n  \"items\": [\n    {\n      \"apiVersion\": \"extensions.istio.io/v1alpha1\",\n      \"kind\": \"WasmPlugin\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"creationTimestamp\": \"1948-05-30T23:11:30.995Z\",\n        \"resourceVersion\": \"string\"\n      },\n      \"spec\": {\n        \"selector\": {\n          \"matchLabels\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"url\": \"string\",\n        \"sha256\": \"string\",\n        \"imagePullPolicy\": \"IfNotPresent\",\n        \"imagePullSecret\": \"string\",\n        \"pluginConfig\": {},\n        \"pluginName\": \"string\",\n        \"phase\": \"AUTHN\",\n        \"priority\": 8315,\n        \"failStrategy\": \"FAIL_CLOSE\",\n        \"vmConfig\": {\n          \"env\": [\n            {\n              \"name\": \"string\",\n              \"valueFrom\": \"INLINE\",\n              \"value\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"valueFrom\": \"INLINE\",\n              \"value\": \"string\"\n            }\n          ]\n        },\n        \"match\": [\n          {\n            \"mode\": \"SERVER\",\n            \"ports\": [\n              {\n                \"number\": 3382\n              },\n              {\n                \"number\": 7476\n              }\n            ]\n          },\n          {\n            \"mode\": \"UNDEFINED\",\n            \"ports\": [\n              {\n                \"number\": 4690\n              },\n              {\n                \"number\": 3981\n              }\n            ]\n          }\n        ],\n        \"targetRefs\": [\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      }\n    },\n    {\n      \"apiVersion\": \"extensions.istio.io/v1alpha1\",\n      \"kind\": \"WasmPlugin\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\"\n        },\n        \"creationTimestamp\": \"1976-06-29T13:56:45.230Z\",\n        \"resourceVersion\": \"string\"\n      },\n      \"spec\": {\n        \"selector\": {\n          \"matchLabels\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"url\": \"string\",\n        \"sha256\": \"string\",\n        \"imagePullPolicy\": \"IfNotPresent\",\n        \"imagePullSecret\": \"string\",\n        \"pluginConfig\": {},\n        \"pluginName\": \"string\",\n        \"phase\": \"UNSPECIFIED_PHASE\",\n        \"priority\": 1685,\n        \"failStrategy\": \"FAIL_OPEN\",\n        \"vmConfig\": {\n          \"env\": [\n            {\n              \"name\": \"string\",\n              \"valueFrom\": \"INLINE\",\n              \"value\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"valueFrom\": \"INLINE\",\n              \"value\": \"string\"\n            }\n          ]\n        },\n        \"match\": [\n          {\n            \"mode\": \"SERVER\",\n            \"ports\": [\n              {\n                \"number\": 3286\n              },\n              {\n                \"number\": 4249\n              }\n            ]\n          },\n          {\n            \"mode\": \"CLIENT\",\n            \"ports\": [\n              {\n                \"number\": 7209\n              },\n              {\n                \"number\": 4156\n              }\n            ]\n          }\n        ],\n        \"targetRefs\": [\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb4b71dd-e9a7-47d5-87d6-eb6d23cb8559",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "wasmplugins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "continue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69362ec1-d3f8-4b8d-bfe5-a98998cae409",
+          "name": "Istio Create a WasmPlugin",
+          "request": {
+            "name": "Istio Create a WasmPlugin",
+            "description": {
+              "content": "Create a new WasmPlugin resource in the specified namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "wasmplugins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"labels\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"creationTimestamp\": \"<dateTime>\",\n    \"resourceVersion\": \"<string>\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\",\n        \"key_3\": \"<string>\",\n        \"key_4\": \"<string>\"\n      }\n    },\n    \"url\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"imagePullPolicy\": \"<string>\",\n    \"imagePullSecret\": \"<string>\",\n    \"pluginConfig\": \"<object>\",\n    \"pluginName\": \"<string>\",\n    \"phase\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"failStrategy\": \"<string>\",\n    \"vmConfig\": {\n      \"env\": [\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"match\": [\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      },\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ae8f3b3-dd3d-4e8c-b5ba-4f0f69f50a0f",
+              "name": "WasmPlugin created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "wasmplugins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1958-11-16T15:08:24.041Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"url\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"imagePullPolicy\": \"<string>\",\n    \"imagePullSecret\": \"<string>\",\n    \"pluginConfig\": \"<object>\",\n    \"pluginName\": \"<string>\",\n    \"phase\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"failStrategy\": \"<string>\",\n    \"vmConfig\": {\n      \"env\": [\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"match\": [\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      },\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"extensions.istio.io/v1alpha1\",\n  \"kind\": \"WasmPlugin\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    },\n    \"creationTimestamp\": \"1946-09-25T04:24:23.111Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    \"url\": \"string\",\n    \"sha256\": \"string\",\n    \"imagePullPolicy\": \"UNSPECIFIED_POLICY\",\n    \"imagePullSecret\": \"string\",\n    \"pluginConfig\": {},\n    \"pluginName\": \"string\",\n    \"phase\": \"AUTHZ\",\n    \"priority\": 7534,\n    \"failStrategy\": \"FAIL_CLOSE\",\n    \"vmConfig\": {\n      \"env\": [\n        {\n          \"name\": \"string\",\n          \"valueFrom\": \"INLINE\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"valueFrom\": \"INLINE\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    \"match\": [\n      {\n        \"mode\": \"CLIENT_AND_SERVER\",\n        \"ports\": [\n          {\n            \"number\": 2112\n          },\n          {\n            \"number\": 6090\n          }\n        ]\n      },\n      {\n        \"mode\": \"UNDEFINED\",\n        \"ports\": [\n          {\n            \"number\": 5176\n          },\n          {\n            \"number\": 645\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "728817df-2786-4bea-8624-d92f5ab30a09",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "wasmplugins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1958-11-16T15:08:24.041Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"url\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"imagePullPolicy\": \"<string>\",\n    \"imagePullSecret\": \"<string>\",\n    \"pluginConfig\": \"<object>\",\n    \"pluginName\": \"<string>\",\n    \"phase\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"failStrategy\": \"<string>\",\n    \"vmConfig\": {\n      \"env\": [\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"match\": [\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      },\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b48de10f-7bc7-4300-bb99-489a27ea6d9a",
+              "name": "Conflict - resource already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "wasmplugins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1958-11-16T15:08:24.041Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"url\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"imagePullPolicy\": \"<string>\",\n    \"imagePullSecret\": \"<string>\",\n    \"pluginConfig\": \"<object>\",\n    \"pluginName\": \"<string>\",\n    \"phase\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"failStrategy\": \"<string>\",\n    \"vmConfig\": {\n      \"env\": [\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"match\": [\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      },\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a934a764-a166-4cc3-b98c-ed241a4db61e",
+          "name": "Istio Get a WasmPlugin",
+          "request": {
+            "name": "Istio Get a WasmPlugin",
+            "description": {
+              "content": "Read the specified WasmPlugin resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "wasmplugins",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c7be3b8-2880-4799-83aa-db94fef356df",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "wasmplugins",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"extensions.istio.io/v1alpha1\",\n  \"kind\": \"WasmPlugin\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    },\n    \"creationTimestamp\": \"1946-09-25T04:24:23.111Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    \"url\": \"string\",\n    \"sha256\": \"string\",\n    \"imagePullPolicy\": \"UNSPECIFIED_POLICY\",\n    \"imagePullSecret\": \"string\",\n    \"pluginConfig\": {},\n    \"pluginName\": \"string\",\n    \"phase\": \"AUTHZ\",\n    \"priority\": 7534,\n    \"failStrategy\": \"FAIL_CLOSE\",\n    \"vmConfig\": {\n      \"env\": [\n        {\n          \"name\": \"string\",\n          \"valueFrom\": \"INLINE\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"valueFrom\": \"INLINE\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    \"match\": [\n      {\n        \"mode\": \"CLIENT_AND_SERVER\",\n        \"ports\": [\n          {\n            \"number\": 2112\n          },\n          {\n            \"number\": 6090\n          }\n        ]\n      },\n      {\n        \"mode\": \"UNDEFINED\",\n        \"ports\": [\n          {\n            \"number\": 5176\n          },\n          {\n            \"number\": 645\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d5056b5-4ea0-4c14-8bed-5c8f20084cc2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "wasmplugins",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fe89005c-013b-430c-85e5-8de18ba27460",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "wasmplugins",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7721a230-adcf-4c3b-bbd7-7c2cd63b929a",
+          "name": "Istio Replace a WasmPlugin",
+          "request": {
+            "name": "Istio Replace a WasmPlugin",
+            "description": {
+              "content": "Replace the specified WasmPlugin resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "wasmplugins",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"labels\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"creationTimestamp\": \"<dateTime>\",\n    \"resourceVersion\": \"<string>\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\",\n        \"key_3\": \"<string>\",\n        \"key_4\": \"<string>\"\n      }\n    },\n    \"url\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"imagePullPolicy\": \"<string>\",\n    \"imagePullSecret\": \"<string>\",\n    \"pluginConfig\": \"<object>\",\n    \"pluginName\": \"<string>\",\n    \"phase\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"failStrategy\": \"<string>\",\n    \"vmConfig\": {\n      \"env\": [\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"match\": [\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      },\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8a81d0e5-8c30-4d0b-a810-0d31cd5fb973",
+              "name": "WasmPlugin replaced",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "wasmplugins",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1958-11-16T15:08:24.041Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"url\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"imagePullPolicy\": \"<string>\",\n    \"imagePullSecret\": \"<string>\",\n    \"pluginConfig\": \"<object>\",\n    \"pluginName\": \"<string>\",\n    \"phase\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"failStrategy\": \"<string>\",\n    \"vmConfig\": {\n      \"env\": [\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"match\": [\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      },\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"extensions.istio.io/v1alpha1\",\n  \"kind\": \"WasmPlugin\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    },\n    \"creationTimestamp\": \"1946-09-25T04:24:23.111Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    \"url\": \"string\",\n    \"sha256\": \"string\",\n    \"imagePullPolicy\": \"UNSPECIFIED_POLICY\",\n    \"imagePullSecret\": \"string\",\n    \"pluginConfig\": {},\n    \"pluginName\": \"string\",\n    \"phase\": \"AUTHZ\",\n    \"priority\": 7534,\n    \"failStrategy\": \"FAIL_CLOSE\",\n    \"vmConfig\": {\n      \"env\": [\n        {\n          \"name\": \"string\",\n          \"valueFrom\": \"INLINE\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"valueFrom\": \"INLINE\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    \"match\": [\n      {\n        \"mode\": \"CLIENT_AND_SERVER\",\n        \"ports\": [\n          {\n            \"number\": 2112\n          },\n          {\n            \"number\": 6090\n          }\n        ]\n      },\n      {\n        \"mode\": \"UNDEFINED\",\n        \"ports\": [\n          {\n            \"number\": 5176\n          },\n          {\n            \"number\": 645\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bd7fc70-252e-427d-959a-3677a544ae66",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "wasmplugins",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1958-11-16T15:08:24.041Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"url\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"imagePullPolicy\": \"<string>\",\n    \"imagePullSecret\": \"<string>\",\n    \"pluginConfig\": \"<object>\",\n    \"pluginName\": \"<string>\",\n    \"phase\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"failStrategy\": \"<string>\",\n    \"vmConfig\": {\n      \"env\": [\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"match\": [\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      },\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c9f02c61-b9f6-407c-a345-9b551907a491",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "wasmplugins",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1958-11-16T15:08:24.041Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"url\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"imagePullPolicy\": \"<string>\",\n    \"imagePullSecret\": \"<string>\",\n    \"pluginConfig\": \"<object>\",\n    \"pluginName\": \"<string>\",\n    \"phase\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"failStrategy\": \"<string>\",\n    \"vmConfig\": {\n      \"env\": [\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"valueFrom\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"match\": [\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      },\n      {\n        \"mode\": \"<string>\",\n        \"ports\": [\n          {\n            \"number\": \"<integer>\"\n          },\n          {\n            \"number\": \"<integer>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3edb4141-77d1-4e3b-a39e-c5c441340097",
+          "name": "Istio Delete a WasmPlugin",
+          "request": {
+            "name": "Istio Delete a WasmPlugin",
+            "description": {
+              "content": "Delete the specified WasmPlugin resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "wasmplugins",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4e0426b-fce6-4502-ad28-a1c733fe1d08",
+              "name": "WasmPlugin deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "wasmplugins",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1f0d3218-d4ae-46e1-a4ad-8ddc528ce7fa",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "wasmplugins",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a709bc79-ab47-4070-be77-df4205afb884",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "wasmplugins",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Kubernetes API server hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "kubernetes.default.svc",
+      "key": "cluster"
+    },
+    {
+      "type": "string",
+      "value": "https://{{cluster}}/apis/extensions.istio.io/v1alpha1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7561ba1f-2c38-4f62-a6a5-81d5fc9f1158",
+    "name": "Istio Extensions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.\n\nContact Support:\n Name: Istio",
+      "type": "text/plain"
+    }
+  }
+}

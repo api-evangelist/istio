@@ -1,0 +1,1159 @@
+{
+  "item": [
+    {
+      "id": "13fa7ce7-4906-4d36-9e98-3e496f8bd5dd",
+      "name": "Telemetry",
+      "description": {
+        "content": "Telemetry configuration for metrics, tracing, and access logging",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1ed3681-2ec8-4cab-a53d-f4f63100d27a",
+          "name": "Istio List Telemetry resources",
+          "request": {
+            "name": "Istio List Telemetry resources",
+            "description": {
+              "content": "List all Telemetry resources in the specified namespace. A Telemetry resource configures the behavior of the Istio telemetry system, including metrics collection, access logging, and distributed tracing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "telemetries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "labelSelector",
+                  "value": "<string>",
+                  "description": "A selector to restrict the list of returned objects by their labels"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of resources to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "continue",
+                  "value": "<string>",
+                  "description": "Continue token for paginated list requests"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d5a2515-8d89-4ed5-9852-a91f69d825c2",
+              "name": "Successful response containing list of Telemetry resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "telemetries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "continue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"TelemetryList\",\n  \"metadata\": {\n    \"resourceVersion\": \"string\",\n    \"continue\": \"string\"\n  },\n  \"items\": [\n    {\n      \"apiVersion\": \"telemetry.istio.io/v1\",\n      \"kind\": \"Telemetry\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"creationTimestamp\": \"1981-08-28T21:57:35.865Z\",\n        \"resourceVersion\": \"string\"\n      },\n      \"spec\": {\n        \"selector\": {\n          \"matchLabels\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"tracing\": [\n          {\n            \"providers\": [\n              {\n                \"name\": \"string\"\n              },\n              {\n                \"name\": \"string\"\n              }\n            ],\n            \"randomSamplingPercentage\": 6660.585455203754,\n            \"disableSpanReporting\": true,\n            \"customTags\": {\n              \"key_0\": {\n                \"literal\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"environment\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"header\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              \"key_1\": {\n                \"literal\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"environment\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"header\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              \"key_2\": {\n                \"literal\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"environment\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"header\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              }\n            }\n          },\n          {\n            \"providers\": [\n              {\n                \"name\": \"string\"\n              },\n              {\n                \"name\": \"string\"\n              }\n            ],\n            \"randomSamplingPercentage\": 6124.4423558630915,\n            \"disableSpanReporting\": true,\n            \"customTags\": {\n              \"key_0\": {\n                \"literal\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"environment\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"header\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              }\n            }\n          }\n        ],\n        \"metrics\": [\n          {\n            \"providers\": [\n              {\n                \"name\": \"string\"\n              },\n              {\n                \"name\": \"string\"\n              }\n            ],\n            \"overrides\": [\n              {\n                \"match\": {\n                  \"metric\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"mode\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"disabled\": true,\n                \"tagOverrides\": {\n                  \"key_0\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"key_1\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              {\n                \"match\": {\n                  \"metric\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"mode\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"disabled\": false,\n                \"tagOverrides\": {\n                  \"key_0\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"providers\": [\n              {\n                \"name\": \"string\"\n              },\n              {\n                \"name\": \"string\"\n              }\n            ],\n            \"overrides\": [\n              {\n                \"match\": {\n                  \"metric\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"mode\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"disabled\": true,\n                \"tagOverrides\": {\n                  \"key_0\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"key_1\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              {\n                \"match\": {\n                  \"metric\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"mode\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"disabled\": true,\n                \"tagOverrides\": {\n                  \"key_0\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"key_1\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              }\n            ]\n          }\n        ],\n        \"accessLogging\": [\n          {\n            \"providers\": [\n              {\n                \"name\": \"string\"\n              },\n              {\n                \"name\": \"string\"\n              }\n            ],\n            \"disabled\": false,\n            \"filter\": {\n              \"expression\": \"string\"\n            }\n          },\n          {\n            \"providers\": [\n              {\n                \"name\": \"string\"\n              },\n              {\n                \"name\": \"string\"\n              }\n            ],\n            \"disabled\": true,\n            \"filter\": {\n              \"expression\": \"string\"\n            }\n          }\n        ],\n        \"targetRefs\": [\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      }\n    },\n    {\n      \"apiVersion\": \"telemetry.istio.io/v1\",\n      \"kind\": \"Telemetry\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\"\n        },\n        \"creationTimestamp\": \"2009-12-06T09:33:35.184Z\",\n        \"resourceVersion\": \"string\"\n      },\n      \"spec\": {\n        \"selector\": {\n          \"matchLabels\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          }\n        },\n        \"tracing\": [\n          {\n            \"providers\": [\n              {\n                \"name\": \"string\"\n              },\n              {\n                \"name\": \"string\"\n              }\n            ],\n            \"randomSamplingPercentage\": 3557.1745092688534,\n            \"disableSpanReporting\": true,\n            \"customTags\": {\n              \"key_0\": {\n                \"literal\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"environment\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"header\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              \"key_1\": {\n                \"literal\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"environment\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"header\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              }\n            }\n          },\n          {\n            \"providers\": [\n              {\n                \"name\": \"string\"\n              },\n              {\n                \"name\": \"string\"\n              }\n            ],\n            \"randomSamplingPercentage\": 4511.708462556859,\n            \"disableSpanReporting\": true,\n            \"customTags\": {\n              \"key_0\": {\n                \"literal\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"environment\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"header\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              \"key_1\": {\n                \"literal\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"environment\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"header\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              \"key_2\": {\n                \"literal\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"environment\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"header\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              \"key_3\": {\n                \"literal\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"environment\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"header\": {\n                  \"name\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"defaultValue\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              }\n            }\n          }\n        ],\n        \"metrics\": [\n          {\n            \"providers\": [\n              {\n                \"name\": \"string\"\n              },\n              {\n                \"name\": \"string\"\n              }\n            ],\n            \"overrides\": [\n              {\n                \"match\": {\n                  \"metric\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"mode\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"disabled\": false,\n                \"tagOverrides\": {\n                  \"key_0\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              {\n                \"match\": {\n                  \"metric\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"mode\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"disabled\": false,\n                \"tagOverrides\": {\n                  \"key_0\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"providers\": [\n              {\n                \"name\": \"string\"\n              },\n              {\n                \"name\": \"string\"\n              }\n            ],\n            \"overrides\": [\n              {\n                \"match\": {\n                  \"metric\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"mode\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"disabled\": false,\n                \"tagOverrides\": {\n                  \"key_0\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"key_1\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              {\n                \"match\": {\n                  \"metric\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"mode\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"disabled\": true,\n                \"tagOverrides\": {\n                  \"key_0\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"key_1\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              }\n            ]\n          }\n        ],\n        \"accessLogging\": [\n          {\n            \"providers\": [\n              {\n                \"name\": \"string\"\n              },\n              {\n                \"name\": \"string\"\n              }\n            ],\n            \"disabled\": false,\n            \"filter\": {\n              \"expression\": \"string\"\n            }\n          },\n          {\n            \"providers\": [\n              {\n                \"name\": \"string\"\n              },\n              {\n                \"name\": \"string\"\n              }\n            ],\n            \"disabled\": false,\n            \"filter\": {\n              \"expression\": \"string\"\n            }\n          }\n        ],\n        \"targetRefs\": [\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4cb58ee-01f2-4d98-9353-af5c138d76d0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "telemetries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "continue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7e5123c-921e-4415-ab17-4a726662ef49",
+          "name": "Istio Create a Telemetry resource",
+          "request": {
+            "name": "Istio Create a Telemetry resource",
+            "description": {
+              "content": "Create a new Telemetry resource in the specified namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "telemetries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\"\n    },\n    \"creationTimestamp\": \"<dateTime>\",\n    \"resourceVersion\": \"<string>\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    },\n    \"tracing\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          },\n          \"key_1\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          },\n          \"key_1\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          },\n          \"key_2\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      }\n    ],\n    \"metrics\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_2\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      }\n    ],\n    \"accessLogging\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91c62d5b-f69b-4bdb-8086-0c8ced27938e",
+              "name": "Telemetry resource created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "telemetries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1968-06-24T18:32:06.925Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    },\n    \"tracing\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      }\n    ],\n    \"metrics\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_2\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      }\n    ],\n    \"accessLogging\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"telemetry.istio.io/v1\",\n  \"kind\": \"Telemetry\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1955-01-29T20:56:50.280Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    \"tracing\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"randomSamplingPercentage\": 3863.325789554635,\n        \"disableSpanReporting\": true,\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          },\n          \"key_1\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          },\n          \"key_2\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          }\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"randomSamplingPercentage\": 6156.095973702761,\n        \"disableSpanReporting\": true,\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          },\n          \"key_1\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          }\n        }\n      }\n    ],\n    \"metrics\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"TCP_RECEIVED_BYTES\",\n              \"mode\": \"CLIENT\"\n            },\n            \"disabled\": true,\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              },\n              \"key_1\": {\n                \"operation\": \"UPSERT\",\n                \"value\": \"string\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"ALL_METRICS\",\n              \"mode\": \"SERVER\"\n            },\n            \"disabled\": false,\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              }\n            }\n          }\n        ]\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"TCP_RECEIVED_BYTES\",\n              \"mode\": \"CLIENT_AND_SERVER\"\n            },\n            \"disabled\": false,\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              },\n              \"key_1\": {\n                \"operation\": \"UPSERT\",\n                \"value\": \"string\"\n              },\n              \"key_2\": {\n                \"operation\": \"UPSERT\",\n                \"value\": \"string\"\n              },\n              \"key_3\": {\n                \"operation\": \"UPSERT\",\n                \"value\": \"string\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"TCP_CLOSED_CONNECTIONS\",\n              \"mode\": \"CLIENT_AND_SERVER\"\n            },\n            \"disabled\": true,\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              },\n              \"key_1\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              }\n            }\n          }\n        ]\n      }\n    ],\n    \"accessLogging\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"disabled\": false,\n        \"filter\": {\n          \"expression\": \"string\"\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"disabled\": true,\n        \"filter\": {\n          \"expression\": \"string\"\n        }\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8428ec8-5090-4c22-8fa7-b0c102df6487",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "telemetries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1968-06-24T18:32:06.925Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    },\n    \"tracing\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      }\n    ],\n    \"metrics\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_2\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      }\n    ],\n    \"accessLogging\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "abd8b1d3-2283-4dfe-855e-c9dd8309ae67",
+              "name": "Conflict - resource already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "telemetries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1968-06-24T18:32:06.925Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    },\n    \"tracing\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      }\n    ],\n    \"metrics\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_2\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      }\n    ],\n    \"accessLogging\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3847abbf-d61a-43f2-bef2-cc2f19d72c0d",
+          "name": "Istio Get a Telemetry resource",
+          "request": {
+            "name": "Istio Get a Telemetry resource",
+            "description": {
+              "content": "Read the specified Telemetry resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "telemetries",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b44a7228-cce9-423c-89f5-ae0dd26d929b",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "telemetries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"telemetry.istio.io/v1\",\n  \"kind\": \"Telemetry\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1955-01-29T20:56:50.280Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    \"tracing\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"randomSamplingPercentage\": 3863.325789554635,\n        \"disableSpanReporting\": true,\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          },\n          \"key_1\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          },\n          \"key_2\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          }\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"randomSamplingPercentage\": 6156.095973702761,\n        \"disableSpanReporting\": true,\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          },\n          \"key_1\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          }\n        }\n      }\n    ],\n    \"metrics\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"TCP_RECEIVED_BYTES\",\n              \"mode\": \"CLIENT\"\n            },\n            \"disabled\": true,\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              },\n              \"key_1\": {\n                \"operation\": \"UPSERT\",\n                \"value\": \"string\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"ALL_METRICS\",\n              \"mode\": \"SERVER\"\n            },\n            \"disabled\": false,\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              }\n            }\n          }\n        ]\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"TCP_RECEIVED_BYTES\",\n              \"mode\": \"CLIENT_AND_SERVER\"\n            },\n            \"disabled\": false,\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              },\n              \"key_1\": {\n                \"operation\": \"UPSERT\",\n                \"value\": \"string\"\n              },\n              \"key_2\": {\n                \"operation\": \"UPSERT\",\n                \"value\": \"string\"\n              },\n              \"key_3\": {\n                \"operation\": \"UPSERT\",\n                \"value\": \"string\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"TCP_CLOSED_CONNECTIONS\",\n              \"mode\": \"CLIENT_AND_SERVER\"\n            },\n            \"disabled\": true,\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              },\n              \"key_1\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              }\n            }\n          }\n        ]\n      }\n    ],\n    \"accessLogging\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"disabled\": false,\n        \"filter\": {\n          \"expression\": \"string\"\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"disabled\": true,\n        \"filter\": {\n          \"expression\": \"string\"\n        }\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a07b743-1eac-4108-acce-1d7f96330715",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "telemetries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0a33e3eb-18d2-468b-8392-c50d972d0ddb",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "telemetries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5396bc74-b7d0-4b35-b3d8-60b469048cb3",
+          "name": "Istio Replace a Telemetry resource",
+          "request": {
+            "name": "Istio Replace a Telemetry resource",
+            "description": {
+              "content": "Replace the specified Telemetry resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "telemetries",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\"\n    },\n    \"creationTimestamp\": \"<dateTime>\",\n    \"resourceVersion\": \"<string>\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    },\n    \"tracing\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          },\n          \"key_1\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          },\n          \"key_1\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          },\n          \"key_2\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      }\n    ],\n    \"metrics\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_2\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      }\n    ],\n    \"accessLogging\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4a3bbb75-2a8e-408f-addc-9feee67dfce6",
+              "name": "Telemetry resource replaced",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "telemetries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1968-06-24T18:32:06.925Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    },\n    \"tracing\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      }\n    ],\n    \"metrics\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_2\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      }\n    ],\n    \"accessLogging\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"telemetry.istio.io/v1\",\n  \"kind\": \"Telemetry\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1955-01-29T20:56:50.280Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    \"tracing\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"randomSamplingPercentage\": 3863.325789554635,\n        \"disableSpanReporting\": true,\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          },\n          \"key_1\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          },\n          \"key_2\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          }\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"randomSamplingPercentage\": 6156.095973702761,\n        \"disableSpanReporting\": true,\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          },\n          \"key_1\": {\n            \"literal\": {\n              \"value\": \"string\"\n            },\n            \"environment\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            },\n            \"header\": {\n              \"name\": \"string\",\n              \"defaultValue\": \"string\"\n            }\n          }\n        }\n      }\n    ],\n    \"metrics\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"TCP_RECEIVED_BYTES\",\n              \"mode\": \"CLIENT\"\n            },\n            \"disabled\": true,\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              },\n              \"key_1\": {\n                \"operation\": \"UPSERT\",\n                \"value\": \"string\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"ALL_METRICS\",\n              \"mode\": \"SERVER\"\n            },\n            \"disabled\": false,\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              }\n            }\n          }\n        ]\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"TCP_RECEIVED_BYTES\",\n              \"mode\": \"CLIENT_AND_SERVER\"\n            },\n            \"disabled\": false,\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              },\n              \"key_1\": {\n                \"operation\": \"UPSERT\",\n                \"value\": \"string\"\n              },\n              \"key_2\": {\n                \"operation\": \"UPSERT\",\n                \"value\": \"string\"\n              },\n              \"key_3\": {\n                \"operation\": \"UPSERT\",\n                \"value\": \"string\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"TCP_CLOSED_CONNECTIONS\",\n              \"mode\": \"CLIENT_AND_SERVER\"\n            },\n            \"disabled\": true,\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              },\n              \"key_1\": {\n                \"operation\": \"REMOVE\",\n                \"value\": \"string\"\n              }\n            }\n          }\n        ]\n      }\n    ],\n    \"accessLogging\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"disabled\": false,\n        \"filter\": {\n          \"expression\": \"string\"\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"disabled\": true,\n        \"filter\": {\n          \"expression\": \"string\"\n        }\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02a13916-1699-4969-937b-38c9e027eccd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "telemetries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1968-06-24T18:32:06.925Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    },\n    \"tracing\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      }\n    ],\n    \"metrics\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_2\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      }\n    ],\n    \"accessLogging\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f17b8ee8-5f56-4a4f-be04-734b41d554c0",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "telemetries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1968-06-24T18:32:06.925Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    },\n    \"tracing\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"randomSamplingPercentage\": \"<number>\",\n        \"disableSpanReporting\": \"<boolean>\",\n        \"customTags\": {\n          \"key_0\": {\n            \"literal\": {\n              \"value\": \"<string>\"\n            },\n            \"environment\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            },\n            \"header\": {\n              \"name\": \"<string>\",\n              \"defaultValue\": \"<string>\"\n            }\n          }\n        }\n      }\n    ],\n    \"metrics\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"overrides\": [\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          },\n          {\n            \"match\": {\n              \"metric\": \"<string>\",\n              \"mode\": \"<string>\"\n            },\n            \"disabled\": \"<boolean>\",\n            \"tagOverrides\": {\n              \"key_0\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_1\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              },\n              \"key_2\": {\n                \"operation\": \"<string>\",\n                \"value\": \"<string>\"\n              }\n            }\n          }\n        ]\n      }\n    ],\n    \"accessLogging\": [\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      },\n      {\n        \"providers\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"disabled\": \"<boolean>\",\n        \"filter\": {\n          \"expression\": \"<string>\"\n        }\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "165e37af-cabe-4808-bcfd-7cea863671e4",
+          "name": "Istio Delete a Telemetry resource",
+          "request": {
+            "name": "Istio Delete a Telemetry resource",
+            "description": {
+              "content": "Delete the specified Telemetry resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "telemetries",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9842e8d3-9dbf-4d2c-8d93-8f265e4c713a",
+              "name": "Telemetry resource deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "telemetries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9b9ca597-807b-4050-b4fd-476249ff9091",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "telemetries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3a9ace4-39e5-446d-b87b-147af8847d19",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "telemetries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Kubernetes API server hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "kubernetes.default.svc",
+      "key": "cluster"
+    },
+    {
+      "type": "string",
+      "value": "https://{{cluster}}/apis/telemetry.istio.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "918ff227-5175-48cb-974d-b5c75c458e4b",
+    "name": "Istio Telemetry API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Istio Telemetry API (telemetry.istio.io) provides configuration resources for managing observability within an Istio service mesh. The Telemetry resource enables flexible configuration of metrics, access logs, and distributed tracing for workloads. It uses the concept of providers to indicate the protocol or integration type, and supports fine-grained control over what telemetry data is collected and where it is sent. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.\n\nContact Support:\n Name: Istio",
+      "type": "text/plain"
+    }
+  }
+}
