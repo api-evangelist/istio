@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/istio-extensions-api-openapi.yml, openapi/istio-networking-api-openapi.yml,
+  openapi/istio-security-api-openapi.yml, openapi/istio-telemetry-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: Kubernetes API server bearer token authentication
+  sources:
+  - openapi/istio-extensions-api-openapi.yml
+  - openapi/istio-networking-api-openapi.yml
+  - openapi/istio-security-api-openapi.yml
+  - openapi/istio-telemetry-api-openapi.yml

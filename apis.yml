@@ -162,6 +162,10 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+  - type: DomainSecurity
+    url: security/istio-domain-security.yml
+  - type: Authentication
+    url: authentication/istio-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/istio
   - type: JSONLD
