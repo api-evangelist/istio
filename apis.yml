@@ -162,6 +162,8 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+  - type: AgenticAccess
+    url: agentic-access/istio-agentic-access.yml
   - type: DomainSecurity
     url: security/istio-domain-security.yml
   - type: Authentication
