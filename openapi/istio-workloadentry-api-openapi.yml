@@ -1,0 +1,265 @@
+openapi: 3.1.0
+info:
+  title: Istio Extensions AuthorizationPolicy WorkloadEntry API
+  description: The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.
+  version: v1alpha1
+  contact:
+    name: Istio
+    url: https://istio.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{cluster}/apis/extensions.istio.io/v1alpha1
+  description: Kubernetes API server endpoint for Istio Extensions v1alpha1
+  variables:
+    cluster:
+      default: kubernetes.default.svc
+      description: Kubernetes API server hostname
+tags:
+- name: WorkloadEntry
+  description: Non-Kubernetes workload (VM/bare metal) endpoint properties
+  externalDocs:
+    url: https://istio.io/latest/docs/reference/config/networking/workload-entry/
+paths:
+  /namespaces/{namespace}/workloadentries:
+    get:
+      operationId: listWorkloadEntries
+      summary: Istio List WorkloadEntries
+      description: List all WorkloadEntry resources in the specified namespace. A WorkloadEntry enables specifying the properties of a single non-Kubernetes workload such as a VM or bare metal server as it is onboarded into the mesh.
+      tags:
+      - WorkloadEntry
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/labelSelector'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of WorkloadEntries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadEntryList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createWorkloadEntry
+      summary: Istio Create a WorkloadEntry
+      description: Create a new WorkloadEntry resource in the specified namespace.
+      tags:
+      - WorkloadEntry
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkloadEntry'
+      responses:
+        '201':
+          description: WorkloadEntry created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadEntry'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+  /namespaces/{namespace}/workloadentries/{name}:
+    get:
+      operationId: getWorkloadEntry
+      summary: Istio Get a WorkloadEntry
+      description: Read the specified WorkloadEntry resource.
+      tags:
+      - WorkloadEntry
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadEntry'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceWorkloadEntry
+      summary: Istio Replace a WorkloadEntry
+      description: Replace the specified WorkloadEntry resource.
+      tags:
+      - WorkloadEntry
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkloadEntry'
+      responses:
+        '200':
+          description: WorkloadEntry replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadEntry'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteWorkloadEntry
+      summary: Istio Delete a WorkloadEntry
+      description: Delete the specified WorkloadEntry resource.
+      tags:
+      - WorkloadEntry
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: WorkloadEntry deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+components:
+  parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+  schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of string keys and values for organizing resources
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Unstructured key-value map for storing arbitrary metadata
+        creationTimestamp:
+          type: string
+          format: date-time
+          description: Timestamp representing the server time when this object was created
+        resourceVersion:
+          type: string
+          description: An opaque value that represents the internal version of this object
+    WorkloadEntry:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+          - networking.istio.io/v1
+        kind:
+          type: string
+          enum:
+          - WorkloadEntry
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            address:
+              type: string
+              description: Address associated with the network endpoint (IP or hostname).
+            ports:
+              type: object
+              additionalProperties:
+                type: integer
+              description: Set of ports associated with the endpoint.
+            labels:
+              type: object
+              additionalProperties:
+                type: string
+              description: One or more labels associated with the endpoint.
+            network:
+              type: string
+              description: Network enables Istio to group endpoints resident in the same L3 domain.
+            locality:
+              type: string
+              description: The locality associated with the endpoint (region/zone/subzone).
+            weight:
+              type: integer
+              description: The load balancing weight associated with the endpoint.
+            serviceAccount:
+              type: string
+              description: The service account associated with the workload.
+    WorkloadEntryList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+          - WorkloadEntryList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkloadEntry'
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Kubernetes API server bearer token authentication
+externalDocs:
+  description: Istio Extensions Configuration Reference
+  url: https://istio.io/latest/docs/reference/config/

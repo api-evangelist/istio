@@ -1,48 +1,39 @@
 openapi: 3.1.0
 info:
-  title: Istio Telemetry API
-  description: >-
-    The Istio Telemetry API (telemetry.istio.io) provides configuration
-    resources for managing observability within an Istio service mesh. The
-    Telemetry resource enables flexible configuration of metrics, access logs,
-    and distributed tracing for workloads. It uses the concept of providers to
-    indicate the protocol or integration type, and supports fine-grained control
-    over what telemetry data is collected and where it is sent. These resources
-    are defined as Kubernetes Custom Resource Definitions (CRDs) and are
-    accessed via the Kubernetes API server.
-  version: v1
+  title: Istio Extensions AuthorizationPolicy Telemetry API
+  description: The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.
+  version: v1alpha1
   contact:
     name: Istio
     url: https://istio.io/
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-externalDocs:
-  description: Istio Telemetry Configuration Reference
-  url: https://istio.io/latest/docs/reference/config/telemetry/
 servers:
-  - url: https://{cluster}/apis/telemetry.istio.io/v1
-    description: Kubernetes API server endpoint for Istio Telemetry v1
-    variables:
-      cluster:
-        default: kubernetes.default.svc
-        description: Kubernetes API server hostname
+- url: https://{cluster}/apis/extensions.istio.io/v1alpha1
+  description: Kubernetes API server endpoint for Istio Extensions v1alpha1
+  variables:
+    cluster:
+      default: kubernetes.default.svc
+      description: Kubernetes API server hostname
+tags:
+- name: Telemetry
+  description: Telemetry configuration for metrics, tracing, and access logging
+  externalDocs:
+    url: https://istio.io/latest/docs/reference/config/telemetry/
 paths:
   /namespaces/{namespace}/telemetries:
     get:
       operationId: listTelemetries
       summary: Istio List Telemetry resources
-      description: >-
-        List all Telemetry resources in the specified namespace. A Telemetry
-        resource configures the behavior of the Istio telemetry system,
-        including metrics collection, access logging, and distributed tracing.
+      description: List all Telemetry resources in the specified namespace. A Telemetry resource configures the behavior of the Istio telemetry system, including metrics collection, access logging, and distributed tracing.
       tags:
-        - Telemetry
+      - Telemetry
       parameters:
-        - $ref: '#/components/parameters/namespace'
-        - $ref: '#/components/parameters/labelSelector'
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/continue'
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/labelSelector'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/continue'
       responses:
         '200':
           description: Successful response containing list of Telemetry resources
@@ -57,9 +48,9 @@ paths:
       summary: Istio Create a Telemetry resource
       description: Create a new Telemetry resource in the specified namespace.
       tags:
-        - Telemetry
+      - Telemetry
       parameters:
-        - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/namespace'
       requestBody:
         required: true
         content:
@@ -83,10 +74,10 @@ paths:
       summary: Istio Get a Telemetry resource
       description: Read the specified Telemetry resource.
       tags:
-        - Telemetry
+      - Telemetry
       parameters:
-        - $ref: '#/components/parameters/namespace'
-        - $ref: '#/components/parameters/name'
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
       responses:
         '200':
           description: Successful response
@@ -103,10 +94,10 @@ paths:
       summary: Istio Replace a Telemetry resource
       description: Replace the specified Telemetry resource.
       tags:
-        - Telemetry
+      - Telemetry
       parameters:
-        - $ref: '#/components/parameters/namespace'
-        - $ref: '#/components/parameters/name'
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
       requestBody:
         required: true
         content:
@@ -129,10 +120,10 @@ paths:
       summary: Istio Delete a Telemetry resource
       description: Delete the specified Telemetry resource.
       tags:
-        - Telemetry
+      - Telemetry
       parameters:
-        - $ref: '#/components/parameters/namespace'
-        - $ref: '#/components/parameters/name'
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
       responses:
         '200':
           description: Telemetry resource deleted
@@ -142,11 +133,16 @@ paths:
           description: Not found
 components:
   parameters:
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: The Kubernetes namespace
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
       schema:
         type: string
     name:
@@ -156,10 +152,11 @@ components:
       description: The resource name
       schema:
         type: string
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: A selector to restrict the list of returned objects by their labels
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
       schema:
         type: string
     limit:
@@ -168,53 +165,33 @@ components:
       description: Maximum number of resources to return
       schema:
         type: integer
-    continue:
-      name: continue
-      in: query
-      description: Continue token for paginated list requests
-      schema:
-        type: string
   schemas:
-    ObjectMeta:
+    TelemetryList:
       type: object
       properties:
-        name:
+        apiVersion:
           type: string
-          description: Name of the resource
-        namespace:
+        kind:
           type: string
-          description: Namespace of the resource
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        resourceVersion:
-          type: string
-    ListMeta:
-      type: object
-      properties:
-        resourceVersion:
-          type: string
-        continue:
-          type: string
+          enum:
+          - TelemetryList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Telemetry'
     Telemetry:
       type: object
       properties:
         apiVersion:
           type: string
           enum:
-            - telemetry.istio.io/v1
+          - telemetry.istio.io/v1
         kind:
           type: string
           enum:
-            - Telemetry
+          - Telemetry
         metadata:
           $ref: '#/components/schemas/ObjectMeta'
         spec:
@@ -244,9 +221,7 @@ components:
                     description: Tracing providers to use.
                   randomSamplingPercentage:
                     type: number
-                    description: >-
-                      Controls the rate at which traffic will be selected for
-                      tracing (0.0 to 100.0).
+                    description: Controls the rate at which traffic will be selected for tracing (0.0 to 100.0).
                   disableSpanReporting:
                     type: boolean
                     description: Disables span reporting.
@@ -301,24 +276,24 @@ components:
                             metric:
                               type: string
                               enum:
-                                - ALL_METRICS
-                                - REQUEST_COUNT
-                                - REQUEST_DURATION
-                                - REQUEST_SIZE
-                                - RESPONSE_SIZE
-                                - TCP_OPENED_CONNECTIONS
-                                - TCP_CLOSED_CONNECTIONS
-                                - TCP_SENT_BYTES
-                                - TCP_RECEIVED_BYTES
-                                - GRPC_REQUEST_MESSAGES
-                                - GRPC_RESPONSE_MESSAGES
+                              - ALL_METRICS
+                              - REQUEST_COUNT
+                              - REQUEST_DURATION
+                              - REQUEST_SIZE
+                              - RESPONSE_SIZE
+                              - TCP_OPENED_CONNECTIONS
+                              - TCP_CLOSED_CONNECTIONS
+                              - TCP_SENT_BYTES
+                              - TCP_RECEIVED_BYTES
+                              - GRPC_REQUEST_MESSAGES
+                              - GRPC_RESPONSE_MESSAGES
                               description: Metric to match.
                             mode:
                               type: string
                               enum:
-                                - CLIENT_AND_SERVER
-                                - CLIENT
-                                - SERVER
+                              - CLIENT_AND_SERVER
+                              - CLIENT
+                              - SERVER
                               description: Controls which mode of metrics generation is selected.
                         disabled:
                           type: boolean
@@ -331,8 +306,8 @@ components:
                               operation:
                                 type: string
                                 enum:
-                                  - UPSERT
-                                  - REMOVE
+                                - UPSERT
+                                - REMOVE
                               value:
                                 type: string
                           description: Tag overrides for the matched metric.
@@ -360,9 +335,7 @@ components:
                     properties:
                       expression:
                         type: string
-                        description: >-
-                          CEL expression to filter access log entries (e.g.
-                          response.code >= 400).
+                        description: CEL expression to filter access log entries (e.g. response.code >= 400).
                     description: Filter for access log entries.
               description: Access logging configuration.
             targetRefs:
@@ -377,28 +350,40 @@ components:
                   name:
                     type: string
               description: References to the target resources.
-    TelemetryList:
+    ObjectMeta:
       type: object
       properties:
-        apiVersion:
+        name:
           type: string
-        kind:
+          description: Name of the resource
+        namespace:
           type: string
-          enum:
-            - TelemetryList
-        metadata:
-          $ref: '#/components/schemas/ListMeta'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Telemetry'
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        resourceVersion:
+          type: string
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
       description: Kubernetes API server bearer token authentication
-tags:
-  - name: Telemetry
-    description: Telemetry configuration for metrics, tracing, and access logging
-    externalDocs:
-      url: https://istio.io/latest/docs/reference/config/telemetry/
+externalDocs:
+  description: Istio Extensions Configuration Reference
+  url: https://istio.io/latest/docs/reference/config/

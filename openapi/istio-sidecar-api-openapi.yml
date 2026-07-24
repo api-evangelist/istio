@@ -1,0 +1,274 @@
+openapi: 3.1.0
+info:
+  title: Istio Extensions AuthorizationPolicy Sidecar API
+  description: The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.
+  version: v1alpha1
+  contact:
+    name: Istio
+    url: https://istio.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{cluster}/apis/extensions.istio.io/v1alpha1
+  description: Kubernetes API server endpoint for Istio Extensions v1alpha1
+  variables:
+    cluster:
+      default: kubernetes.default.svc
+      description: Kubernetes API server hostname
+tags:
+- name: Sidecar
+  description: Sidecar proxy configuration for inbound and outbound traffic
+  externalDocs:
+    url: https://istio.io/latest/docs/reference/config/networking/sidecar/
+paths:
+  /namespaces/{namespace}/sidecars:
+    get:
+      operationId: listSidecars
+      summary: Istio List Sidecars
+      description: List all Sidecar resources in the specified namespace. The Sidecar resource describes the configuration of the sidecar proxy that mediates inbound and outbound communication of the workload instance to which it is attached.
+      tags:
+      - Sidecar
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/labelSelector'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of Sidecars
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SidecarList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createSidecar
+      summary: Istio Create a Sidecar
+      description: Create a new Sidecar resource in the specified namespace.
+      tags:
+      - Sidecar
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sidecar'
+      responses:
+        '201':
+          description: Sidecar created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sidecar'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+  /namespaces/{namespace}/sidecars/{name}:
+    get:
+      operationId: getSidecar
+      summary: Istio Get a Sidecar
+      description: Read the specified Sidecar resource.
+      tags:
+      - Sidecar
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sidecar'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceSidecar
+      summary: Istio Replace a Sidecar
+      description: Replace the specified Sidecar resource.
+      tags:
+      - Sidecar
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sidecar'
+      responses:
+        '200':
+          description: Sidecar replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sidecar'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteSidecar
+      summary: Istio Delete a Sidecar
+      description: Delete the specified Sidecar resource.
+      tags:
+      - Sidecar
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Sidecar deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+components:
+  parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+  schemas:
+    SidecarList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+          - SidecarList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sidecar'
+    Sidecar:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+          - networking.istio.io/v1
+        kind:
+          type: string
+          enum:
+          - Sidecar
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            workloadSelector:
+              type: object
+              properties:
+                labels:
+                  type: object
+                  additionalProperties:
+                    type: string
+              description: Criteria used to select the specific set of workloads.
+            ingress:
+              type: array
+              items:
+                type: object
+              description: Ingress specifies the configuration of the sidecar for processing inbound traffic.
+            egress:
+              type: array
+              items:
+                type: object
+                properties:
+                  hosts:
+                    type: array
+                    items:
+                      type: string
+                  port:
+                    type: object
+              description: Egress specifies the configuration of the sidecar for processing outbound traffic.
+            outboundTrafficPolicy:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                  - REGISTRY_ONLY
+                  - ALLOW_ANY
+              description: Configuration for handling outbound traffic to services not in the registry.
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of string keys and values for organizing resources
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Unstructured key-value map for storing arbitrary metadata
+        creationTimestamp:
+          type: string
+          format: date-time
+          description: Timestamp representing the server time when this object was created
+        resourceVersion:
+          type: string
+          description: An opaque value that represents the internal version of this object
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Kubernetes API server bearer token authentication
+externalDocs:
+  description: Istio Extensions Configuration Reference
+  url: https://istio.io/latest/docs/reference/config/

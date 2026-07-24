@@ -1,0 +1,339 @@
+openapi: 3.1.0
+info:
+  title: Istio Extensions AuthorizationPolicy VirtualService API
+  description: The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.
+  version: v1alpha1
+  contact:
+    name: Istio
+    url: https://istio.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{cluster}/apis/extensions.istio.io/v1alpha1
+  description: Kubernetes API server endpoint for Istio Extensions v1alpha1
+  variables:
+    cluster:
+      default: kubernetes.default.svc
+      description: Kubernetes API server hostname
+tags:
+- name: VirtualService
+  description: HTTP/TCP routing rules for traffic management
+  externalDocs:
+    url: https://istio.io/latest/docs/reference/config/networking/virtual-service/
+paths:
+  /namespaces/{namespace}/virtualservices:
+    get:
+      operationId: listVirtualServices
+      summary: Istio List VirtualServices
+      description: List all VirtualService resources in the specified namespace. A VirtualService defines a set of traffic routing rules to apply when a host is addressed, enabling features such as HTTP route matching, retries, timeouts, fault injection, and traffic mirroring.
+      tags:
+      - VirtualService
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/labelSelector'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of VirtualServices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualServiceList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createVirtualService
+      summary: Istio Create a VirtualService
+      description: Create a new VirtualService resource in the specified namespace.
+      tags:
+      - VirtualService
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VirtualService'
+      responses:
+        '201':
+          description: VirtualService created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualService'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict - resource already exists
+  /namespaces/{namespace}/virtualservices/{name}:
+    get:
+      operationId: getVirtualService
+      summary: Istio Get a VirtualService
+      description: Read the specified VirtualService resource.
+      tags:
+      - VirtualService
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualService'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceVirtualService
+      summary: Istio Replace a VirtualService
+      description: Replace the specified VirtualService resource.
+      tags:
+      - VirtualService
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VirtualService'
+      responses:
+        '200':
+          description: VirtualService replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualService'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteVirtualService
+      summary: Istio Delete a VirtualService
+      description: Delete the specified VirtualService resource.
+      tags:
+      - VirtualService
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: VirtualService deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+components:
+  schemas:
+    HTTPRoute:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name assigned to the route for debugging purposes.
+        match:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: object
+                description: URI match condition
+              headers:
+                type: object
+                description: Header match conditions
+              method:
+                type: object
+                description: HTTP method match condition
+          description: Match conditions to be satisfied for the rule to be activated.
+        route:
+          type: array
+          items:
+            type: object
+            properties:
+              destination:
+                type: object
+                properties:
+                  host:
+                    type: string
+                    description: The name of a service from the service registry.
+                  port:
+                    type: object
+                    properties:
+                      number:
+                        type: integer
+                  subset:
+                    type: string
+                    description: The name of a subset within the service.
+              weight:
+                type: integer
+                description: Weight for traffic distribution.
+          description: Route destinations with optional traffic weight.
+        timeout:
+          type: string
+          description: Timeout for HTTP requests in duration format (e.g. 5s).
+        retries:
+          type: object
+          properties:
+            attempts:
+              type: integer
+            perTryTimeout:
+              type: string
+            retryOn:
+              type: string
+          description: Retry policy for HTTP requests.
+        fault:
+          type: object
+          description: Fault injection policy.
+        mirror:
+          type: object
+          description: Mirror HTTP traffic to another destination for testing.
+        mirrorPercentage:
+          type: object
+          properties:
+            value:
+              type: number
+          description: Percentage of traffic to mirror.
+    VirtualService:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+          - networking.istio.io/v1
+        kind:
+          type: string
+          enum:
+          - VirtualService
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            hosts:
+              type: array
+              items:
+                type: string
+              description: The destination hosts to which traffic is being sent. Can be a DNS name with wildcard prefix or an IP address.
+            gateways:
+              type: array
+              items:
+                type: string
+              description: The names of gateways that should apply these routes. A VirtualService with no gateway list will apply to sidecars only.
+            http:
+              type: array
+              items:
+                $ref: '#/components/schemas/HTTPRoute'
+              description: An ordered list of route rules for HTTP traffic.
+            tls:
+              type: array
+              items:
+                type: object
+              description: An ordered list of route rules for TLS and HTTPS traffic.
+            tcp:
+              type: array
+              items:
+                type: object
+              description: An ordered list of route rules for TCP traffic.
+            exportTo:
+              type: array
+              items:
+                type: string
+              description: A list of namespaces to which this virtual service is exported.
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of string keys and values for organizing resources
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Unstructured key-value map for storing arbitrary metadata
+        creationTimestamp:
+          type: string
+          format: date-time
+          description: Timestamp representing the server time when this object was created
+        resourceVersion:
+          type: string
+          description: An opaque value that represents the internal version of this object
+    VirtualServiceList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+          - VirtualServiceList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VirtualService'
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
+  parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Kubernetes API server bearer token authentication
+externalDocs:
+  description: Istio Extensions Configuration Reference
+  url: https://istio.io/latest/docs/reference/config/

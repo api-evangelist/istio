@@ -1,0 +1,281 @@
+openapi: 3.1.0
+info:
+  title: Istio Extensions AuthorizationPolicy DestinationRule API
+  description: The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.
+  version: v1alpha1
+  contact:
+    name: Istio
+    url: https://istio.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{cluster}/apis/extensions.istio.io/v1alpha1
+  description: Kubernetes API server endpoint for Istio Extensions v1alpha1
+  variables:
+    cluster:
+      default: kubernetes.default.svc
+      description: Kubernetes API server hostname
+tags:
+- name: DestinationRule
+  description: Policies applied to traffic after routing (load balancing, connection pool, outlier detection)
+  externalDocs:
+    url: https://istio.io/latest/docs/reference/config/networking/destination-rule/
+paths:
+  /namespaces/{namespace}/destinationrules:
+    get:
+      operationId: listDestinationRules
+      summary: Istio List DestinationRules
+      description: List all DestinationRule resources in the specified namespace. A DestinationRule defines policies that apply to traffic intended for a service after routing has occurred, including load balancing, connection pool size, and outlier detection settings.
+      tags:
+      - DestinationRule
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/labelSelector'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of DestinationRules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DestinationRuleList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createDestinationRule
+      summary: Istio Create a DestinationRule
+      description: Create a new DestinationRule resource in the specified namespace.
+      tags:
+      - DestinationRule
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DestinationRule'
+      responses:
+        '201':
+          description: DestinationRule created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DestinationRule'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+  /namespaces/{namespace}/destinationrules/{name}:
+    get:
+      operationId: getDestinationRule
+      summary: Istio Get a DestinationRule
+      description: Read the specified DestinationRule resource.
+      tags:
+      - DestinationRule
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DestinationRule'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceDestinationRule
+      summary: Istio Replace a DestinationRule
+      description: Replace the specified DestinationRule resource.
+      tags:
+      - DestinationRule
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DestinationRule'
+      responses:
+        '200':
+          description: DestinationRule replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DestinationRule'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteDestinationRule
+      summary: Istio Delete a DestinationRule
+      description: Delete the specified DestinationRule resource.
+      tags:
+      - DestinationRule
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: DestinationRule deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+components:
+  schemas:
+    DestinationRuleList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+          - DestinationRuleList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DestinationRule'
+    DestinationRule:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+          - networking.istio.io/v1
+        kind:
+          type: string
+          enum:
+          - DestinationRule
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            host:
+              type: string
+              description: The name of a service from the service registry. Rules defined for services that do not exist in the service registry will be ignored.
+            trafficPolicy:
+              type: object
+              properties:
+                connectionPool:
+                  type: object
+                  description: Settings controlling the volume of connections.
+                loadBalancer:
+                  type: object
+                  description: Settings controlling the load balancer algorithms.
+                outlierDetection:
+                  type: object
+                  description: Settings controlling eviction of unhealthy hosts.
+                tls:
+                  type: object
+                  description: TLS related settings for connections to the upstream service.
+              description: Traffic policies to apply for a specific destination.
+            subsets:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Name of the subset.
+                  labels:
+                    type: object
+                    additionalProperties:
+                      type: string
+                    description: Labels apply a filter over the endpoints of a service in the service registry.
+                  trafficPolicy:
+                    type: object
+                    description: Traffic policies for this subset.
+              description: Named sets of endpoints that represent individual versions of a service.
+            exportTo:
+              type: array
+              items:
+                type: string
+              description: A list of namespaces to which this destination rule is exported.
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of string keys and values for organizing resources
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Unstructured key-value map for storing arbitrary metadata
+        creationTimestamp:
+          type: string
+          format: date-time
+          description: Timestamp representing the server time when this object was created
+        resourceVersion:
+          type: string
+          description: An opaque value that represents the internal version of this object
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
+  parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Kubernetes API server bearer token authentication
+externalDocs:
+  description: Istio Extensions Configuration Reference
+  url: https://istio.io/latest/docs/reference/config/

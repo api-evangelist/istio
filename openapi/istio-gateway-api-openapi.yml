@@ -1,0 +1,271 @@
+openapi: 3.1.0
+info:
+  title: Istio Extensions AuthorizationPolicy Gateway API
+  description: The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.
+  version: v1alpha1
+  contact:
+    name: Istio
+    url: https://istio.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{cluster}/apis/extensions.istio.io/v1alpha1
+  description: Kubernetes API server endpoint for Istio Extensions v1alpha1
+  variables:
+    cluster:
+      default: kubernetes.default.svc
+      description: Kubernetes API server hostname
+tags:
+- name: Gateway
+  description: Load balancer configuration at the edge of the mesh
+  externalDocs:
+    url: https://istio.io/latest/docs/reference/config/networking/gateway/
+paths:
+  /namespaces/{namespace}/gateways:
+    get:
+      operationId: listGateways
+      summary: Istio List Gateways
+      description: List all Gateway resources in the specified namespace. A Gateway describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections, specifying which ports should be exposed, what protocol to use, and the SNI configuration for the load balancer.
+      tags:
+      - Gateway
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/labelSelector'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of Gateways
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createGateway
+      summary: Istio Create a Gateway
+      description: Create a new Gateway resource in the specified namespace.
+      tags:
+      - Gateway
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gateway'
+      responses:
+        '201':
+          description: Gateway created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+  /namespaces/{namespace}/gateways/{name}:
+    get:
+      operationId: getGateway
+      summary: Istio Get a Gateway
+      description: Read the specified Gateway resource.
+      tags:
+      - Gateway
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceGateway
+      summary: Istio Replace a Gateway
+      description: Replace the specified Gateway resource.
+      tags:
+      - Gateway
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gateway'
+      responses:
+        '200':
+          description: Gateway replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteGateway
+      summary: Istio Delete a Gateway
+      description: Delete the specified Gateway resource.
+      tags:
+      - Gateway
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Gateway deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+components:
+  schemas:
+    Gateway:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+          - networking.istio.io/v1
+        kind:
+          type: string
+          enum:
+          - Gateway
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            selector:
+              type: object
+              additionalProperties:
+                type: string
+              description: One or more labels that indicate a specific set of pods/VMs on which this gateway configuration should be applied.
+            servers:
+              type: array
+              items:
+                type: object
+                properties:
+                  port:
+                    type: object
+                    properties:
+                      number:
+                        type: integer
+                        description: A valid non-negative integer port number.
+                      name:
+                        type: string
+                        description: Label assigned to the port.
+                      protocol:
+                        type: string
+                        description: The protocol exposed on the port (HTTP, HTTPS, GRPC, TCP, TLS, MONGO).
+                  hosts:
+                    type: array
+                    items:
+                      type: string
+                    description: One or more hosts exposed by this gateway.
+                  tls:
+                    type: object
+                    description: TLS options for the gateway.
+              description: A list of server specifications describing the properties of the proxy on a given load balancer port.
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of string keys and values for organizing resources
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Unstructured key-value map for storing arbitrary metadata
+        creationTimestamp:
+          type: string
+          format: date-time
+          description: Timestamp representing the server time when this object was created
+        resourceVersion:
+          type: string
+          description: An opaque value that represents the internal version of this object
+    GatewayList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+          - GatewayList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Gateway'
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
+  parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Kubernetes API server bearer token authentication
+externalDocs:
+  description: Istio Extensions Configuration Reference
+  url: https://istio.io/latest/docs/reference/config/

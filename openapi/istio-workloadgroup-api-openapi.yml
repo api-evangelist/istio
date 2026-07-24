@@ -1,0 +1,258 @@
+openapi: 3.1.0
+info:
+  title: Istio Extensions AuthorizationPolicy WorkloadGroup API
+  description: The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.
+  version: v1alpha1
+  contact:
+    name: Istio
+    url: https://istio.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{cluster}/apis/extensions.istio.io/v1alpha1
+  description: Kubernetes API server endpoint for Istio Extensions v1alpha1
+  variables:
+    cluster:
+      default: kubernetes.default.svc
+      description: Kubernetes API server hostname
+tags:
+- name: WorkloadGroup
+  description: Collection of workload instances sharing common properties
+  externalDocs:
+    url: https://istio.io/latest/docs/reference/config/networking/workload-group/
+paths:
+  /namespaces/{namespace}/workloadgroups:
+    get:
+      operationId: listWorkloadGroups
+      summary: Istio List WorkloadGroups
+      description: List all WorkloadGroup resources in the specified namespace. A WorkloadGroup describes a collection of workload instances and provides a specification that the workload instances can use to bootstrap their proxies, including the metadata and identity.
+      tags:
+      - WorkloadGroup
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/labelSelector'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/continue'
+      responses:
+        '200':
+          description: Successful response containing list of WorkloadGroups
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadGroupList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createWorkloadGroup
+      summary: Istio Create a WorkloadGroup
+      description: Create a new WorkloadGroup resource in the specified namespace.
+      tags:
+      - WorkloadGroup
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkloadGroup'
+      responses:
+        '201':
+          description: WorkloadGroup created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadGroup'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+  /namespaces/{namespace}/workloadgroups/{name}:
+    get:
+      operationId: getWorkloadGroup
+      summary: Istio Get a WorkloadGroup
+      description: Read the specified WorkloadGroup resource.
+      tags:
+      - WorkloadGroup
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadGroup'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    put:
+      operationId: replaceWorkloadGroup
+      summary: Istio Replace a WorkloadGroup
+      description: Replace the specified WorkloadGroup resource.
+      tags:
+      - WorkloadGroup
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkloadGroup'
+      responses:
+        '200':
+          description: WorkloadGroup replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkloadGroup'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+    delete:
+      operationId: deleteWorkloadGroup
+      summary: Istio Delete a WorkloadGroup
+      description: Delete the specified WorkloadGroup resource.
+      tags:
+      - WorkloadGroup
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: WorkloadGroup deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+components:
+  parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+  schemas:
+    WorkloadGroup:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          enum:
+          - networking.istio.io/v1
+        kind:
+          type: string
+          enum:
+          - WorkloadGroup
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            metadata:
+              type: object
+              properties:
+                labels:
+                  type: object
+                  additionalProperties:
+                    type: string
+                annotations:
+                  type: object
+                  additionalProperties:
+                    type: string
+              description: Metadata that will be used for all corresponding WorkloadEntries.
+            template:
+              type: object
+              description: Template to be used for the generation of WorkloadEntry resources.
+            probe:
+              type: object
+              description: ReadinessProbe describes the configuration for health checking.
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of string keys and values for organizing resources
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Unstructured key-value map for storing arbitrary metadata
+        creationTimestamp:
+          type: string
+          format: date-time
+          description: Timestamp representing the server time when this object was created
+        resourceVersion:
+          type: string
+          description: An opaque value that represents the internal version of this object
+    WorkloadGroupList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+          - WorkloadGroupList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkloadGroup'
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Kubernetes API server bearer token authentication
+externalDocs:
+  description: Istio Extensions Configuration Reference
+  url: https://istio.io/latest/docs/reference/config/
