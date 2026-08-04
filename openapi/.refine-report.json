@@ -1,0 +1,36 @@
+{
+  "provider": "istio",
+  "sources": [
+    "istio-authorizationpolicy-api-openapi.yml",
+    "istio-destinationrule-api-openapi.yml",
+    "istio-gateway-api-openapi.yml",
+    "istio-peerauthentication-api-openapi.yml",
+    "istio-requestauthentication-api-openapi.yml",
+    "istio-serviceentry-api-openapi.yml",
+    "istio-sidecar-api-openapi.yml",
+    "istio-telemetry-api-openapi.yml",
+    "istio-virtualservice-api-openapi.yml",
+    "istio-wasmplugin-api-openapi.yml",
+    "istio-workloadentry-api-openapi.yml",
+    "istio-workloadgroup-api-openapi.yml"
+  ],
+  "outputs": [
+    "istio-authorizationpolicy-api-openapi.yml",
+    "istio-destinationrule-api-openapi.yml",
+    "istio-gateway-api-openapi.yml",
+    "istio-peerauthentication-api-openapi.yml",
+    "istio-requestauthentication-api-openapi.yml",
+    "istio-serviceentry-api-openapi.yml",
+    "istio-sidecar-api-openapi.yml",
+    "istio-telemetry-api-openapi.yml",
+    "istio-virtualservice-api-openapi.yml",
+    "istio-wasmplugin-api-openapi.yml",
+    "istio-workloadentry-api-openapi.yml",
+    "istio-workloadgroup-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
