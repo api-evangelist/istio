@@ -1,0 +1,1159 @@
+{
+  "item": [
+    {
+      "id": "74865937-2416-494b-8421-8b731e0903b2",
+      "name": "RequestAuthentication",
+      "description": {
+        "content": "JWT-based request authentication policies",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c4b2fdd6-094f-4f7f-bc8c-ff74515410f0",
+          "name": "Istio List RequestAuthentications",
+          "request": {
+            "name": "Istio List RequestAuthentications",
+            "description": {
+              "content": "List all RequestAuthentication resources in the specified namespace. A RequestAuthentication defines the request authentication methods supported by a workload. It will reject requests with invalid authentication information based on configured JWT rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "requestauthentications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "labelSelector",
+                  "value": "<string>",
+                  "description": "A selector to restrict the list of returned objects by their labels"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of resources to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "continue",
+                  "value": "<string>",
+                  "description": "Continue token for paginated list requests"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ed04273-858b-4709-afef-42d6d068af37",
+              "name": "Successful response containing list of RequestAuthentications",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "requestauthentications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "continue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"RequestAuthenticationList\",\n  \"metadata\": {\n    \"resourceVersion\": \"string\",\n    \"continue\": \"string\"\n  },\n  \"items\": [\n    {\n      \"apiVersion\": \"security.istio.io/v1\",\n      \"kind\": \"RequestAuthentication\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\"\n        },\n        \"creationTimestamp\": \"2025-01-09T13:21:14.892Z\",\n        \"resourceVersion\": \"string\"\n      },\n      \"spec\": {\n        \"selector\": {\n          \"matchLabels\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"jwtRules\": [\n          {\n            \"issuer\": \"string\",\n            \"audiences\": [\n              \"string\",\n              \"string\"\n            ],\n            \"jwksUri\": \"string\",\n            \"jwks\": \"string\",\n            \"fromHeaders\": [\n              {\n                \"name\": \"string\",\n                \"prefix\": \"string\"\n              },\n              {\n                \"name\": \"string\",\n                \"prefix\": \"string\"\n              }\n            ],\n            \"fromParams\": [\n              \"string\",\n              \"string\"\n            ],\n            \"outputPayloadToHeader\": \"string\",\n            \"forwardOriginalToken\": true,\n            \"outputClaimToHeaders\": [\n              {\n                \"header\": \"string\",\n                \"claim\": \"string\"\n              },\n              {\n                \"header\": \"string\",\n                \"claim\": \"string\"\n              }\n            ]\n          },\n          {\n            \"issuer\": \"string\",\n            \"audiences\": [\n              \"string\",\n              \"string\"\n            ],\n            \"jwksUri\": \"string\",\n            \"jwks\": \"string\",\n            \"fromHeaders\": [\n              {\n                \"name\": \"string\",\n                \"prefix\": \"string\"\n              },\n              {\n                \"name\": \"string\",\n                \"prefix\": \"string\"\n              }\n            ],\n            \"fromParams\": [\n              \"string\",\n              \"string\"\n            ],\n            \"outputPayloadToHeader\": \"string\",\n            \"forwardOriginalToken\": false,\n            \"outputClaimToHeaders\": [\n              {\n                \"header\": \"string\",\n                \"claim\": \"string\"\n              },\n              {\n                \"header\": \"string\",\n                \"claim\": \"string\"\n              }\n            ]\n          }\n        ],\n        \"targetRefs\": [\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      }\n    },\n    {\n      \"apiVersion\": \"security.istio.io/v1\",\n      \"kind\": \"RequestAuthentication\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\"\n        },\n        \"creationTimestamp\": \"1982-03-27T10:21:50.455Z\",\n        \"resourceVersion\": \"string\"\n      },\n      \"spec\": {\n        \"selector\": {\n          \"matchLabels\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"jwtRules\": [\n          {\n            \"issuer\": \"string\",\n            \"audiences\": [\n              \"string\",\n              \"string\"\n            ],\n            \"jwksUri\": \"string\",\n            \"jwks\": \"string\",\n            \"fromHeaders\": [\n              {\n                \"name\": \"string\",\n                \"prefix\": \"string\"\n              },\n              {\n                \"name\": \"string\",\n                \"prefix\": \"string\"\n              }\n            ],\n            \"fromParams\": [\n              \"string\",\n              \"string\"\n            ],\n            \"outputPayloadToHeader\": \"string\",\n            \"forwardOriginalToken\": true,\n            \"outputClaimToHeaders\": [\n              {\n                \"header\": \"string\",\n                \"claim\": \"string\"\n              },\n              {\n                \"header\": \"string\",\n                \"claim\": \"string\"\n              }\n            ]\n          },\n          {\n            \"issuer\": \"string\",\n            \"audiences\": [\n              \"string\",\n              \"string\"\n            ],\n            \"jwksUri\": \"string\",\n            \"jwks\": \"string\",\n            \"fromHeaders\": [\n              {\n                \"name\": \"string\",\n                \"prefix\": \"string\"\n              },\n              {\n                \"name\": \"string\",\n                \"prefix\": \"string\"\n              }\n            ],\n            \"fromParams\": [\n              \"string\",\n              \"string\"\n            ],\n            \"outputPayloadToHeader\": \"string\",\n            \"forwardOriginalToken\": true,\n            \"outputClaimToHeaders\": [\n              {\n                \"header\": \"string\",\n                \"claim\": \"string\"\n              },\n              {\n                \"header\": \"string\",\n                \"claim\": \"string\"\n              }\n            ]\n          }\n        ],\n        \"targetRefs\": [\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a9a03b4-49f4-4649-9ff1-f836712fedd8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "requestauthentications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "continue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94559456-8324-41ef-aa64-bc99d45805c2",
+          "name": "Istio Create a RequestAuthentication",
+          "request": {
+            "name": "Istio Create a RequestAuthentication",
+            "description": {
+              "content": "Create a new RequestAuthentication resource in the specified namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "requestauthentications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"creationTimestamp\": \"<dateTime>\",\n    \"resourceVersion\": \"<string>\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"jwtRules\": [\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe407bfe-a662-4521-a876-51f207ee1db3",
+              "name": "RequestAuthentication created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "requestauthentications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1985-12-01T05:43:38.052Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    \"jwtRules\": [\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"security.istio.io/v1\",\n  \"kind\": \"RequestAuthentication\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1980-07-17T11:11:31.605Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"string\"\n      }\n    },\n    \"jwtRules\": [\n      {\n        \"issuer\": \"string\",\n        \"audiences\": [\n          \"string\",\n          \"string\"\n        ],\n        \"jwksUri\": \"string\",\n        \"jwks\": \"string\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"string\",\n            \"prefix\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"prefix\": \"string\"\n          }\n        ],\n        \"fromParams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"outputPayloadToHeader\": \"string\",\n        \"forwardOriginalToken\": true,\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"string\",\n            \"claim\": \"string\"\n          },\n          {\n            \"header\": \"string\",\n            \"claim\": \"string\"\n          }\n        ]\n      },\n      {\n        \"issuer\": \"string\",\n        \"audiences\": [\n          \"string\",\n          \"string\"\n        ],\n        \"jwksUri\": \"string\",\n        \"jwks\": \"string\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"string\",\n            \"prefix\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"prefix\": \"string\"\n          }\n        ],\n        \"fromParams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"outputPayloadToHeader\": \"string\",\n        \"forwardOriginalToken\": false,\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"string\",\n            \"claim\": \"string\"\n          },\n          {\n            \"header\": \"string\",\n            \"claim\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fac9fe51-1425-45e1-898b-0f6f4cf1d813",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "requestauthentications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1985-12-01T05:43:38.052Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    \"jwtRules\": [\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0a43a079-18b3-456c-8614-1f57aca4231c",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "requestauthentications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1985-12-01T05:43:38.052Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    \"jwtRules\": [\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57a54910-6c59-46c1-88bd-31117ffbaab7",
+          "name": "Istio Get a RequestAuthentication",
+          "request": {
+            "name": "Istio Get a RequestAuthentication",
+            "description": {
+              "content": "Read the specified RequestAuthentication resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "requestauthentications",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cbe18cee-68ee-44ed-af41-65e357d40d7c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "requestauthentications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"security.istio.io/v1\",\n  \"kind\": \"RequestAuthentication\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1980-07-17T11:11:31.605Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"string\"\n      }\n    },\n    \"jwtRules\": [\n      {\n        \"issuer\": \"string\",\n        \"audiences\": [\n          \"string\",\n          \"string\"\n        ],\n        \"jwksUri\": \"string\",\n        \"jwks\": \"string\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"string\",\n            \"prefix\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"prefix\": \"string\"\n          }\n        ],\n        \"fromParams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"outputPayloadToHeader\": \"string\",\n        \"forwardOriginalToken\": true,\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"string\",\n            \"claim\": \"string\"\n          },\n          {\n            \"header\": \"string\",\n            \"claim\": \"string\"\n          }\n        ]\n      },\n      {\n        \"issuer\": \"string\",\n        \"audiences\": [\n          \"string\",\n          \"string\"\n        ],\n        \"jwksUri\": \"string\",\n        \"jwks\": \"string\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"string\",\n            \"prefix\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"prefix\": \"string\"\n          }\n        ],\n        \"fromParams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"outputPayloadToHeader\": \"string\",\n        \"forwardOriginalToken\": false,\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"string\",\n            \"claim\": \"string\"\n          },\n          {\n            \"header\": \"string\",\n            \"claim\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c7c8a9c-910a-4b9d-9a5b-836909c1a8e7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "requestauthentications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3a3630e-fb02-4438-8d6c-23c69aff59f5",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "requestauthentications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3c304ae-77b9-4c0e-b2d8-43d56201e283",
+          "name": "Istio Replace a RequestAuthentication",
+          "request": {
+            "name": "Istio Replace a RequestAuthentication",
+            "description": {
+              "content": "Replace the specified RequestAuthentication resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "requestauthentications",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"creationTimestamp\": \"<dateTime>\",\n    \"resourceVersion\": \"<string>\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"jwtRules\": [\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "98ff6b74-39b0-4c5a-81a9-ac2cc8b29bea",
+              "name": "RequestAuthentication replaced",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "requestauthentications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1985-12-01T05:43:38.052Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    \"jwtRules\": [\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"security.istio.io/v1\",\n  \"kind\": \"RequestAuthentication\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1980-07-17T11:11:31.605Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"string\"\n      }\n    },\n    \"jwtRules\": [\n      {\n        \"issuer\": \"string\",\n        \"audiences\": [\n          \"string\",\n          \"string\"\n        ],\n        \"jwksUri\": \"string\",\n        \"jwks\": \"string\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"string\",\n            \"prefix\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"prefix\": \"string\"\n          }\n        ],\n        \"fromParams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"outputPayloadToHeader\": \"string\",\n        \"forwardOriginalToken\": true,\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"string\",\n            \"claim\": \"string\"\n          },\n          {\n            \"header\": \"string\",\n            \"claim\": \"string\"\n          }\n        ]\n      },\n      {\n        \"issuer\": \"string\",\n        \"audiences\": [\n          \"string\",\n          \"string\"\n        ],\n        \"jwksUri\": \"string\",\n        \"jwks\": \"string\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"string\",\n            \"prefix\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"prefix\": \"string\"\n          }\n        ],\n        \"fromParams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"outputPayloadToHeader\": \"string\",\n        \"forwardOriginalToken\": false,\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"string\",\n            \"claim\": \"string\"\n          },\n          {\n            \"header\": \"string\",\n            \"claim\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfbabe28-880b-47aa-872f-97b2f50e84e5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "requestauthentications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1985-12-01T05:43:38.052Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    \"jwtRules\": [\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "193690a3-2385-4f73-ae42-3a58b06331d9",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "requestauthentications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1985-12-01T05:43:38.052Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    \"jwtRules\": [\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"issuer\": \"<string>\",\n        \"audiences\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"jwksUri\": \"<string>\",\n        \"jwks\": \"<string>\",\n        \"fromHeaders\": [\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"prefix\": \"<string>\"\n          }\n        ],\n        \"fromParams\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"outputPayloadToHeader\": \"<string>\",\n        \"forwardOriginalToken\": \"<boolean>\",\n        \"outputClaimToHeaders\": [\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          },\n          {\n            \"header\": \"<string>\",\n            \"claim\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50d9fa92-1d98-4905-8555-88d8349086d1",
+          "name": "Istio Delete a RequestAuthentication",
+          "request": {
+            "name": "Istio Delete a RequestAuthentication",
+            "description": {
+              "content": "Delete the specified RequestAuthentication resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "requestauthentications",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31ae022b-8165-403a-8850-e258471bc646",
+              "name": "RequestAuthentication deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "requestauthentications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "054ec823-ff9f-4e78-a472-e6d1339b5abb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "requestauthentications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "590767b9-9b78-4feb-bfa1-6cd54ccacad4",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "requestauthentications",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Kubernetes API server hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "kubernetes.default.svc",
+      "key": "cluster"
+    },
+    {
+      "type": "string",
+      "value": "https://{{cluster}}/apis/extensions.istio.io/v1alpha1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dc9d2304-fa9e-4fdc-8420-8e9f23bd756f",
+    "name": "Istio Extensions AuthorizationPolicy RequestAuthentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.\n\nContact Support:\n Name: Istio",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,24 +1,24 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Istio Extensions AuthorizationPolicy Telemetry API",
+    "name": "Istio Extensions AuthorizationPolicy API",
     "version": "v1alpha1"
   },
   "items": [
     {
       "info": {
-        "name": "Telemetry",
+        "name": "AuthorizationPolicy",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Istio List Telemetry resources",
+            "name": "Istio List AuthorizationPolicies",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/authorizationpolicies",
             "params": [
               {
                 "name": "namespace",
@@ -46,16 +46,16 @@
               }
             ]
           },
-          "docs": "List all Telemetry resources in the specified namespace. A Telemetry resource configures the behavior of the Istio telemetry system, including metrics collection, access logging, and distributed tracing."
+          "docs": "List all AuthorizationPolicy resources in the specified namespace. An AuthorizationPolicy enables access control on workloads in the mesh, supporting ALLOW, DENY, AUDIT, and CUSTOM actions based on source, operation, and condition matching."
         },
         {
           "info": {
-            "name": "Istio Create a Telemetry resource",
+            "name": "Istio Create an AuthorizationPolicy",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/authorizationpolicies",
             "params": [
               {
                 "name": "namespace",
@@ -69,16 +69,16 @@
               "data": "{}"
             }
           },
-          "docs": "Create a new Telemetry resource in the specified namespace."
+          "docs": "Create a new AuthorizationPolicy resource in the specified namespace."
         },
         {
           "info": {
-            "name": "Istio Get a Telemetry resource",
+            "name": "Istio Get an AuthorizationPolicy",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries/:name",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/authorizationpolicies/:name",
             "params": [
               {
                 "name": "namespace",
@@ -94,16 +94,16 @@
               }
             ]
           },
-          "docs": "Read the specified Telemetry resource."
+          "docs": "Read the specified AuthorizationPolicy resource."
         },
         {
           "info": {
-            "name": "Istio Replace a Telemetry resource",
+            "name": "Istio Replace an AuthorizationPolicy",
             "type": "http"
           },
           "http": {
             "method": "PUT",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries/:name",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/authorizationpolicies/:name",
             "params": [
               {
                 "name": "namespace",
@@ -123,16 +123,16 @@
               "data": "{}"
             }
           },
-          "docs": "Replace the specified Telemetry resource."
+          "docs": "Replace the specified AuthorizationPolicy resource."
         },
         {
           "info": {
-            "name": "Istio Delete a Telemetry resource",
+            "name": "Istio Delete an AuthorizationPolicy",
             "type": "http"
           },
           "http": {
             "method": "DELETE",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries/:name",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/authorizationpolicies/:name",
             "params": [
               {
                 "name": "namespace",
@@ -148,7 +148,7 @@
               }
             ]
           },
-          "docs": "Delete the specified Telemetry resource."
+          "docs": "Delete the specified AuthorizationPolicy resource."
         }
       ]
     }

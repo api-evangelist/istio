@@ -1,0 +1,1159 @@
+{
+  "item": [
+    {
+      "id": "0fd1e7a1-e903-4257-8350-451824201f06",
+      "name": "VirtualService",
+      "description": {
+        "content": "HTTP/TCP routing rules for traffic management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b3bc778e-6aa6-42f2-a9e2-3ee36777eec6",
+          "name": "Istio List VirtualServices",
+          "request": {
+            "name": "Istio List VirtualServices",
+            "description": {
+              "content": "List all VirtualService resources in the specified namespace. A VirtualService defines a set of traffic routing rules to apply when a host is addressed, enabling features such as HTTP route matching, retries, timeouts, fault injection, and traffic mirroring.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "virtualservices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "labelSelector",
+                  "value": "<string>",
+                  "description": "A selector to restrict the list of returned objects by their labels"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of resources to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "continue",
+                  "value": "<string>",
+                  "description": "Continue token for paginated list requests"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9482c9c3-ed83-4601-8779-720a3fdc279d",
+              "name": "Successful response containing list of VirtualServices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "virtualservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "continue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"VirtualServiceList\",\n  \"metadata\": {\n    \"resourceVersion\": \"string\",\n    \"continue\": \"string\"\n  },\n  \"items\": [\n    {\n      \"apiVersion\": \"networking.istio.io/v1\",\n      \"kind\": \"VirtualService\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\",\n          \"key_4\": \"string\"\n        },\n        \"creationTimestamp\": \"1993-09-26T04:17:45.867Z\",\n        \"resourceVersion\": \"string\"\n      },\n      \"spec\": {\n        \"hosts\": [\n          \"string\",\n          \"string\"\n        ],\n        \"gateways\": [\n          \"string\",\n          \"string\"\n        ],\n        \"http\": [\n          {\n            \"name\": \"string\",\n            \"match\": [\n              {\n                \"uri\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"headers\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"method\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"uri\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"headers\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"method\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"route\": [\n              {\n                \"destination\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"destination\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"timeout\": \"string\",\n            \"retries\": {\n              \"attempts\": 5877,\n              \"perTryTimeout\": \"string\",\n              \"retryOn\": \"string\"\n            },\n            \"fault\": {},\n            \"mirror\": {},\n            \"mirrorPercentage\": {\n              \"value\": 5916.7633497910265\n            }\n          },\n          {\n            \"name\": \"string\",\n            \"match\": [\n              {\n                \"uri\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"headers\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"method\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"uri\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"headers\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"method\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"route\": [\n              {\n                \"destination\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"destination\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"timeout\": \"string\",\n            \"retries\": {\n              \"attempts\": 602,\n              \"perTryTimeout\": \"string\",\n              \"retryOn\": \"string\"\n            },\n            \"fault\": {},\n            \"mirror\": {},\n            \"mirrorPercentage\": {\n              \"value\": 4424.195563322452\n            }\n          }\n        ],\n        \"exportTo\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"apiVersion\": \"networking.istio.io/v1\",\n      \"kind\": \"VirtualService\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"creationTimestamp\": \"1949-06-13T22:58:22.162Z\",\n        \"resourceVersion\": \"string\"\n      },\n      \"spec\": {\n        \"hosts\": [\n          \"string\",\n          \"string\"\n        ],\n        \"gateways\": [\n          \"string\",\n          \"string\"\n        ],\n        \"http\": [\n          {\n            \"name\": \"string\",\n            \"match\": [\n              {\n                \"uri\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"headers\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"method\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"uri\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"headers\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"method\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"route\": [\n              {\n                \"destination\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"destination\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"timeout\": \"string\",\n            \"retries\": {\n              \"attempts\": 2552,\n              \"perTryTimeout\": \"string\",\n              \"retryOn\": \"string\"\n            },\n            \"fault\": {},\n            \"mirror\": {},\n            \"mirrorPercentage\": {\n              \"value\": 1950.7116312355165\n            }\n          },\n          {\n            \"name\": \"string\",\n            \"match\": [\n              {\n                \"uri\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"headers\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"method\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"uri\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"headers\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"method\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"route\": [\n              {\n                \"destination\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"destination\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"timeout\": \"string\",\n            \"retries\": {\n              \"attempts\": 5212,\n              \"perTryTimeout\": \"string\",\n              \"retryOn\": \"string\"\n            },\n            \"fault\": {},\n            \"mirror\": {},\n            \"mirrorPercentage\": {\n              \"value\": 4426.940580630576\n            }\n          }\n        ],\n        \"exportTo\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a9799c5-d5f2-4215-9b33-62d26cb6ec55",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "virtualservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "continue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd658406-ae1b-43db-9372-980e8e27d987",
+          "name": "Istio Create a VirtualService",
+          "request": {
+            "name": "Istio Create a VirtualService",
+            "description": {
+              "content": "Create a new VirtualService resource in the specified namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "virtualservices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\"\n    },\n    \"creationTimestamp\": \"<dateTime>\",\n    \"resourceVersion\": \"<string>\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"gateways\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"http\": [\n      {\n        \"name\": \"<string>\",\n        \"match\": [\n          {\n            \"uri\": \"<object>\",\n            \"headers\": \"<object>\",\n            \"method\": \"<object>\"\n          },\n          {\n            \"uri\": \"<object>\",\n            \"headers\": \"<object>\",\n            \"method\": \"<object>\"\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"<string>\",\n              \"port\": {\n                \"number\": \"<integer>\"\n              },\n              \"subset\": \"<string>\"\n            },\n            \"weight\": \"<integer>\"\n          },\n          {\n            \"destination\": {\n              \"host\": \"<string>\",\n              \"port\": {\n                \"number\": \"<integer>\"\n              },\n              \"subset\": \"<string>\"\n            },\n            \"weight\": \"<integer>\"\n          }\n        ],\n        \"timeout\": \"<string>\",\n        \"retries\": {\n          \"attempts\": \"<integer>\",\n          \"perTryTimeout\": \"<string>\",\n          \"retryOn\": \"<string>\"\n        },\n        \"fault\": \"<object>\",\n        \"mirror\": \"<object>\",\n        \"mirrorPercentage\": {\n          \"value\": \"<number>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"match\": [\n          {\n            \"uri\": \"<object>\",\n            \"headers\": \"<object>\",\n            \"method\": \"<object>\"\n          },\n          {\n            \"uri\": \"<object>\",\n            \"headers\": \"<object>\",\n            \"method\": \"<object>\"\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"<string>\",\n              \"port\": {\n                \"number\": \"<integer>\"\n              },\n              \"subset\": \"<string>\"\n            },\n            \"weight\": \"<integer>\"\n          },\n          {\n            \"destination\": {\n              \"host\": \"<string>\",\n              \"port\": {\n                \"number\": \"<integer>\"\n              },\n              \"subset\": \"<string>\"\n            },\n            \"weight\": \"<integer>\"\n          }\n        ],\n        \"timeout\": \"<string>\",\n        \"retries\": {\n          \"attempts\": \"<integer>\",\n          \"perTryTimeout\": \"<string>\",\n          \"retryOn\": \"<string>\"\n        },\n        \"fault\": \"<object>\",\n        \"mirror\": \"<object>\",\n        \"mirrorPercentage\": {\n          \"value\": \"<number>\"\n        }\n      }\n    ],\n    \"tls\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"tcp\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8dab1a50-7bf9-4457-8d29-feaffb712c6b",
+              "name": "VirtualService created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "virtualservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1993-01-19T18:55:06.733Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"gateways\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"http\": [\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 4560\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 5730\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 7514\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 4019\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 9144,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 4999.201920015005\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 2156\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 3512\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 8536\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 8048\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 4561,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 3762.747361769253\n        }\n      }\n    ],\n    \"tls\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"tcp\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"networking.istio.io/v1\",\n  \"kind\": \"VirtualService\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"2005-09-23T13:51:33.555Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"string\",\n      \"string\"\n    ],\n    \"gateways\": [\n      \"string\",\n      \"string\"\n    ],\n    \"http\": [\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 9795\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 2387\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 4068\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 9806\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 2963,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 5449.52361587363\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 5719\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 7657\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 5366\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 1937\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 9009,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 2064.4845566276695\n        }\n      }\n    ],\n    \"exportTo\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5203676-3d16-4db5-99e0-3d6e76cc8315",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "virtualservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1993-01-19T18:55:06.733Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"gateways\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"http\": [\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 4560\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 5730\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 7514\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 4019\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 9144,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 4999.201920015005\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 2156\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 3512\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 8536\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 8048\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 4561,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 3762.747361769253\n        }\n      }\n    ],\n    \"tls\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"tcp\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7fa22248-2518-436a-b98b-6b109ff5c150",
+              "name": "Conflict - resource already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "virtualservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1993-01-19T18:55:06.733Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"gateways\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"http\": [\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 4560\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 5730\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 7514\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 4019\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 9144,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 4999.201920015005\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 2156\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 3512\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 8536\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 8048\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 4561,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 3762.747361769253\n        }\n      }\n    ],\n    \"tls\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"tcp\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a73ecb0c-c157-41d1-890d-1ce55255826d",
+          "name": "Istio Get a VirtualService",
+          "request": {
+            "name": "Istio Get a VirtualService",
+            "description": {
+              "content": "Read the specified VirtualService resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "virtualservices",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "502a0e60-da29-42de-a4cd-7e8869dfe98e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "virtualservices",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"networking.istio.io/v1\",\n  \"kind\": \"VirtualService\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"2005-09-23T13:51:33.555Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"string\",\n      \"string\"\n    ],\n    \"gateways\": [\n      \"string\",\n      \"string\"\n    ],\n    \"http\": [\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 9795\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 2387\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 4068\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 9806\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 2963,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 5449.52361587363\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 5719\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 7657\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 5366\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 1937\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 9009,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 2064.4845566276695\n        }\n      }\n    ],\n    \"exportTo\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1816668-a6c4-44eb-b8bc-defa32ec88fa",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "virtualservices",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f5fa269b-232e-4af0-87db-10382cf67cb9",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "virtualservices",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6a493a2-f637-4fa2-ba93-45ecb9d2d96d",
+          "name": "Istio Replace a VirtualService",
+          "request": {
+            "name": "Istio Replace a VirtualService",
+            "description": {
+              "content": "Replace the specified VirtualService resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "virtualservices",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\"\n    },\n    \"creationTimestamp\": \"<dateTime>\",\n    \"resourceVersion\": \"<string>\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"gateways\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"http\": [\n      {\n        \"name\": \"<string>\",\n        \"match\": [\n          {\n            \"uri\": \"<object>\",\n            \"headers\": \"<object>\",\n            \"method\": \"<object>\"\n          },\n          {\n            \"uri\": \"<object>\",\n            \"headers\": \"<object>\",\n            \"method\": \"<object>\"\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"<string>\",\n              \"port\": {\n                \"number\": \"<integer>\"\n              },\n              \"subset\": \"<string>\"\n            },\n            \"weight\": \"<integer>\"\n          },\n          {\n            \"destination\": {\n              \"host\": \"<string>\",\n              \"port\": {\n                \"number\": \"<integer>\"\n              },\n              \"subset\": \"<string>\"\n            },\n            \"weight\": \"<integer>\"\n          }\n        ],\n        \"timeout\": \"<string>\",\n        \"retries\": {\n          \"attempts\": \"<integer>\",\n          \"perTryTimeout\": \"<string>\",\n          \"retryOn\": \"<string>\"\n        },\n        \"fault\": \"<object>\",\n        \"mirror\": \"<object>\",\n        \"mirrorPercentage\": {\n          \"value\": \"<number>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"match\": [\n          {\n            \"uri\": \"<object>\",\n            \"headers\": \"<object>\",\n            \"method\": \"<object>\"\n          },\n          {\n            \"uri\": \"<object>\",\n            \"headers\": \"<object>\",\n            \"method\": \"<object>\"\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"<string>\",\n              \"port\": {\n                \"number\": \"<integer>\"\n              },\n              \"subset\": \"<string>\"\n            },\n            \"weight\": \"<integer>\"\n          },\n          {\n            \"destination\": {\n              \"host\": \"<string>\",\n              \"port\": {\n                \"number\": \"<integer>\"\n              },\n              \"subset\": \"<string>\"\n            },\n            \"weight\": \"<integer>\"\n          }\n        ],\n        \"timeout\": \"<string>\",\n        \"retries\": {\n          \"attempts\": \"<integer>\",\n          \"perTryTimeout\": \"<string>\",\n          \"retryOn\": \"<string>\"\n        },\n        \"fault\": \"<object>\",\n        \"mirror\": \"<object>\",\n        \"mirrorPercentage\": {\n          \"value\": \"<number>\"\n        }\n      }\n    ],\n    \"tls\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"tcp\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f0f0af2-0b5d-427d-a895-2dc884437c24",
+              "name": "VirtualService replaced",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "virtualservices",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1993-01-19T18:55:06.733Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"gateways\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"http\": [\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 4560\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 5730\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 7514\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 4019\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 9144,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 4999.201920015005\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 2156\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 3512\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 8536\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 8048\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 4561,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 3762.747361769253\n        }\n      }\n    ],\n    \"tls\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"tcp\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"networking.istio.io/v1\",\n  \"kind\": \"VirtualService\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"2005-09-23T13:51:33.555Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"string\",\n      \"string\"\n    ],\n    \"gateways\": [\n      \"string\",\n      \"string\"\n    ],\n    \"http\": [\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 9795\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 2387\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 4068\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 9806\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 2963,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 5449.52361587363\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 5719\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 7657\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 5366\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 1937\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 9009,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 2064.4845566276695\n        }\n      }\n    ],\n    \"exportTo\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1637d224-c291-4ed7-bf56-704e6be76d42",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "virtualservices",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1993-01-19T18:55:06.733Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"gateways\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"http\": [\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 4560\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 5730\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 7514\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 4019\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 9144,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 4999.201920015005\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 2156\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 3512\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 8536\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 8048\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 4561,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 3762.747361769253\n        }\n      }\n    ],\n    \"tls\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"tcp\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6e791e5-0931-4b59-ac89-cd70fb211407",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "virtualservices",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1993-01-19T18:55:06.733Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"gateways\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"http\": [\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 4560\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 5730\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 7514\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 4019\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 9144,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 4999.201920015005\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"match\": [\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          },\n          {\n            \"uri\": {},\n            \"headers\": {},\n            \"method\": {}\n          }\n        ],\n        \"route\": [\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 2156\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 3512\n          },\n          {\n            \"destination\": {\n              \"host\": \"string\",\n              \"port\": {\n                \"number\": 8536\n              },\n              \"subset\": \"string\"\n            },\n            \"weight\": 8048\n          }\n        ],\n        \"timeout\": \"string\",\n        \"retries\": {\n          \"attempts\": 4561,\n          \"perTryTimeout\": \"string\",\n          \"retryOn\": \"string\"\n        },\n        \"fault\": {},\n        \"mirror\": {},\n        \"mirrorPercentage\": {\n          \"value\": 3762.747361769253\n        }\n      }\n    ],\n    \"tls\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"tcp\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18c382c3-ff1f-4955-906b-047417fdae7e",
+          "name": "Istio Delete a VirtualService",
+          "request": {
+            "name": "Istio Delete a VirtualService",
+            "description": {
+              "content": "Delete the specified VirtualService resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "virtualservices",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "87f7c489-dee4-4212-bfca-8c734af7b75c",
+              "name": "VirtualService deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "virtualservices",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b01717d1-10f0-4908-acd4-cb34141c4c4b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "virtualservices",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "65592998-bbe5-4714-ba81-7a7ee4ec366a",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "virtualservices",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Kubernetes API server hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "kubernetes.default.svc",
+      "key": "cluster"
+    },
+    {
+      "type": "string",
+      "value": "https://{{cluster}}/apis/extensions.istio.io/v1alpha1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ef78da0d-0490-40b9-955b-e5ac5d4ef55f",
+    "name": "Istio Extensions AuthorizationPolicy VirtualService API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.\n\nContact Support:\n Name: Istio",
+      "type": "text/plain"
+    }
+  }
+}

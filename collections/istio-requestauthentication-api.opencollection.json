@@ -1,24 +1,24 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Istio Extensions AuthorizationPolicy Telemetry API",
+    "name": "Istio Extensions AuthorizationPolicy RequestAuthentication API",
     "version": "v1alpha1"
   },
   "items": [
     {
       "info": {
-        "name": "Telemetry",
+        "name": "RequestAuthentication",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Istio List Telemetry resources",
+            "name": "Istio List RequestAuthentications",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/requestauthentications",
             "params": [
               {
                 "name": "namespace",
@@ -46,16 +46,16 @@
               }
             ]
           },
-          "docs": "List all Telemetry resources in the specified namespace. A Telemetry resource configures the behavior of the Istio telemetry system, including metrics collection, access logging, and distributed tracing."
+          "docs": "List all RequestAuthentication resources in the specified namespace. A RequestAuthentication defines the request authentication methods supported by a workload. It will reject requests with invalid authentication information based on configured JWT rules."
         },
         {
           "info": {
-            "name": "Istio Create a Telemetry resource",
+            "name": "Istio Create a RequestAuthentication",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/requestauthentications",
             "params": [
               {
                 "name": "namespace",
@@ -69,16 +69,16 @@
               "data": "{}"
             }
           },
-          "docs": "Create a new Telemetry resource in the specified namespace."
+          "docs": "Create a new RequestAuthentication resource in the specified namespace."
         },
         {
           "info": {
-            "name": "Istio Get a Telemetry resource",
+            "name": "Istio Get a RequestAuthentication",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries/:name",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/requestauthentications/:name",
             "params": [
               {
                 "name": "namespace",
@@ -94,16 +94,16 @@
               }
             ]
           },
-          "docs": "Read the specified Telemetry resource."
+          "docs": "Read the specified RequestAuthentication resource."
         },
         {
           "info": {
-            "name": "Istio Replace a Telemetry resource",
+            "name": "Istio Replace a RequestAuthentication",
             "type": "http"
           },
           "http": {
             "method": "PUT",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries/:name",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/requestauthentications/:name",
             "params": [
               {
                 "name": "namespace",
@@ -123,16 +123,16 @@
               "data": "{}"
             }
           },
-          "docs": "Replace the specified Telemetry resource."
+          "docs": "Replace the specified RequestAuthentication resource."
         },
         {
           "info": {
-            "name": "Istio Delete a Telemetry resource",
+            "name": "Istio Delete a RequestAuthentication",
             "type": "http"
           },
           "http": {
             "method": "DELETE",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries/:name",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/requestauthentications/:name",
             "params": [
               {
                 "name": "namespace",
@@ -148,7 +148,7 @@
               }
             ]
           },
-          "docs": "Delete the specified Telemetry resource."
+          "docs": "Delete the specified RequestAuthentication resource."
         }
       ]
     }

@@ -1,0 +1,1159 @@
+{
+  "item": [
+    {
+      "id": "8e38ffa7-e614-433a-834c-40f2029e341b",
+      "name": "ServiceEntry",
+      "description": {
+        "content": "External service entries added to the mesh service registry",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5353ca22-4890-4d35-99dd-e13adbbf8d98",
+          "name": "Istio List ServiceEntries",
+          "request": {
+            "name": "Istio List ServiceEntries",
+            "description": {
+              "content": "List all ServiceEntry resources in the specified namespace. A ServiceEntry enables adding additional entries into Istio's internal service registry, so that auto-discovered services in the mesh can access and route to these manually specified services.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "serviceentries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "labelSelector",
+                  "value": "<string>",
+                  "description": "A selector to restrict the list of returned objects by their labels"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of resources to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "continue",
+                  "value": "<string>",
+                  "description": "Continue token for paginated list requests"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8127d30e-a8d4-49e3-8df3-010f643afe7d",
+              "name": "Successful response containing list of ServiceEntries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "serviceentries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "continue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"ServiceEntryList\",\n  \"metadata\": {\n    \"resourceVersion\": \"string\",\n    \"continue\": \"string\"\n  },\n  \"items\": [\n    {\n      \"apiVersion\": \"networking.istio.io/v1\",\n      \"kind\": \"ServiceEntry\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\"\n        },\n        \"creationTimestamp\": \"1950-05-07T14:28:15.741Z\",\n        \"resourceVersion\": \"string\"\n      },\n      \"spec\": {\n        \"hosts\": [\n          \"string\",\n          \"string\"\n        ],\n        \"addresses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"ports\": [\n          {\n            \"number\": 927,\n            \"protocol\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"number\": 5734,\n            \"protocol\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"location\": \"MESH_EXTERNAL\",\n        \"resolution\": \"DNS_ROUND_ROBIN\",\n        \"endpoints\": [\n          {\n            \"address\": \"string\",\n            \"ports\": {\n              \"key_0\": 3765,\n              \"key_1\": 969\n            },\n            \"labels\": {\n              \"key_0\": \"string\"\n            }\n          },\n          {\n            \"address\": \"string\",\n            \"ports\": {\n              \"key_0\": 9271,\n              \"key_1\": 4892,\n              \"key_2\": 5053,\n              \"key_3\": 2144,\n              \"key_4\": 5357\n            },\n            \"labels\": {\n              \"key_0\": \"string\",\n              \"key_1\": \"string\"\n            }\n          }\n        ],\n        \"exportTo\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"apiVersion\": \"networking.istio.io/v1\",\n      \"kind\": \"ServiceEntry\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\"\n        },\n        \"creationTimestamp\": \"1996-04-03T17:47:51.289Z\",\n        \"resourceVersion\": \"string\"\n      },\n      \"spec\": {\n        \"hosts\": [\n          \"string\",\n          \"string\"\n        ],\n        \"addresses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"ports\": [\n          {\n            \"number\": 2483,\n            \"protocol\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"number\": 4447,\n            \"protocol\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"location\": \"MESH_EXTERNAL\",\n        \"resolution\": \"DNS_ROUND_ROBIN\",\n        \"endpoints\": [\n          {\n            \"address\": \"string\",\n            \"ports\": {\n              \"key_0\": 7092,\n              \"key_1\": 4270\n            },\n            \"labels\": {\n              \"key_0\": \"string\",\n              \"key_1\": \"string\"\n            }\n          },\n          {\n            \"address\": \"string\",\n            \"ports\": {\n              \"key_0\": 3339\n            },\n            \"labels\": {\n              \"key_0\": \"string\",\n              \"key_1\": \"string\"\n            }\n          }\n        ],\n        \"exportTo\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fb23ada-30e0-4dda-8a23-c77f5e44e1ba",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "serviceentries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "continue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73f55f8b-9170-4542-93e9-a6d922e4541c",
+          "name": "Istio Create a ServiceEntry",
+          "request": {
+            "name": "Istio Create a ServiceEntry",
+            "description": {
+              "content": "Create a new ServiceEntry resource in the specified namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "serviceentries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"labels\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    },\n    \"creationTimestamp\": \"<dateTime>\",\n    \"resourceVersion\": \"<string>\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"addresses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ports\": [\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"location\": \"<string>\",\n    \"resolution\": \"<string>\",\n    \"endpoints\": [\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\",\n          \"key_2\": \"<integer>\",\n          \"key_3\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\"\n        }\n      },\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\"\n        }\n      }\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bdbd191f-55d9-4412-be8d-6025e7396157",
+              "name": "ServiceEntry created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "serviceentries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1978-12-30T03:11:41.808Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"addresses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ports\": [\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"location\": \"<string>\",\n    \"resolution\": \"<string>\",\n    \"endpoints\": [\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      },\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      }\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"networking.istio.io/v1\",\n  \"kind\": \"ServiceEntry\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"creationTimestamp\": \"1957-09-08T09:03:36.395Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"string\",\n      \"string\"\n    ],\n    \"addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"ports\": [\n      {\n        \"number\": 8906,\n        \"protocol\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"number\": 4865,\n        \"protocol\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"location\": \"MESH_EXTERNAL\",\n    \"resolution\": \"DNS\",\n    \"endpoints\": [\n      {\n        \"address\": \"string\",\n        \"ports\": {\n          \"key_0\": 928\n        },\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        }\n      },\n      {\n        \"address\": \"string\",\n        \"ports\": {\n          \"key_0\": 7648\n        },\n        \"labels\": {\n          \"key_0\": \"string\"\n        }\n      }\n    ],\n    \"exportTo\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "244d010d-94dc-4cea-949b-99bf1f1bbccc",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "serviceentries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1978-12-30T03:11:41.808Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"addresses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ports\": [\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"location\": \"<string>\",\n    \"resolution\": \"<string>\",\n    \"endpoints\": [\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      },\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      }\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "144c169f-33ef-4888-a8cd-4a3cf602f547",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "serviceentries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1978-12-30T03:11:41.808Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"addresses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ports\": [\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"location\": \"<string>\",\n    \"resolution\": \"<string>\",\n    \"endpoints\": [\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      },\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      }\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca0bcf0e-4f00-4123-b0fd-b7c6661fac27",
+          "name": "Istio Get a ServiceEntry",
+          "request": {
+            "name": "Istio Get a ServiceEntry",
+            "description": {
+              "content": "Read the specified ServiceEntry resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "serviceentries",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74a40fc0-590a-49ce-8cc8-84feb3aae22c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "serviceentries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"networking.istio.io/v1\",\n  \"kind\": \"ServiceEntry\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"creationTimestamp\": \"1957-09-08T09:03:36.395Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"string\",\n      \"string\"\n    ],\n    \"addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"ports\": [\n      {\n        \"number\": 8906,\n        \"protocol\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"number\": 4865,\n        \"protocol\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"location\": \"MESH_EXTERNAL\",\n    \"resolution\": \"DNS\",\n    \"endpoints\": [\n      {\n        \"address\": \"string\",\n        \"ports\": {\n          \"key_0\": 928\n        },\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        }\n      },\n      {\n        \"address\": \"string\",\n        \"ports\": {\n          \"key_0\": 7648\n        },\n        \"labels\": {\n          \"key_0\": \"string\"\n        }\n      }\n    ],\n    \"exportTo\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2063b1b7-5e41-48c4-a0d5-3668a5271067",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "serviceentries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "619b5f0d-6599-4ba8-a6af-aef0751624a0",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "serviceentries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad987964-449b-4567-86bd-4aebc5575ecd",
+          "name": "Istio Replace a ServiceEntry",
+          "request": {
+            "name": "Istio Replace a ServiceEntry",
+            "description": {
+              "content": "Replace the specified ServiceEntry resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "serviceentries",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"labels\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    },\n    \"creationTimestamp\": \"<dateTime>\",\n    \"resourceVersion\": \"<string>\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"addresses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ports\": [\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"location\": \"<string>\",\n    \"resolution\": \"<string>\",\n    \"endpoints\": [\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\",\n          \"key_2\": \"<integer>\",\n          \"key_3\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\"\n        }\n      },\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\"\n        }\n      }\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8aba07a4-4124-4d59-83ca-e42c58090124",
+              "name": "ServiceEntry replaced",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "serviceentries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1978-12-30T03:11:41.808Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"addresses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ports\": [\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"location\": \"<string>\",\n    \"resolution\": \"<string>\",\n    \"endpoints\": [\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      },\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      }\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"networking.istio.io/v1\",\n  \"kind\": \"ServiceEntry\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"creationTimestamp\": \"1957-09-08T09:03:36.395Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"string\",\n      \"string\"\n    ],\n    \"addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"ports\": [\n      {\n        \"number\": 8906,\n        \"protocol\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"number\": 4865,\n        \"protocol\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"location\": \"MESH_EXTERNAL\",\n    \"resolution\": \"DNS\",\n    \"endpoints\": [\n      {\n        \"address\": \"string\",\n        \"ports\": {\n          \"key_0\": 928\n        },\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        }\n      },\n      {\n        \"address\": \"string\",\n        \"ports\": {\n          \"key_0\": 7648\n        },\n        \"labels\": {\n          \"key_0\": \"string\"\n        }\n      }\n    ],\n    \"exportTo\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35e77774-cf32-494a-bac7-3e1516632209",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "serviceentries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1978-12-30T03:11:41.808Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"addresses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ports\": [\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"location\": \"<string>\",\n    \"resolution\": \"<string>\",\n    \"endpoints\": [\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      },\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      }\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e7c3a28-7f4a-44fa-9000-18b26fe075c4",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "serviceentries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"1978-12-30T03:11:41.808Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"hosts\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"addresses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ports\": [\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"location\": \"<string>\",\n    \"resolution\": \"<string>\",\n    \"endpoints\": [\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      },\n      {\n        \"address\": \"<string>\",\n        \"ports\": {\n          \"key_0\": \"<integer>\",\n          \"key_1\": \"<integer>\"\n        },\n        \"labels\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      }\n    ],\n    \"exportTo\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95aeb8ff-f0ea-49f1-99df-f8a42cfc0b5e",
+          "name": "Istio Delete a ServiceEntry",
+          "request": {
+            "name": "Istio Delete a ServiceEntry",
+            "description": {
+              "content": "Delete the specified ServiceEntry resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "serviceentries",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "085dc095-f680-4d5a-900a-784a90b21ae1",
+              "name": "ServiceEntry deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "serviceentries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "534a1931-ae4a-4a8a-8ca6-e1e17b7a6200",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "serviceentries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b25a9d6e-e9d8-426f-ade8-3482e7118619",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "serviceentries",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Kubernetes API server hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "kubernetes.default.svc",
+      "key": "cluster"
+    },
+    {
+      "type": "string",
+      "value": "https://{{cluster}}/apis/extensions.istio.io/v1alpha1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f018cfa0-1e14-459b-b85b-fe53391e4913",
+    "name": "Istio Extensions AuthorizationPolicy ServiceEntry API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.\n\nContact Support:\n Name: Istio",
+      "type": "text/plain"
+    }
+  }
+}

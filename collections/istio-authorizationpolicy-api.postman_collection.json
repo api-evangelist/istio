@@ -1,0 +1,1159 @@
+{
+  "item": [
+    {
+      "id": "77258e38-1ddd-45ba-b308-417cbcfe014d",
+      "name": "AuthorizationPolicy",
+      "description": {
+        "content": "Fine-grained access control policies for workloads",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f22a584a-032f-4a9a-afb2-fc068cee7dff",
+          "name": "Istio List AuthorizationPolicies",
+          "request": {
+            "name": "Istio List AuthorizationPolicies",
+            "description": {
+              "content": "List all AuthorizationPolicy resources in the specified namespace. An AuthorizationPolicy enables access control on workloads in the mesh, supporting ALLOW, DENY, AUDIT, and CUSTOM actions based on source, operation, and condition matching.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "authorizationpolicies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "labelSelector",
+                  "value": "<string>",
+                  "description": "A selector to restrict the list of returned objects by their labels"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of resources to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "continue",
+                  "value": "<string>",
+                  "description": "Continue token for paginated list requests"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5dd500a0-9720-459b-a904-8fb876b36d30",
+              "name": "Successful response containing list of AuthorizationPolicies",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "authorizationpolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "continue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"AuthorizationPolicyList\",\n  \"metadata\": {\n    \"resourceVersion\": \"string\",\n    \"continue\": \"string\"\n  },\n  \"items\": [\n    {\n      \"apiVersion\": \"security.istio.io/v1\",\n      \"kind\": \"AuthorizationPolicy\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"creationTimestamp\": \"2013-05-22T01:43:41.004Z\",\n        \"resourceVersion\": \"string\"\n      },\n      \"spec\": {\n        \"selector\": {\n          \"matchLabels\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          }\n        },\n        \"action\": \"CUSTOM\",\n        \"provider\": {\n          \"name\": \"string\"\n        },\n        \"rules\": [\n          {\n            \"from\": [\n              {\n                \"source\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"source\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"to\": [\n              {\n                \"operation\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"operation\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"when\": [\n              {\n                \"key\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"values\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"notValues\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"key\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"values\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"notValues\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          {\n            \"from\": [\n              {\n                \"source\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"source\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"to\": [\n              {\n                \"operation\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"operation\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"when\": [\n              {\n                \"key\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"values\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"notValues\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"key\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"values\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"notValues\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        ],\n        \"targetRefs\": [\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      }\n    },\n    {\n      \"apiVersion\": \"security.istio.io/v1\",\n      \"kind\": \"AuthorizationPolicy\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\"\n        },\n        \"creationTimestamp\": \"1958-09-03T19:42:03.774Z\",\n        \"resourceVersion\": \"string\"\n      },\n      \"spec\": {\n        \"selector\": {\n          \"matchLabels\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"action\": \"DENY\",\n        \"provider\": {\n          \"name\": \"string\"\n        },\n        \"rules\": [\n          {\n            \"from\": [\n              {\n                \"source\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"source\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"to\": [\n              {\n                \"operation\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"operation\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"when\": [\n              {\n                \"key\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"values\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"notValues\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"key\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"values\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"notValues\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          {\n            \"from\": [\n              {\n                \"source\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"source\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"to\": [\n              {\n                \"operation\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"operation\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"when\": [\n              {\n                \"key\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"values\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"notValues\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"key\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"values\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"notValues\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        ],\n        \"targetRefs\": [\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"kind\": \"string\",\n            \"group\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27679779-3ce2-4765-b995-8faf5d6a3b23",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "authorizationpolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "continue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "680d1afc-2d02-44f7-afae-87eb11263ca3",
+          "name": "Istio Create an AuthorizationPolicy",
+          "request": {
+            "name": "Istio Create an AuthorizationPolicy",
+            "description": {
+              "content": "Create a new AuthorizationPolicy resource in the specified namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "authorizationpolicies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"creationTimestamp\": \"<dateTime>\",\n    \"resourceVersion\": \"<string>\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    },\n    \"action\": \"<string>\",\n    \"provider\": {\n      \"name\": \"<string>\"\n    },\n    \"rules\": [\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"requestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notRequestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"namespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notNamespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ipBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notIpBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"requestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notRequestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"namespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notNamespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ipBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notIpBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notHosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ports\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPorts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"methods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notMethods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"paths\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPaths\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notHosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ports\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPorts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"methods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notMethods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"paths\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPaths\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"notValues\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"notValues\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ]\n      },\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"requestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notRequestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"namespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notNamespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ipBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notIpBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"requestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notRequestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"namespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notNamespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ipBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notIpBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notHosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ports\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPorts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"methods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notMethods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"paths\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPaths\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notHosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ports\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPorts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"methods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notMethods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"paths\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPaths\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"notValues\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"notValues\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "69943f94-d22d-4055-a259-94e0f1079d2e",
+              "name": "AuthorizationPolicy created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "authorizationpolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\",\n      \"key_4\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1983-12-03T17:28:13.679Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"action\": \"<string>\",\n    \"provider\": {\n      \"name\": \"<string>\"\n    },\n    \"rules\": [\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      },\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"security.istio.io/v1\",\n  \"kind\": \"AuthorizationPolicy\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"2010-12-11T04:38:30.219Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    \"action\": \"ALLOW\",\n    \"provider\": {\n      \"name\": \"string\"\n    },\n    \"rules\": [\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      },\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56fd76f4-c0db-4a03-b841-fb53197e9d6a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "authorizationpolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\",\n      \"key_4\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1983-12-03T17:28:13.679Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"action\": \"<string>\",\n    \"provider\": {\n      \"name\": \"<string>\"\n    },\n    \"rules\": [\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      },\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6478f108-0f3d-42a1-b0ad-7408afc95c7c",
+              "name": "Conflict - resource already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "authorizationpolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\",\n      \"key_4\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1983-12-03T17:28:13.679Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"action\": \"<string>\",\n    \"provider\": {\n      \"name\": \"<string>\"\n    },\n    \"rules\": [\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      },\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "785240b8-31f4-46ad-88a0-7ef66914371a",
+          "name": "Istio Get an AuthorizationPolicy",
+          "request": {
+            "name": "Istio Get an AuthorizationPolicy",
+            "description": {
+              "content": "Read the specified AuthorizationPolicy resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "authorizationpolicies",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b6bfd428-5ed5-4731-82f5-946c46919377",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "authorizationpolicies",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"security.istio.io/v1\",\n  \"kind\": \"AuthorizationPolicy\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"2010-12-11T04:38:30.219Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    \"action\": \"ALLOW\",\n    \"provider\": {\n      \"name\": \"string\"\n    },\n    \"rules\": [\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      },\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71dd3e63-0aa9-404b-8ab6-4ccf45c4bab1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "authorizationpolicies",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a10d46c6-f31b-45a1-9b10-0cb1c6dc1c07",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "authorizationpolicies",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1aeced44-d8c8-45a4-9bdc-a1a9adb9efaa",
+          "name": "Istio Replace an AuthorizationPolicy",
+          "request": {
+            "name": "Istio Replace an AuthorizationPolicy",
+            "description": {
+              "content": "Replace the specified AuthorizationPolicy resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "authorizationpolicies",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"creationTimestamp\": \"<dateTime>\",\n    \"resourceVersion\": \"<string>\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    },\n    \"action\": \"<string>\",\n    \"provider\": {\n      \"name\": \"<string>\"\n    },\n    \"rules\": [\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"requestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notRequestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"namespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notNamespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ipBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notIpBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"requestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notRequestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"namespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notNamespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ipBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notIpBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notHosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ports\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPorts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"methods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notMethods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"paths\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPaths\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notHosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ports\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPorts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"methods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notMethods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"paths\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPaths\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"notValues\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"notValues\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ]\n      },\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"requestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notRequestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"namespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notNamespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ipBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notIpBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"requestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notRequestPrincipals\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"namespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notNamespaces\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ipBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notIpBlocks\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notHosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ports\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPorts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"methods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notMethods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"paths\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPaths\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notHosts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ports\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPorts\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"methods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notMethods\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"paths\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"notPaths\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"notValues\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"notValues\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "58d76a78-5dd0-48a8-816c-cde483b9fa3f",
+              "name": "AuthorizationPolicy replaced",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "authorizationpolicies",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\",\n      \"key_4\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1983-12-03T17:28:13.679Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"action\": \"<string>\",\n    \"provider\": {\n      \"name\": \"<string>\"\n    },\n    \"rules\": [\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      },\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"security.istio.io/v1\",\n  \"kind\": \"AuthorizationPolicy\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"creationTimestamp\": \"2010-12-11T04:38:30.219Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    \"action\": \"ALLOW\",\n    \"provider\": {\n      \"name\": \"string\"\n    },\n    \"rules\": [\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      },\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"kind\": \"string\",\n        \"group\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26577b52-cca6-4263-b8ee-fb19909d2437",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "authorizationpolicies",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\",\n      \"key_4\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1983-12-03T17:28:13.679Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"action\": \"<string>\",\n    \"provider\": {\n      \"name\": \"<string>\"\n    },\n    \"rules\": [\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      },\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "db17e6b1-e280-485a-8c04-201f81342d48",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "authorizationpolicies",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\",\n      \"key_4\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    },\n    \"creationTimestamp\": \"1983-12-03T17:28:13.679Z\",\n    \"resourceVersion\": \"string\"\n  },\n  \"spec\": {\n    \"selector\": {\n      \"matchLabels\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"action\": \"<string>\",\n    \"provider\": {\n      \"name\": \"<string>\"\n    },\n    \"rules\": [\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      },\n      {\n        \"from\": [\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"source\": {\n              \"principals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"requestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notRequestPrincipals\": [\n                \"string\",\n                \"string\"\n              ],\n              \"namespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notNamespaces\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ipBlocks\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notIpBlocks\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"to\": [\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          },\n          {\n            \"operation\": {\n              \"hosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notHosts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"ports\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPorts\": [\n                \"string\",\n                \"string\"\n              ],\n              \"methods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notMethods\": [\n                \"string\",\n                \"string\"\n              ],\n              \"paths\": [\n                \"string\",\n                \"string\"\n              ],\n              \"notPaths\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          }\n        ],\n        \"when\": [\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ],\n            \"notValues\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ]\n      }\n    ],\n    \"targetRefs\": [\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"kind\": \"<string>\",\n        \"group\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0208b3e1-4d15-4664-aae9-8f3a846e4ee5",
+          "name": "Istio Delete an AuthorizationPolicy",
+          "request": {
+            "name": "Istio Delete an AuthorizationPolicy",
+            "description": {
+              "content": "Delete the specified AuthorizationPolicy resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "authorizationpolicies",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The resource name"
+                },
+                {
+                  "description": "Kubernetes API server hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce23912f-aa09-4c7e-93e1-01b892543388",
+              "name": "AuthorizationPolicy deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "authorizationpolicies",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "907a10e4-ad96-4042-892f-560d77d14d9b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "authorizationpolicies",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "988e3159-7f81-4cb3-a9fe-9e7e9eb78bda",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "authorizationpolicies",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The Kubernetes namespace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The resource name"
+                    },
+                    {
+                      "description": "Kubernetes API server hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Kubernetes API server hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "kubernetes.default.svc",
+      "key": "cluster"
+    },
+    {
+      "type": "string",
+      "value": "https://{{cluster}}/apis/extensions.istio.io/v1alpha1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0749e198-2b11-415b-a449-2097cd5df104",
+    "name": "Istio Extensions AuthorizationPolicy API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.\n\nContact Support:\n Name: Istio",
+      "type": "text/plain"
+    }
+  }
+}

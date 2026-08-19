@@ -1,24 +1,24 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Istio Extensions AuthorizationPolicy Telemetry API",
+    "name": "Istio Extensions AuthorizationPolicy DestinationRule API",
     "version": "v1alpha1"
   },
   "items": [
     {
       "info": {
-        "name": "Telemetry",
+        "name": "DestinationRule",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Istio List Telemetry resources",
+            "name": "Istio List DestinationRules",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/destinationrules",
             "params": [
               {
                 "name": "namespace",
@@ -46,16 +46,16 @@
               }
             ]
           },
-          "docs": "List all Telemetry resources in the specified namespace. A Telemetry resource configures the behavior of the Istio telemetry system, including metrics collection, access logging, and distributed tracing."
+          "docs": "List all DestinationRule resources in the specified namespace. A DestinationRule defines policies that apply to traffic intended for a service after routing has occurred, including load balancing, connection pool size, and outlier detection settings."
         },
         {
           "info": {
-            "name": "Istio Create a Telemetry resource",
+            "name": "Istio Create a DestinationRule",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/destinationrules",
             "params": [
               {
                 "name": "namespace",
@@ -69,16 +69,16 @@
               "data": "{}"
             }
           },
-          "docs": "Create a new Telemetry resource in the specified namespace."
+          "docs": "Create a new DestinationRule resource in the specified namespace."
         },
         {
           "info": {
-            "name": "Istio Get a Telemetry resource",
+            "name": "Istio Get a DestinationRule",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries/:name",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/destinationrules/:name",
             "params": [
               {
                 "name": "namespace",
@@ -94,16 +94,16 @@
               }
             ]
           },
-          "docs": "Read the specified Telemetry resource."
+          "docs": "Read the specified DestinationRule resource."
         },
         {
           "info": {
-            "name": "Istio Replace a Telemetry resource",
+            "name": "Istio Replace a DestinationRule",
             "type": "http"
           },
           "http": {
             "method": "PUT",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries/:name",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/destinationrules/:name",
             "params": [
               {
                 "name": "namespace",
@@ -123,16 +123,16 @@
               "data": "{}"
             }
           },
-          "docs": "Replace the specified Telemetry resource."
+          "docs": "Replace the specified DestinationRule resource."
         },
         {
           "info": {
-            "name": "Istio Delete a Telemetry resource",
+            "name": "Istio Delete a DestinationRule",
             "type": "http"
           },
           "http": {
             "method": "DELETE",
-            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/telemetries/:name",
+            "url": "https://{cluster}/apis/extensions.istio.io/v1alpha1/namespaces/:namespace/destinationrules/:name",
             "params": [
               {
                 "name": "namespace",
@@ -148,7 +148,7 @@
               }
             ]
           },
-          "docs": "Delete the specified Telemetry resource."
+          "docs": "Delete the specified DestinationRule resource."
         }
       ]
     }
