@@ -47,6 +47,11 @@ apis:
 - aid: istio:operator-api
   name: Istio Operator API
   tags:
+  - Installations
+  - Kubernetes
+  - Operator
+  - Service Mesh
+  tags_raw:
   - Installation
   - Kubernetes
   - Operator
@@ -472,6 +477,12 @@ apis:
     url: json-schema/wasm-plugin.json
 name: Istio
 tags:
+  - CNCF
+  - Kubernetes
+  - Microservices
+  - Open-Source
+  - Service Mesh
+tags_raw:
   - CNCF
   - Kubernetes
   - Microservices
