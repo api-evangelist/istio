@@ -489,6 +489,18 @@ tags_raw:
   - Open Source
   - Service Mesh
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
@@ -518,6 +530,9 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+  - type: CapabilityMap
+    url: capabilities/istio-capability-edges.yml
+    name: Istio Business Capability Map
   - type: AgenticAccess
     url: agentic-access/istio-agentic-access.yml
   - type: DomainSecurity
