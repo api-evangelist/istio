@@ -508,17 +508,18 @@ accessModel:
   try_now: true
   public: false
   label: Free · Self-serve signup
-  confidence: high
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/istio.png
 access: 3rd-Party
 created: '2025-06-05'
 modified: '2026-05-19'
-position: Consumer
+position: Consuming
 description: >-
   Istio is an open-source service mesh platform that provides a comprehensive solution for managing, securing, and
   monitoring microservices in a distributed system. It acts as a middle layer between services, handling communication,
