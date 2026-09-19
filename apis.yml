@@ -147,6 +147,8 @@ apis:
   description: Load balancer configuration at the edge of the mesh
   humanURL: https://istio.io/latest/docs/reference/config/networking/
   tags:
+  - Gateways
+  tags_raw:
   - Gateway
   properties:
   - type: OpenAPI
@@ -482,8 +484,8 @@ tags:
   - Microservices
   - Open-Source
   - Service Mesh
-  - Istio
 tags_raw:
+  - Istio
   - CNCF
   - Kubernetes
   - Microservices
