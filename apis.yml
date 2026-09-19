@@ -479,6 +479,7 @@ apis:
     url: json-schema/wasm-plugin.json
 name: Istio
 tags:
+  - Istio
   - CNCF
   - Kubernetes
   - Microservices
