@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Istio Extensions AuthorizationPolicy RequestAuthentication API
-  description: The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.
-  version: v1alpha1
+  title: Istio Security Request Authentication API
+  description: The Istio Security API (security.istio.io) provides configuration resources for managing security policies within an Istio service mesh. It includes AuthorizationPolicy for fine-grained access control on workloads, PeerAuthentication for configuring mutual TLS (mTLS) between service proxies, and RequestAuthentication for validating JWT tokens attached to incoming requests. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.
+  version: v1
   contact:
     name: Istio
     url: https://istio.io/
@@ -10,8 +10,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-- url: https://{cluster}/apis/extensions.istio.io/v1alpha1
-  description: Kubernetes API server endpoint for Istio Extensions v1alpha1
+- url: https://{cluster}/apis/security.istio.io/v1
+  description: Kubernetes API server endpoint for Istio Security v1
   variables:
     cluster:
       default: kubernetes.default.svc
@@ -139,17 +139,23 @@ components:
       description: A selector to restrict the list of returned objects by their labels
       schema:
         type: string
-    continue:
-      name: continue
-      in: query
-      description: Continue token for paginated list requests
-      schema:
-        type: string
     name:
       name: name
       in: path
       required: true
       description: The resource name
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
       schema:
         type: string
     namespace:
@@ -159,12 +165,6 @@ components:
       description: The Kubernetes namespace
       schema:
         type: string
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of resources to return
-      schema:
-        type: integer
   schemas:
     RequestAuthenticationList:
       type: object
@@ -268,6 +268,13 @@ components:
                   name:
                     type: string
               description: References to the target resources.
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
     ObjectMeta:
       type: object
       properties:
@@ -290,18 +297,11 @@ components:
           format: date-time
         resourceVersion:
           type: string
-    ListMeta:
-      type: object
-      properties:
-        resourceVersion:
-          type: string
-        continue:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
       description: Kubernetes API server bearer token authentication
 externalDocs:
-  description: Istio Extensions Configuration Reference
-  url: https://istio.io/latest/docs/reference/config/
+  description: Istio Security Configuration Reference
+  url: https://istio.io/latest/docs/reference/config/security/

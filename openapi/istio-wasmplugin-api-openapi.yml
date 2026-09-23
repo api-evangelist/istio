@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Istio Extensions AuthorizationPolicy WasmPlugin API
+  title: Istio Extensions Wasm Plugin API
   description: The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.
   version: v1alpha1
   contact:
@@ -132,6 +132,39 @@ paths:
         '404':
           description: Not found
 components:
+  parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
   schemas:
     WasmPlugin:
       type: object
@@ -261,6 +294,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/WasmPlugin'
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
     ObjectMeta:
       type: object
       properties:
@@ -283,46 +323,6 @@ components:
           format: date-time
         resourceVersion:
           type: string
-    ListMeta:
-      type: object
-      properties:
-        resourceVersion:
-          type: string
-        continue:
-          type: string
-  parameters:
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: A selector to restrict the list of returned objects by their labels
-      schema:
-        type: string
-    continue:
-      name: continue
-      in: query
-      description: Continue token for paginated list requests
-      schema:
-        type: string
-    name:
-      name: name
-      in: path
-      required: true
-      description: The resource name
-      schema:
-        type: string
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: The Kubernetes namespace
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of resources to return
-      schema:
-        type: integer
   securitySchemes:
     BearerAuth:
       type: http

@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Istio Extensions AuthorizationPolicy WorkloadEntry API
-  description: The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.
-  version: v1alpha1
+  title: Istio Networking Workload Entry API
+  description: The Istio Networking API (networking.istio.io) provides configuration resources for traffic management within an Istio service mesh.
+  version: v1
   contact:
     name: Istio
     url: https://istio.io/
@@ -10,8 +10,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-- url: https://{cluster}/apis/extensions.istio.io/v1alpha1
-  description: Kubernetes API server endpoint for Istio Extensions v1alpha1
+- url: https://{cluster}/apis/networking.istio.io/v1
+  description: Kubernetes API server endpoint for Istio Networking v1
   variables:
     cluster:
       default: kubernetes.default.svc
@@ -139,17 +139,23 @@ components:
       description: A selector to restrict the list of returned objects by their labels
       schema:
         type: string
-    continue:
-      name: continue
-      in: query
-      description: Continue token for paginated list requests
-      schema:
-        type: string
     name:
       name: name
       in: path
       required: true
       description: The resource name
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
       schema:
         type: string
     namespace:
@@ -159,39 +165,22 @@ components:
       description: The Kubernetes namespace
       schema:
         type: string
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of resources to return
-      schema:
-        type: integer
   schemas:
-    ObjectMeta:
+    WorkloadEntryList:
       type: object
       properties:
-        name:
+        apiVersion:
           type: string
-          description: Name of the resource
-        namespace:
+        kind:
           type: string
-          description: Namespace of the resource
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-          description: Map of string keys and values for organizing resources
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-          description: Unstructured key-value map for storing arbitrary metadata
-        creationTimestamp:
-          type: string
-          format: date-time
-          description: Timestamp representing the server time when this object was created
-        resourceVersion:
-          type: string
-          description: An opaque value that represents the internal version of this object
+          enum:
+          - WorkloadEntryList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkloadEntry'
     WorkloadEntry:
       type: object
       properties:
@@ -233,21 +222,6 @@ components:
             serviceAccount:
               type: string
               description: The service account associated with the workload.
-    WorkloadEntryList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          enum:
-          - WorkloadEntryList
-        metadata:
-          $ref: '#/components/schemas/ListMeta'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkloadEntry'
     ListMeta:
       type: object
       properties:
@@ -255,11 +229,37 @@ components:
           type: string
         continue:
           type: string
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of string keys and values for organizing resources
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Unstructured key-value map for storing arbitrary metadata
+        creationTimestamp:
+          type: string
+          format: date-time
+          description: Timestamp representing the server time when this object was created
+        resourceVersion:
+          type: string
+          description: An opaque value that represents the internal version of this object
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
       description: Kubernetes API server bearer token authentication
 externalDocs:
-  description: Istio Extensions Configuration Reference
-  url: https://istio.io/latest/docs/reference/config/
+  description: Istio Networking Configuration Reference
+  url: https://istio.io/latest/docs/reference/config/networking/

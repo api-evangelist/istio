@@ -1,36 +1,48 @@
 {
   "provider": "istio",
   "sources": [
-    "istio-authorizationpolicy-api-openapi.yml",
-    "istio-destinationrule-api-openapi.yml",
-    "istio-gateway-api-openapi.yml",
-    "istio-peerauthentication-api-openapi.yml",
-    "istio-requestauthentication-api-openapi.yml",
-    "istio-serviceentry-api-openapi.yml",
-    "istio-sidecar-api-openapi.yml",
-    "istio-telemetry-api-openapi.yml",
-    "istio-virtualservice-api-openapi.yml",
-    "istio-wasmplugin-api-openapi.yml",
-    "istio-workloadentry-api-openapi.yml",
-    "istio-workloadgroup-api-openapi.yml"
+    "_original/istio-extensions-api-openapi.yml",
+    "_original/istio-networking-api-openapi.yml",
+    "_original/istio-security-api-openapi.yml",
+    "istio-telemetry-api-openapi.yml"
   ],
   "outputs": [
-    "istio-authorizationpolicy-api-openapi.yml",
+    "istio-wasmplugin-api-openapi.yml",
     "istio-destinationrule-api-openapi.yml",
     "istio-gateway-api-openapi.yml",
-    "istio-peerauthentication-api-openapi.yml",
-    "istio-requestauthentication-api-openapi.yml",
     "istio-serviceentry-api-openapi.yml",
     "istio-sidecar-api-openapi.yml",
-    "istio-telemetry-api-openapi.yml",
     "istio-virtualservice-api-openapi.yml",
-    "istio-wasmplugin-api-openapi.yml",
     "istio-workloadentry-api-openapi.yml",
-    "istio-workloadgroup-api-openapi.yml"
+    "istio-workloadgroup-api-openapi.yml",
+    "istio-authorizationpolicy-api-openapi.yml",
+    "istio-peerauthentication-api-openapi.yml",
+    "istio-requestauthentication-api-openapi.yml",
+    "istio-telemetry-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
-  "warnings": [],
-  "notes": [],
-  "skipped": []
+  "warnings": [
+    "istio-telemetry-api-openapi.yml: previously refined output kept for 5 operation(s) no archived document covers (e.g. /namespaces/{namespace}/telemetries get, /namespaces/{namespace}/telemetries post, /namespaces/{namespace}/telemetries/{name} delete); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
+  ],
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "istio-extensions-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "istio-networking-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "istio-security-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "istio-authorizationpolicy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "istio-destinationrule-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "istio-gateway-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "istio-peerauthentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "istio-requestauthentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "istio-serviceentry-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "istio-sidecar-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "istio-virtualservice-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "istio-wasmplugin-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "istio-workloadentry-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "istio-workloadgroup-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

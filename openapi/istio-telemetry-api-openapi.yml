@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Istio Extensions AuthorizationPolicy Telemetry API
   description: The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle. These resources are defined as Kubernetes Custom Resource Definitions (CRDs) and are accessed via the Kubernetes API server.
@@ -139,17 +139,23 @@ components:
       description: A selector to restrict the list of returned objects by their labels
       schema:
         type: string
-    continue:
-      name: continue
-      in: query
-      description: Continue token for paginated list requests
-      schema:
-        type: string
     name:
       name: name
       in: path
       required: true
       description: The resource name
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
       schema:
         type: string
     namespace:
@@ -159,28 +165,7 @@ components:
       description: The Kubernetes namespace
       schema:
         type: string
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of resources to return
-      schema:
-        type: integer
   schemas:
-    TelemetryList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          enum:
-          - TelemetryList
-        metadata:
-          $ref: '#/components/schemas/ListMeta'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Telemetry'
     Telemetry:
       type: object
       properties:
@@ -350,6 +335,28 @@ components:
                   name:
                     type: string
               description: References to the target resources.
+    TelemetryList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+          - TelemetryList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Telemetry'
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
     ObjectMeta:
       type: object
       properties:
@@ -371,13 +378,6 @@ components:
           type: string
           format: date-time
         resourceVersion:
-          type: string
-    ListMeta:
-      type: object
-      properties:
-        resourceVersion:
-          type: string
-        continue:
           type: string
   securitySchemes:
     BearerAuth:
