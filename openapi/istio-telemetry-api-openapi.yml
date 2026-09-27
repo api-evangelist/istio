@@ -132,40 +132,36 @@ paths:
         '404':
           description: Not found
 components:
-  parameters:
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: A selector to restrict the list of returned objects by their labels
-      schema:
-        type: string
-    name:
-      name: name
-      in: path
-      required: true
-      description: The resource name
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of resources to return
-      schema:
-        type: integer
-    continue:
-      name: continue
-      in: query
-      description: Continue token for paginated list requests
-      schema:
-        type: string
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: The Kubernetes namespace
-      schema:
-        type: string
   schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        resourceVersion:
+          type: string
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
     Telemetry:
       type: object
       properties:
@@ -350,35 +346,39 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Telemetry'
-    ListMeta:
-      type: object
-      properties:
-        resourceVersion:
-          type: string
-        continue:
-          type: string
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the resource
-        namespace:
-          type: string
-          description: Namespace of the resource
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        resourceVersion:
-          type: string
+  parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http

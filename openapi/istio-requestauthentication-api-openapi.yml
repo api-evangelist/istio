@@ -132,55 +132,7 @@ paths:
         '404':
           description: Not found
 components:
-  parameters:
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: A selector to restrict the list of returned objects by their labels
-      schema:
-        type: string
-    name:
-      name: name
-      in: path
-      required: true
-      description: The resource name
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of resources to return
-      schema:
-        type: integer
-    continue:
-      name: continue
-      in: query
-      description: Continue token for paginated list requests
-      schema:
-        type: string
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: The Kubernetes namespace
-      schema:
-        type: string
   schemas:
-    RequestAuthenticationList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          enum:
-          - RequestAuthenticationList
-        metadata:
-          $ref: '#/components/schemas/ListMeta'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/RequestAuthentication'
     RequestAuthentication:
       type: object
       properties:
@@ -268,13 +220,6 @@ components:
                   name:
                     type: string
               description: References to the target resources.
-    ListMeta:
-      type: object
-      properties:
-        resourceVersion:
-          type: string
-        continue:
-          type: string
     ObjectMeta:
       type: object
       properties:
@@ -297,6 +242,61 @@ components:
           format: date-time
         resourceVersion:
           type: string
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
+    RequestAuthenticationList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+          - RequestAuthenticationList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RequestAuthentication'
+  parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http

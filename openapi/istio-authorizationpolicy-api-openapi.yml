@@ -132,40 +132,29 @@ paths:
         '404':
           description: Not found
 components:
-  parameters:
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: A selector to restrict the list of returned objects by their labels
-      schema:
-        type: string
-    name:
-      name: name
-      in: path
-      required: true
-      description: The resource name
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of resources to return
-      schema:
-        type: integer
-    continue:
-      name: continue
-      in: query
-      description: Continue token for paginated list requests
-      schema:
-        type: string
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: The Kubernetes namespace
-      schema:
-        type: string
   schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        resourceVersion:
+          type: string
     AuthorizationPolicy:
       type: object
       properties:
@@ -221,21 +210,13 @@ components:
                   name:
                     type: string
               description: References to the target resources to which the policy applies.
-    AuthorizationPolicyList:
+    ListMeta:
       type: object
       properties:
-        apiVersion:
+        resourceVersion:
           type: string
-        kind:
+        continue:
           type: string
-          enum:
-          - AuthorizationPolicyList
-        metadata:
-          $ref: '#/components/schemas/ListMeta'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AuthorizationPolicy'
     AuthorizationRule:
       type: object
       properties:
@@ -346,35 +327,54 @@ components:
                 items:
                   type: string
           description: Additional conditions to match.
-    ListMeta:
+    AuthorizationPolicyList:
       type: object
       properties:
-        resourceVersion:
+        apiVersion:
           type: string
-        continue:
+        kind:
           type: string
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the resource
-        namespace:
-          type: string
-          description: Namespace of the resource
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        resourceVersion:
-          type: string
+          enum:
+          - AuthorizationPolicyList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthorizationPolicy'
+  parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http
