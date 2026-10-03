@@ -133,6 +133,13 @@ paths:
           description: Not found
 components:
   schemas:
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
     ObjectMeta:
       type: object
       properties:
@@ -159,21 +166,6 @@ components:
         resourceVersion:
           type: string
           description: An opaque value that represents the internal version of this object
-    GatewayList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          enum:
-          - GatewayList
-        metadata:
-          $ref: '#/components/schemas/ListMeta'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Gateway'
     Gateway:
       type: object
       properties:
@@ -221,18 +213,40 @@ components:
                     type: object
                     description: TLS options for the gateway.
               description: A list of server specifications describing the properties of the proxy on a given load balancer port.
-    ListMeta:
+    GatewayList:
       type: object
       properties:
-        resourceVersion:
+        apiVersion:
           type: string
-        continue:
+        kind:
           type: string
+          enum:
+          - GatewayList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Gateway'
   parameters:
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
     labelSelector:
       name: labelSelector
       in: query
       description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
       schema:
         type: string
     limit:
@@ -241,24 +255,10 @@ components:
       description: Maximum number of resources to return
       schema:
         type: integer
-    name:
-      name: name
-      in: path
-      required: true
-      description: The resource name
-      schema:
-        type: string
     continue:
       name: continue
       in: query
       description: Continue token for paginated list requests
-      schema:
-        type: string
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: The Kubernetes namespace
       schema:
         type: string
   securitySchemes:

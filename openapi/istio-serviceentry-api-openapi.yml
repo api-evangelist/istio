@@ -254,10 +254,24 @@ components:
           items:
             $ref: '#/components/schemas/ServiceEntry'
   parameters:
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
     labelSelector:
       name: labelSelector
       in: query
       description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
       schema:
         type: string
     limit:
@@ -266,24 +280,10 @@ components:
       description: Maximum number of resources to return
       schema:
         type: integer
-    name:
-      name: name
-      in: path
-      required: true
-      description: The resource name
-      schema:
-        type: string
     continue:
       name: continue
       in: query
       description: Continue token for paginated list requests
-      schema:
-        type: string
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: The Kubernetes namespace
       schema:
         type: string
   securitySchemes:

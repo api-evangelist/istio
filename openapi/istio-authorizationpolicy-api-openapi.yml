@@ -133,6 +133,21 @@ paths:
           description: Not found
 components:
   schemas:
+    AuthorizationPolicyList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+          - AuthorizationPolicyList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthorizationPolicy'
     ObjectMeta:
       type: object
       properties:
@@ -210,13 +225,6 @@ components:
                   name:
                     type: string
               description: References to the target resources to which the policy applies.
-    ListMeta:
-      type: object
-      properties:
-        resourceVersion:
-          type: string
-        continue:
-          type: string
     AuthorizationRule:
       type: object
       properties:
@@ -327,26 +335,32 @@ components:
                 items:
                   type: string
           description: Additional conditions to match.
-    AuthorizationPolicyList:
+    ListMeta:
       type: object
       properties:
-        apiVersion:
+        resourceVersion:
           type: string
-        kind:
+        continue:
           type: string
-          enum:
-          - AuthorizationPolicyList
-        metadata:
-          $ref: '#/components/schemas/ListMeta'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AuthorizationPolicy'
   parameters:
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
     labelSelector:
       name: labelSelector
       in: query
       description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
       schema:
         type: string
     limit:
@@ -355,24 +369,10 @@ components:
       description: Maximum number of resources to return
       schema:
         type: integer
-    name:
-      name: name
-      in: path
-      required: true
-      description: The resource name
-      schema:
-        type: string
     continue:
       name: continue
       in: query
       description: Continue token for paginated list requests
-      schema:
-        type: string
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: The Kubernetes namespace
       schema:
         type: string
   securitySchemes:
