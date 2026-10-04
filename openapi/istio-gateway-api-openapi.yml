@@ -133,39 +133,6 @@ paths:
           description: Not found
 components:
   schemas:
-    ListMeta:
-      type: object
-      properties:
-        resourceVersion:
-          type: string
-        continue:
-          type: string
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the resource
-        namespace:
-          type: string
-          description: Namespace of the resource
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-          description: Map of string keys and values for organizing resources
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-          description: Unstructured key-value map for storing arbitrary metadata
-        creationTimestamp:
-          type: string
-          format: date-time
-          description: Timestamp representing the server time when this object was created
-        resourceVersion:
-          type: string
-          description: An opaque value that represents the internal version of this object
     Gateway:
       type: object
       properties:
@@ -213,6 +180,13 @@ components:
                     type: object
                     description: TLS options for the gateway.
               description: A list of server specifications describing the properties of the proxy on a given load balancer port.
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
     GatewayList:
       type: object
       properties:
@@ -228,6 +202,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Gateway'
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of string keys and values for organizing resources
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Unstructured key-value map for storing arbitrary metadata
+        creationTimestamp:
+          type: string
+          format: date-time
+          description: Timestamp representing the server time when this object was created
+        resourceVersion:
+          type: string
+          description: An opaque value that represents the internal version of this object
   parameters:
     name:
       name: name

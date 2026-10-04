@@ -166,43 +166,6 @@ components:
       schema:
         type: string
   schemas:
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the resource
-        namespace:
-          type: string
-          description: Namespace of the resource
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        resourceVersion:
-          type: string
-    PeerAuthenticationList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          enum:
-          - PeerAuthenticationList
-        metadata:
-          $ref: '#/components/schemas/ListMeta'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/PeerAuthentication'
     PeerAuthentication:
       type: object
       properties:
@@ -259,6 +222,43 @@ components:
           type: string
         continue:
           type: string
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        resourceVersion:
+          type: string
+    PeerAuthenticationList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+          - PeerAuthenticationList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PeerAuthentication'
   securitySchemes:
     BearerAuth:
       type: http

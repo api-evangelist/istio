@@ -132,55 +132,60 @@ paths:
         '404':
           description: Not found
 components:
-  parameters:
-    name:
-      name: name
-      in: path
-      required: true
-      description: The resource name
-      schema:
-        type: string
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: The Kubernetes namespace
-      schema:
-        type: string
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: A selector to restrict the list of returned objects by their labels
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of resources to return
-      schema:
-        type: integer
-    continue:
-      name: continue
-      in: query
-      description: Continue token for paginated list requests
-      schema:
-        type: string
   schemas:
-    VirtualServiceList:
+    VirtualService:
       type: object
       properties:
         apiVersion:
           type: string
+          enum:
+          - networking.istio.io/v1
         kind:
           type: string
           enum:
-          - VirtualServiceList
+          - VirtualService
         metadata:
-          $ref: '#/components/schemas/ListMeta'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/VirtualService'
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            hosts:
+              type: array
+              items:
+                type: string
+              description: The destination hosts to which traffic is being sent. Can be a DNS name with wildcard prefix or an IP address.
+            gateways:
+              type: array
+              items:
+                type: string
+              description: The names of gateways that should apply these routes. A VirtualService with no gateway list will apply to sidecars only.
+            http:
+              type: array
+              items:
+                $ref: '#/components/schemas/HTTPRoute'
+              description: An ordered list of route rules for HTTP traffic.
+            tls:
+              type: array
+              items:
+                type: object
+              description: An ordered list of route rules for TLS and HTTPS traffic.
+            tcp:
+              type: array
+              items:
+                type: object
+              description: An ordered list of route rules for TCP traffic.
+            exportTo:
+              type: array
+              items:
+                type: string
+              description: A list of namespaces to which this virtual service is exported.
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
     ObjectMeta:
       type: object
       properties:
@@ -276,59 +281,54 @@ components:
             value:
               type: number
           description: Percentage of traffic to mirror.
-    VirtualService:
+    VirtualServiceList:
       type: object
       properties:
         apiVersion:
           type: string
-          enum:
-          - networking.istio.io/v1
         kind:
           type: string
           enum:
-          - VirtualService
+          - VirtualServiceList
         metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          type: object
-          properties:
-            hosts:
-              type: array
-              items:
-                type: string
-              description: The destination hosts to which traffic is being sent. Can be a DNS name with wildcard prefix or an IP address.
-            gateways:
-              type: array
-              items:
-                type: string
-              description: The names of gateways that should apply these routes. A VirtualService with no gateway list will apply to sidecars only.
-            http:
-              type: array
-              items:
-                $ref: '#/components/schemas/HTTPRoute'
-              description: An ordered list of route rules for HTTP traffic.
-            tls:
-              type: array
-              items:
-                type: object
-              description: An ordered list of route rules for TLS and HTTPS traffic.
-            tcp:
-              type: array
-              items:
-                type: object
-              description: An ordered list of route rules for TCP traffic.
-            exportTo:
-              type: array
-              items:
-                type: string
-              description: A list of namespaces to which this virtual service is exported.
-    ListMeta:
-      type: object
-      properties:
-        resourceVersion:
-          type: string
-        continue:
-          type: string
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VirtualService'
+  parameters:
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http

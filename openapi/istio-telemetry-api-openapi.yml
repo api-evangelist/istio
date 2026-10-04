@@ -140,10 +140,10 @@ components:
       description: The resource name
       schema:
         type: string
-    continue:
-      name: continue
+    labelSelector:
+      name: labelSelector
       in: query
-      description: Continue token for paginated list requests
+      description: A selector to restrict the list of returned objects by their labels
       schema:
         type: string
     namespace:
@@ -153,19 +153,26 @@ components:
       description: The Kubernetes namespace
       schema:
         type: string
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: A selector to restrict the list of returned objects by their labels
-      schema:
-        type: string
     limit:
       name: limit
       in: query
       description: Maximum number of resources to return
       schema:
         type: integer
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
   schemas:
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
     ObjectMeta:
       type: object
       properties:
@@ -188,28 +195,6 @@ components:
           format: date-time
         resourceVersion:
           type: string
-    ListMeta:
-      type: object
-      properties:
-        resourceVersion:
-          type: string
-        continue:
-          type: string
-    TelemetryList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          enum:
-          - TelemetryList
-        metadata:
-          $ref: '#/components/schemas/ListMeta'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Telemetry'
     Telemetry:
       type: object
       properties:
@@ -379,6 +364,21 @@ components:
                   name:
                     type: string
               description: References to the target resources.
+    TelemetryList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+          - TelemetryList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Telemetry'
   securitySchemes:
     BearerAuth:
       type: http

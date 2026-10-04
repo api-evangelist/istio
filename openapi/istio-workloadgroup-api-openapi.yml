@@ -166,6 +166,13 @@ components:
       schema:
         type: string
   schemas:
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
     ObjectMeta:
       type: object
       properties:
@@ -192,13 +199,21 @@ components:
         resourceVersion:
           type: string
           description: An opaque value that represents the internal version of this object
-    ListMeta:
+    WorkloadGroupList:
       type: object
       properties:
-        resourceVersion:
+        apiVersion:
           type: string
-        continue:
+        kind:
           type: string
+          enum:
+          - WorkloadGroupList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkloadGroup'
     WorkloadGroup:
       type: object
       properties:
@@ -233,21 +248,6 @@ components:
             probe:
               type: object
               description: ReadinessProbe describes the configuration for health checking.
-    WorkloadGroupList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          enum:
-          - WorkloadGroupList
-        metadata:
-          $ref: '#/components/schemas/ListMeta'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkloadGroup'
   securitySchemes:
     BearerAuth:
       type: http
