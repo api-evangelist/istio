@@ -545,6 +545,12 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+  - type: Plans
+    url: plans/istio-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/istio-rate-limits.yml
+  - type: FinOps
+    url: finops/istio-finops.yml
   - type: CapabilityMap
     url: capabilities/istio-capability-edges.yml
     name: Istio Business Capability Map
