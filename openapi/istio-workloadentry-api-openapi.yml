@@ -133,24 +133,18 @@ paths:
           description: Not found
 components:
   parameters:
-    name:
-      name: name
-      in: path
-      required: true
-      description: The resource name
-      schema:
-        type: string
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: A selector to restrict the list of returned objects by their labels
-      schema:
-        type: string
     namespace:
       name: namespace
       in: path
       required: true
       description: The Kubernetes namespace
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
       schema:
         type: string
     limit:
@@ -163,6 +157,12 @@ components:
       name: continue
       in: query
       description: Continue token for paginated list requests
+      schema:
+        type: string
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
       schema:
         type: string
   schemas:
@@ -188,32 +188,6 @@ components:
           type: string
         continue:
           type: string
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the resource
-        namespace:
-          type: string
-          description: Namespace of the resource
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-          description: Map of string keys and values for organizing resources
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-          description: Unstructured key-value map for storing arbitrary metadata
-        creationTimestamp:
-          type: string
-          format: date-time
-          description: Timestamp representing the server time when this object was created
-        resourceVersion:
-          type: string
-          description: An opaque value that represents the internal version of this object
     WorkloadEntry:
       type: object
       properties:
@@ -255,6 +229,32 @@ components:
             serviceAccount:
               type: string
               description: The service account associated with the workload.
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the resource
+        namespace:
+          type: string
+          description: Namespace of the resource
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of string keys and values for organizing resources
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Unstructured key-value map for storing arbitrary metadata
+        creationTimestamp:
+          type: string
+          format: date-time
+          description: Timestamp representing the server time when this object was created
+        resourceVersion:
+          type: string
+          description: An opaque value that represents the internal version of this object
   securitySchemes:
     BearerAuth:
       type: http

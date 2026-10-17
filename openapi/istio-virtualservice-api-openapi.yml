@@ -132,7 +132,109 @@ paths:
         '404':
           description: Not found
 components:
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: The Kubernetes namespace
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    continue:
+      name: continue
+      in: query
+      description: Continue token for paginated list requests
+      schema:
+        type: string
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
   schemas:
+    HTTPRoute:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name assigned to the route for debugging purposes.
+        match:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: object
+                description: URI match condition
+              headers:
+                type: object
+                description: Header match conditions
+              method:
+                type: object
+                description: HTTP method match condition
+          description: Match conditions to be satisfied for the rule to be activated.
+        route:
+          type: array
+          items:
+            type: object
+            properties:
+              destination:
+                type: object
+                properties:
+                  host:
+                    type: string
+                    description: The name of a service from the service registry.
+                  port:
+                    type: object
+                    properties:
+                      number:
+                        type: integer
+                  subset:
+                    type: string
+                    description: The name of a subset within the service.
+              weight:
+                type: integer
+                description: Weight for traffic distribution.
+          description: Route destinations with optional traffic weight.
+        timeout:
+          type: string
+          description: Timeout for HTTP requests in duration format (e.g. 5s).
+        retries:
+          type: object
+          properties:
+            attempts:
+              type: integer
+            perTryTimeout:
+              type: string
+            retryOn:
+              type: string
+          description: Retry policy for HTTP requests.
+        fault:
+          type: object
+          description: Fault injection policy.
+        mirror:
+          type: object
+          description: Mirror HTTP traffic to another destination for testing.
+        mirrorPercentage:
+          type: object
+          properties:
+            value:
+              type: number
+          description: Percentage of traffic to mirror.
     VirtualService:
       type: object
       properties:
@@ -212,75 +314,6 @@ components:
         resourceVersion:
           type: string
           description: An opaque value that represents the internal version of this object
-    HTTPRoute:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name assigned to the route for debugging purposes.
-        match:
-          type: array
-          items:
-            type: object
-            properties:
-              uri:
-                type: object
-                description: URI match condition
-              headers:
-                type: object
-                description: Header match conditions
-              method:
-                type: object
-                description: HTTP method match condition
-          description: Match conditions to be satisfied for the rule to be activated.
-        route:
-          type: array
-          items:
-            type: object
-            properties:
-              destination:
-                type: object
-                properties:
-                  host:
-                    type: string
-                    description: The name of a service from the service registry.
-                  port:
-                    type: object
-                    properties:
-                      number:
-                        type: integer
-                  subset:
-                    type: string
-                    description: The name of a subset within the service.
-              weight:
-                type: integer
-                description: Weight for traffic distribution.
-          description: Route destinations with optional traffic weight.
-        timeout:
-          type: string
-          description: Timeout for HTTP requests in duration format (e.g. 5s).
-        retries:
-          type: object
-          properties:
-            attempts:
-              type: integer
-            perTryTimeout:
-              type: string
-            retryOn:
-              type: string
-          description: Retry policy for HTTP requests.
-        fault:
-          type: object
-          description: Fault injection policy.
-        mirror:
-          type: object
-          description: Mirror HTTP traffic to another destination for testing.
-        mirrorPercentage:
-          type: object
-          properties:
-            value:
-              type: number
-          description: Percentage of traffic to mirror.
     VirtualServiceList:
       type: object
       properties:
@@ -296,39 +329,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VirtualService'
-  parameters:
-    name:
-      name: name
-      in: path
-      required: true
-      description: The resource name
-      schema:
-        type: string
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: A selector to restrict the list of returned objects by their labels
-      schema:
-        type: string
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: The Kubernetes namespace
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of resources to return
-      schema:
-        type: integer
-    continue:
-      name: continue
-      in: query
-      description: Continue token for paginated list requests
-      schema:
-        type: string
   securitySchemes:
     BearerAuth:
       type: http

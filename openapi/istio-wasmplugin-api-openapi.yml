@@ -133,24 +133,18 @@ paths:
           description: Not found
 components:
   parameters:
-    name:
-      name: name
-      in: path
-      required: true
-      description: The resource name
-      schema:
-        type: string
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: A selector to restrict the list of returned objects by their labels
-      schema:
-        type: string
     namespace:
       name: namespace
       in: path
       required: true
       description: The Kubernetes namespace
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
       schema:
         type: string
     limit:
@@ -159,6 +153,12 @@ components:
       description: Maximum number of resources to return
       schema:
         type: integer
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
     continue:
       name: continue
       in: query
@@ -166,6 +166,13 @@ components:
       schema:
         type: string
   schemas:
+    ListMeta:
+      type: object
+      properties:
+        resourceVersion:
+          type: string
+        continue:
+          type: string
     WasmPlugin:
       type: object
       properties:
@@ -279,28 +286,6 @@ components:
                   name:
                     type: string
               description: References to the target resources.
-    ListMeta:
-      type: object
-      properties:
-        resourceVersion:
-          type: string
-        continue:
-          type: string
-    WasmPluginList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          enum:
-          - WasmPluginList
-        metadata:
-          $ref: '#/components/schemas/ListMeta'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/WasmPlugin'
     ObjectMeta:
       type: object
       properties:
@@ -323,6 +308,21 @@ components:
           format: date-time
         resourceVersion:
           type: string
+    WasmPluginList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          enum:
+          - WasmPluginList
+        metadata:
+          $ref: '#/components/schemas/ListMeta'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WasmPlugin'
   securitySchemes:
     BearerAuth:
       type: http

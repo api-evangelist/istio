@@ -133,24 +133,18 @@ paths:
           description: Not found
 components:
   parameters:
-    name:
-      name: name
-      in: path
-      required: true
-      description: The resource name
-      schema:
-        type: string
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: A selector to restrict the list of returned objects by their labels
-      schema:
-        type: string
     namespace:
       name: namespace
       in: path
       required: true
       description: The Kubernetes namespace
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: The resource name
       schema:
         type: string
     limit:
@@ -159,6 +153,12 @@ components:
       description: Maximum number of resources to return
       schema:
         type: integer
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: A selector to restrict the list of returned objects by their labels
+      schema:
+        type: string
     continue:
       name: continue
       in: query
