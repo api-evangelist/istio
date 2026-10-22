@@ -14,6 +14,8 @@ checked:
 - https://github.com/ScoopInstaller/Main
 - https://pypi.org/pypi
 - https://registry.npmjs.org
+- https://www.bestpractices.dev/en/projects.json
+- artifact-hub/integrations/artifact-hub-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: OpenTelemetry
@@ -220,6 +222,67 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-official-clis.py
   first_seen: '2026-10-20'
+- partner_name: OpenSSF Best Practices Badge
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.bestpractices.dev/en/projects/1395
+  category: OpenSSF Best Practices badge (open-source project security conformance)
+  contract_reference:
+    register: OpenSSF Best Practices badge projects (bestpractices.dev/en/projects.json, paged)
+    standard: OpenSSF Best Practices Badge criteria (formerly CII Best Practices; bestpractices.dev)
+    spec_file: null
+    role: badge-holder
+    registered_name: Istio
+    matched_by: github-org+name-among-claimants
+    matched_on: istio
+    certified_products:
+    - product: open-source project
+      product_type: open-source project
+      standard: OpenSSF Best Practices Badge criteria (formerly CII Best Practices; bestpractices.dev)
+      lapsed: false
+      partner_tier: passing
+      projects:
+      - name: Istio
+        id: 1395
+        url: https://www.bestpractices.dev/en/projects/1395
+        badge_level: passing
+    signal_note: 'certified_products = ONE entry (product type: open-source project) with the highest CURRENT badge
+      level in partner_tier; a provider whose projects only lost the badge is lapsed: true; project names are context,
+      never counted; in_progress entries are not conformance'
+    detected_by: sweep-openssf-best-practices-badges.py
+    detected: '2026-10-22'
+  detected_by: sweep-openssf-best-practices-badges.py
+  first_seen: '2026-10-22'
+- partner_name: Artifact Hub (artifact-hub)
+  partner: artifact-hub
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: artifact-hub
+  evidence: https://artifacthub.io/packages/search?repo=istio-official
+  mirror_of: artifact-hub/integrations/artifact-hub-integration-edges.yml
+  apps:
+  - istiod
+  - base
+  - gateway
+  - cni
+  - ztunnel
+  - ambient
+  - istiod-remote
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Artifact Hub listing (Helm chart)
+  badges:
+  - 'Verified publisher (Artifact Hub official: publisher owns the software)'
+  - 'Verified publisher (Artifact Hub verified publisher: repository ownership proven)'
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
