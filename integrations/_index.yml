@@ -123,3 +123,64 @@
     detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
+- slug: istio-homebrew
+  label: Homebrew
+  partner: homebrew
+  partner_name: Homebrew
+  category: official CLI (Homebrew)
+  type: register
+  channel: package-registry
+  evidence: https://formulae.brew.sh/formula/istioctl
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Homebrew (public package index)
+    spec_file: null
+    packages:
+    - name: istioctl
+      kind: formula
+      version: 1.31.2
+      released: null
+      lapsed: false
+      page: https://formulae.brew.sh/formula/istioctl
+      cli: 'formula desc: Istio configuration command-line utility'
+      repo_leg: domain:istio.io
+      publisher_leg: artifact-shared-github-org:istio
+      matched_by: domain
+    current: true
+    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration;
+      lapsed = no release in 24 months or deprecated / disabled by the manager'
+    detected_by: sweep-official-clis.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: istio-scoop
+  label: Scoop
+  partner_name: Scoop
+  category: official CLI (Scoop)
+  type: register
+  channel: package-registry
+  evidence: https://github.com/ScoopInstaller/Main/blob/master/bucket/istioctl.json
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Scoop (public package index)
+    spec_file: null
+    packages:
+    - name: istioctl
+      kind: main
+      version: 1.31.2
+      released: null
+      lapsed: false
+      page: https://github.com/ScoopInstaller/Main/blob/master/bucket/istioctl.json
+      cli: 'scoop description: Configuration command line utility for service operators to debug and diagnose t'
+      repo_leg: domain:istio.io
+      publisher_leg: artifact-shared-github-org:istio
+      matched_by: domain
+    current: true
+    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration;
+      lapsed = no release in 24 months or deprecated / disabled by the manager'
+    detected_by: sweep-official-clis.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
