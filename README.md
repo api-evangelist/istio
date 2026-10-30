@@ -1,4 +1,4 @@
-# Istio (istio)
+# Istio
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,201 +66,174 @@
 
 Istio is an open-source service mesh platform that provides a comprehensive solution for managing, securing, and monitoring microservices in a distributed system. It acts as a middle layer between services, handling communication, routing, and load balancing, as well as providing visibility into the traffic flowing between services. Istio also offers advanced security features such as access control, authentication, and encryption to ensure that communication between services is secure.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/istio/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/istio/refs/heads/main/apis.yml)
+**Areas:** Istio · CNCF · Kubernetes · Microservices · Open Source · Service Mesh · Cloud-Native · Graduated
 
-## Scope
+## Istio on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Istio is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/istio/](https://apis.io/providers/istio/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (14)
 
-- CNCF
-- Kubernetes
-- Microservices
-- Open Source
-- Service Mesh
+- [Istio Telemetry API](https://apis.io/apis/istio/telemetry-api/) — The Istio Telemetry API (telemetry.istio.io) provides configuration resources for managing observability within an Istio service mesh. The Telemetry…
+- [Istio Mesh Config API](https://apis.io/apis/istio/mesh-config-api/) — The Istio Mesh Config API (istio.mesh.v1alpha1) provides global configuration for the Istio service mesh control plane and data plane proxy behavior. It…
+- [Istio Operator API](https://apis.io/apis/istio/operator-api/) — The Istio Operator API (istio.operator.v1alpha1) defines the IstioOperator custom resource used to install, configure, and upgrade Istio on Kubernetes…
+- [Istio AuthorizationPolicy API](https://apis.io/apis/istio/istio-authorizationpolicy-api/) — Fine-grained access control policies for workloads
+- [Istio DestinationRule API](https://apis.io/apis/istio/istio-destinationrule-api/) — Policies applied to traffic after routing (load balancing, connection pool, outlier detection)
+- [Istio Gateway API](https://apis.io/apis/istio/istio-gateway-api/) — Load balancer configuration at the edge of the mesh
+- [Istio PeerAuthentication API](https://apis.io/apis/istio/istio-peerauthentication-api/) — Mutual TLS configuration for peer-to-peer communication
+- [Istio RequestAuthentication API](https://apis.io/apis/istio/istio-requestauthentication-api/) — JWT-based request authentication policies
+- [Istio ServiceEntry API](https://apis.io/apis/istio/istio-serviceentry-api/) — External service entries added to the mesh service registry
+- [Istio Sidecar API](https://apis.io/apis/istio/istio-sidecar-api/) — Sidecar proxy configuration for inbound and outbound traffic
+- [Istio VirtualService API](https://apis.io/apis/istio/istio-virtualservice-api/) — HTTP/TCP routing rules for traffic management
+- [Istio WasmPlugin API](https://apis.io/apis/istio/istio-wasmplugin-api/) — WebAssembly plugin configuration for Envoy proxy extensions
+- [Istio WorkloadEntry API](https://apis.io/apis/istio/istio-workloadentry-api/) — Non-Kubernetes workload (VM/bare metal) endpoint properties
+- [Istio WorkloadGroup API](https://apis.io/apis/istio/istio-workloadgroup-api/) — Collection of workload instances sharing common properties
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-06-05
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Istio Networking API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Istio Networking API (networking.istio.io) provides configuration resources for traffic management within an Istio service mesh.
+- [Istio Agentic Access](https://apis.io/agentic-access/istio/istio-agentic-access/)
 
-- **Human URL:** [https://istio.io/latest/docs/reference/config/networking/](https://istio.io/latest/docs/reference/config/networking/)
+#### JSON Schema (11)
 
-#### Tags
+The data models the API reads and writes.
 
-- Networking
-- Service Mesh
-- Traffic Management
+- [Istio AuthorizationPolicy](https://apis.io/schemas/istio/authorization-policy/)
+- [Istio DestinationRule](https://apis.io/schemas/istio/destination-rule/)
+- [Istio Gateway](https://apis.io/schemas/istio/gateway/)
+- [Istio PeerAuthentication](https://apis.io/schemas/istio/peer-authentication/)
+- [Istio RequestAuthentication](https://apis.io/schemas/istio/request-authentication/)
+- [Istio ServiceEntry](https://apis.io/schemas/istio/service-entry/)
+- [Istio Sidecar](https://apis.io/schemas/istio/sidecar/)
+- [Istio Telemetry](https://apis.io/schemas/istio/telemetry/)
+- [Istio VirtualService](https://apis.io/schemas/istio/virtual-service/)
+- [Istio WasmPlugin](https://apis.io/schemas/istio/wasm-plugin/)
+- [Istio WorkloadEntry](https://apis.io/schemas/istio/workload-entry/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://istio.io/latest/docs/reference/config/networking/)
-- [OpenAPI](openapi/istio-networking-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/istio-networking-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/istio-networking-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/virtual-service.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/destination-rule.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/gateway.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/service-entry.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/sidecar.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/workload-entry.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/istio-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+Linked-data contexts for the provider's vocabulary.
 
-### Istio Security API
+- [Istio Context](https://apis.io/jsonld/istio/istio-context/)
 
-The Istio Security API (security.istio.io) provides configuration resources for managing security policies within an Istio service mesh. It includes AuthorizationPolicy for fine-grained access control on workloads with ALLOW, DENY, AUDIT, and CUSTOM actions, PeerAuthentication for configuring mutual TLS (mTLS) between service proxies, and RequestAuthentication for validating JWT tokens attached to incoming requests. These resources enforce zero-trust security across the mesh.
+#### Collections (15)
 
-- **Human URL:** [https://istio.io/latest/docs/reference/config/security/](https://istio.io/latest/docs/reference/config/security/)
+Postman and Open Collection request collections.
 
-#### Tags
+- [Istio Extensions AuthorizationPolicy API](https://apis.io/collections/istio/open-istio-authorizationpolicy-api/)
+- [Istio Extensions AuthorizationPolicy DestinationRule API](https://apis.io/collections/istio/open-istio-destinationrule-api/)
+- [Istio Extensions API](https://apis.io/collections/istio/open-istio-extensions-api/)
+- [Istio Extensions AuthorizationPolicy Gateway API](https://apis.io/collections/istio/open-istio-gateway-api/)
+- [Istio Networking API](https://apis.io/collections/istio/open-istio-networking-api/)
+- [Istio Extensions AuthorizationPolicy PeerAuthentication API](https://apis.io/collections/istio/open-istio-peerauthentication-api/)
+- [Istio Extensions AuthorizationPolicy RequestAuthentication API](https://apis.io/collections/istio/open-istio-requestauthentication-api/)
+- [Istio Security API](https://apis.io/collections/istio/open-istio-security-api/)
+- [Istio Extensions AuthorizationPolicy ServiceEntry API](https://apis.io/collections/istio/open-istio-serviceentry-api/)
+- [Istio Extensions AuthorizationPolicy Sidecar API](https://apis.io/collections/istio/open-istio-sidecar-api/)
+- [Istio Extensions AuthorizationPolicy Telemetry API](https://apis.io/collections/istio/open-istio-telemetry-api/)
+- [Istio Extensions AuthorizationPolicy VirtualService API](https://apis.io/collections/istio/open-istio-virtualservice-api/)
+- [Istio Extensions AuthorizationPolicy WasmPlugin API](https://apis.io/collections/istio/open-istio-wasmplugin-api/)
+- [Istio Extensions AuthorizationPolicy WorkloadEntry API](https://apis.io/collections/istio/open-istio-workloadentry-api/)
+- [Istio Extensions AuthorizationPolicy WorkloadGroup API](https://apis.io/collections/istio/open-istio-workloadgroup-api/)
 
-- Authentication
-- Authorization
-- Security
-- Service Mesh
+#### Governance rules (1)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://istio.io/latest/docs/reference/config/security/)
-- [OpenAPI](openapi/istio-security-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/istio-security-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/istio-security-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/authorization-policy.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/peer-authentication.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/request-authentication.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/istio-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Istio — jsonschema rules](https://apis.io/rules/istio/istio-jsonschema-spectral-rules/)
 
-### Istio Telemetry API
+#### Security (2)
 
-The Istio Telemetry API (telemetry.istio.io) provides configuration resources for managing observability within an Istio service mesh. The Telemetry resource enables flexible configuration of metrics, access logs, and distributed tracing for workloads. It uses the concept of providers to indicate the protocol or integration type, and supports fine-grained control over what telemetry data is collected and where it is sent.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://istio.io/latest/docs/reference/config/telemetry/](https://istio.io/latest/docs/reference/config/telemetry/)
+- [Istio Authentication](https://apis.io/security/istio/istio-authentication/)
+- [Istio Domain Security](https://apis.io/security/istio/istio-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Metrics
-- Observability
-- Service Mesh
-- Telemetry
-- Tracing
+Published plans, tiers and prices.
 
-#### Properties
+- [Istio Plans Pricing](https://apis.io/plans/istio/istio-plans-pricing/)
 
-- [Documentation](https://istio.io/latest/docs/reference/config/telemetry/)
-- [OpenAPI](openapi/istio-telemetry-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/istio-telemetry-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/istio-telemetry-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/telemetry.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/istio-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+#### Rate limits (1)
 
-### Istio Extensions API
+Published request limits.
 
-The Istio Extensions API (extensions.istio.io) provides configuration resources for extending the Istio service mesh with custom functionality. The WasmPlugin resource enables deploying WebAssembly (Wasm) modules as plugins to the Envoy sidecar proxies, allowing custom processing of network traffic at various phases of the request lifecycle including authentication, authorization, metrics collection, and traffic transformation.
+- [Istio Rate Limits](https://apis.io/rate-limits/istio/istio-rate-limits/)
 
-- **Human URL:** [https://istio.io/latest/docs/reference/config/](https://istio.io/latest/docs/reference/config/)
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Extensions
-- Service Mesh
-- Wasm
-- WebAssembly
+- [Istio Finops](https://apis.io/finops/istio/istio-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://istio.io/latest/docs/reference/config/)
-- [OpenAPI](openapi/istio-extensions-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/istio-extensions-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/istio-extensions-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/wasm-plugin.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/istio-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Istio Mesh Config API
-
-The Istio Mesh Config API (istio.mesh.v1alpha1) provides global configuration for the Istio service mesh control plane and data plane proxy behavior. It includes MeshConfig for mesh-wide settings such as access logging, tracing providers, and default proxy configuration, as well as ProxyConfig for per-workload proxy tuning and network topology settings. These settings are typically applied via the Istio ConfigMap or as annotations on workloads.
-
-- **Human URL:** [https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/](https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/)
-
-#### Tags
-
-- Configuration
-- Networking
-- Proxy
-- Service Mesh
-
-#### Properties
-
-- [Documentation](https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/)
-- [GitHub Repository](https://github.com/istio/api/tree/master/mesh/v1alpha1)
-- [Postman Collection](collections/istio-extensions-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/istio-extensions-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/istio-networking-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/istio-networking-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/istio-security-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/istio-security-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/istio-telemetry-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/istio-telemetry-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Istio Operator API
-
-The Istio Operator API (istio.operator.v1alpha1) defines the IstioOperator custom resource used to install, configure, and upgrade Istio on Kubernetes clusters. It provides a declarative interface for selecting Istio profiles, enabling or disabling components such as ingress and egress gateways, and customizing the control plane configuration without editing raw Helm values.
-
-- **Human URL:** [https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/](https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/)
-
-#### Tags
-
-- Installation
-- Kubernetes
-- Operator
-- Service Mesh
-
-#### Properties
-
-- [Documentation](https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/)
-- [GitHub Repository](https://github.com/istio/istio/tree/master/operator)
-- [Postman Collection](collections/istio-extensions-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/istio-extensions-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/istio-networking-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/istio-networking-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/istio-security-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/istio-security-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/istio-telemetry-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/istio-telemetry-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/istio)
-- [JSON-LD](json-ld/istio-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/virtual-service.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/destination-rule.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/gateway.json) — [JSON Schema](https://json-schema.org/specification)
 - [Website](https://istio.io/)
-- [Blog](https://istio.io/latest/blog/)
-- [News](https://istio.io/latest/news/)
 - [Documentation](https://istio.io/latest/docs/)
-- [Integrations](https://istio.io/latest/docs/ops/integrations/)
-- [Glossary](https://istio.io/latest/docs/reference/glossary/)
-- [Git Hub](https://github.com/istio/istio)
-- [Git Hub](https://github.com/istio/api)
-- [Getting Started](https://istio.io/latest/docs/setup/getting-started/)
-- [GitHub Organization](https://github.com/istio)
-- [Changelog](https://github.com/istio/istio/releases)
-- [Community](https://istio.io/latest/get-involved/)
+- [Getting started](https://istio.io/latest/docs/setup/getting-started/)
 - [Support](https://discuss.istio.io/)
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/istio)
+- [Changelog](https://github.com/istio/istio/releases)
+- [Blog](https://istio.io/latest/blog/)
 - [Security](https://istio.io/latest/docs/releases/security-vulnerabilities/)
-- [Issue  Tracker](https://github.com/istio/istio/issues)
+- [GitHub](https://github.com/istio)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 34.9** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 58.4 |
+| Contract governance | 9.8 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 38.1 |
+| Access clarity | 5.3 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/istio/](https://apis.io/providers/istio/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Istio: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/istio/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
